@@ -1,0 +1,73 @@
+.cke_notifications_area { display: none; }
+ul,li {
+    list-style: none;
+}
+.treeCategory {
+    font-size: 19px;
+    width: 100%;
+    margin-bottom: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 0 1px #8c8c8c26;
+    padding: 10px 20px;
+    & summary {
+        cursor: pointer;
+        list-style-type: none;
+        &::marker {
+            display: none;
+        }
+        &::-webkit-details-marker {
+            display: none;
+        }
+        &::before {
+            position: absolute;
+            left: -1.25em;
+            top: .5em;
+            content: "+";
+            background-color: rgb(140, 140, 140);
+            display: block;
+            color: #fff;
+            width: 20px;
+            height: 20px;
+            font-weight: 700;
+            border-radius: 50em;
+            z-index: 9999;
+            text-align: center;
+            line-height: .80em;
+        }
+    }
+    & ul li {
+        position: relative;
+        line-height: 2em;
+        &::before {
+            position: absolute;
+            left: -20px;
+            top: 0;
+            border-left: 2px solid gray;
+            border-bottom: 2px solid gray;
+            content: "";
+            width: 15px;
+            height: 1em;
+        }
+        &::after {
+            position: absolute;
+            left: -20px;
+            bottom: 0px;
+            border-left: 2px solid gray;
+            content: "";
+            width: 6px;
+            height: 100%;
+        }
+        
+    }
+    & ul li:last-child::after {
+        display: none;
+    }
+    ul.tree > li::after, ul.tree > li::before {
+        display: none;
+    }
+    ul details[open] > summary::before {
+        content: '-';
+    }
+    
+}
