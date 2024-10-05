@@ -11,9 +11,12 @@ class Filter extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public $brand;
+    public $category;
+    public function __construct($brand,$category)
     {
-        //
+        $this->brand = $brand;
+        $this->category = $category;
     }
 
     /**

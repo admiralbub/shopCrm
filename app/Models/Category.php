@@ -97,12 +97,5 @@ class Category extends Model
         return $query->where('status', 1);
     }
 
-    protected $lang_fields = [
-        'name',
-        'h1',
-        'title',
-        'description',
-        'meta',
-        'body'
-    ];
+    
 }

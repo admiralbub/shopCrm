@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Product;
+use Illuminate\Support\Facades\App;
+use App\Interfaces\CategoryInterface;
 class CategoryController extends Controller
 {
     protected $breadcrumbs;
@@ -28,25 +30,23 @@ class CategoryController extends Controller
         } else {
             abort(404);
         }
-        
-
-       
-
+    
         return $this->breadcrumbs;
     }
     public function __invoke(Request $request) {
-        $category = Category::where('slug', $request->slug)->published()->first();
+        $categoryInt = App::make(CategoryInterface::class); 
+        $category = $categoryInt->getCategories($request->slug);
+
         if (!$category) {
             abort(404);
         }
         $breadcrumbs = $this->breadcrumbs($category);
-        $product_ids = $category->products()
-            ->get()
-            ->pluck('id');
-        $products = Product::whereIn('id', $product_ids)->orderBy("status","ASC")->published()->get();
+
+        $product = $categoryInt->getProduct($category);
+        $brands = $categoryInt->getBrand($product,$category);
         return view('products.list',[
             'category'=>$category,
-            'products' => $products,
+            'brands'=>$brands,
             'breadcrumbs'=>$breadcrumbs
         ]);
 

@@ -1,12 +1,16 @@
 <div class="sadbar_catalog">
-    <div class="categories">
-        <strong class="fs-5">{{__('Product categories')}}</strong>
-        <ul class="categories_links">
-            <li class="category_links-item"><a href="#">Categoria 1</a></li>
-            <li class="category_links-item"><a href="#">Categoria 2 </a></li>
-            <li class="category_links-item"><a href="#">Categoria 3 </a></li>
-        </ul>
-     </div>
+    @if($category->count()!=0)
+        <div class="categories">
+            <strong class="fs-5">{{__('Product categories')}}</strong>
+            <ul class="categories_links">
+                @foreach($category as $child)
+                    <li class="category_links-item">
+                        <a href="{{route('product.category',$child->slug)}}">{{$child->name}}</a>
+                    </li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <div class="filter-price mt-3">
         <strong class="fs-5">{{__('Price')}}</strong>
         <div id="slider"></div>
@@ -21,43 +25,22 @@
         <div id="slider-value1"></div>
         <div id="slider-value2"></div>
     </div>
-    <div class="producer">
-        <strong class="fs-5">{{__('Brand')}}</strong>
-        <div class="producer_radio">
-            <div class="form-check">
-                <input class="form-check-input filter_brand_check" type="checkbox" name="brand" value="https://growex.market/products/express-sun/brand-126">
-                <label class="form-check-label">
-                    <a href="https://growex.market/products/express-sun/brand-126" class="text-secondary">Syngenta</a>
-                </label>
-                
+    @if($brands->count())
+        <div class="producer">
+            <strong class="fs-5">{{__('Brand')}}</strong>
+            <div class="producer_radio">
+            
+                @foreach($brands as $brand)
+                    <div class="form-check">
+                        <input class="form-check-input filter_brand_check" type="checkbox" name="brand" value="https://growex.market/products/express-sun/brand-126">
+                        <label class="form-check-label">
+                            <a href="https://growex.market/products/express-sun/brand-126" class="text-secondary">{{$brand->name}}</a>
+                        </label>
+                            
+                    </div>
+                @endforeach
+        
             </div>
         </div>
-        <div class="producer_radio">
-            <div class="form-check">
-                <input class="form-check-input filter_brand_check" type="checkbox" name="brand" value="https://growex.market/products/express-sun/brand-126">
-                <label class="form-check-label">
-                    <a href="https://growex.market/products/express-sun/brand-126" class="text-secondary">Syngenta</a>
-                </label>
-                
-            </div>
-        </div>
-        <div class="producer_radio">
-            <div class="form-check">
-                <input class="form-check-input filter_brand_check" type="checkbox" name="brand" value="https://growex.market/products/express-sun/brand-126">
-                <label class="form-check-label">
-                    <a href="https://growex.market/products/express-sun/brand-126" class="text-secondary">Syngenta</a>
-                </label>
-                
-            </div>
-        </div>
-        <div class="producer_radio">
-            <div class="form-check">
-                <input class="form-check-input filter_brand_check" type="checkbox" name="brand" value="https://growex.market/products/express-sun/brand-126">
-                <label class="form-check-label">
-                    <a href="https://growex.market/products/express-sun/brand-126" class="text-secondary">Syngenta</a>
-                </label>
-                
-            </div>
-        </div>
-    </div>
+    @endif
 </div>

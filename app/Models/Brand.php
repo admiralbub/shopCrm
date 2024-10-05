@@ -7,9 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 use Orchid\Screen\AsSource;
 use Orchid\Filters\Filterable;
 use Cviebrock\EloquentSluggable\Sluggable;
+use App\Traits\LocalizationTrait;
 class Brand extends Model
 {
-    use Sluggable,HasFactory,AsSource,Filterable;
+    use Sluggable,HasFactory,AsSource,Filterable,LocalizationTrait;
 
     protected $fillable = [
         'id',

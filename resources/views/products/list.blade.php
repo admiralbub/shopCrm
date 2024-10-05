@@ -12,14 +12,14 @@
         <div class="category-lists mt-3 mb-4">
             <div class="row">
                 <div class="col col-lg-3 col-12">
-                    <x-products.filter></x-products.filter>
+                    <x-products.filter :brands="$brands" :category="$category->children"></x-products.filter>
                 </div>
                 <div class="col col-lg-9 col-12">
                     <div class="px-4">
                         <x-products.sort></x-products.sort>
-                        @if(count($products))
+                        @if(count($category->products))
                             <div class="row row-cols-xxl-4 row-cols-md-2 row-cols-sm-2 row-cols-2 mb-30 card_prdoucts">
-                                @foreach($products as $product)
+                                @foreach($category->products as $product)
                                     <x-products.product :product="$product"></x-products.product>
                                 @endforeach
                             </div>
