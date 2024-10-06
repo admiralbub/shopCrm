@@ -66,7 +66,7 @@
                         margin-left: 12px;
                         border-radius: 5px;
                         text-align: center;
-                        border: 1px solid #999;
+                        border: 1px solid var(--border-actio);
                         -moz-appearance: textfield;
                     }
                     & input[type="number"]::-webkit-outer-spin-button,
@@ -87,7 +87,7 @@
             & .slider{
                 height: 5px;
                 position: relative;
-                background: #ddd;
+                background: var(--fill-icon);
                 border-radius: 5px;
                 & .progress{
                     height: 100%;
