@@ -25,7 +25,7 @@ class RegisterRequest extends FormRequest
             'first_name' => ['required','string','max:255'],
             'last_name' =>  ['required','string','max:255'],
             'middle_name' =>  ['required','string','max:255'],
-            'phone' => ['required','unique:users,phone','min:18'],
+            'phone' => ['required','unique:users,phone','min:16'],
             'email' => ['required','email','unique:users,email','max:255'],
             'password' => ['required','min:6','confirmed'],
             'password_confirmation' => ['required','min:6']
@@ -46,7 +46,7 @@ class RegisterRequest extends FormRequest
             
             'phone.required' => __('validation_required_title',['attribute'=>__('Phone_title')]),
             'phone.unique' => __('validation_unique_title',['attribute'=>__('Phone_title')]),
-            'phone.min' => __('validation_min_title',['attribute'=>__('Phone_title'),'min'=>'18']),
+            'phone.min' => __('validation_min_title',['attribute'=>__('Phone_title'),'min'=>'16']),
 
             'email.required' => __('validation_required_title',['attribute'=>__('Email')]),
             'email.unique' => __('validation_unique_title',['attribute'=>__('Email')]),

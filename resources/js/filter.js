@@ -1,21 +1,38 @@
-
-
-let min_price_catalog = parseFloat($('#min').val());
-let max_price_catalog = parseFloat($('#max').val());
-$( "#slider" ).slider({
-    range: false,
-    min: min_price_catalog,
-    max: max_price_catalog,
-    
-    values: [ min_price_catalog, max_price_catalog ],
-    slide: function( event, ui ) {
-      $( "#min" ).show();
-      $( "#max" ).show();
-      $( "#min_defult" ).hide();
-      $( "#max_defult" ).hide();
-
-      $( "#min" ).val( ui.values[ 0 ] );
-      $( "#max" ).val( ui.values[ 1 ] );
-      
-    }
-  });
+const rangeInput = document.querySelectorAll(".range-input input"),
+priceInput = document.querySelectorAll(".price-input input"),
+range = document.querySelector(".slider .progress");
+let priceGap = 1000;
+priceInput.forEach(input =>{
+    input.addEventListener("input", e =>{
+        let minPrice = parseInt(priceInput[0].value),
+        maxPrice = parseInt(priceInput[1].value);
+        
+        if((maxPrice - minPrice >= priceGap) && maxPrice <= rangeInput[1].max){
+            if(e.target.className === "input-min"){
+                rangeInput[0].value = minPrice;
+                range.style.left = ((minPrice / rangeInput[0].max) * 100) + "%";
+            }else{
+                rangeInput[1].value = maxPrice;
+                range.style.right = 100 - (maxPrice / rangeInput[1].max) * 100 + "%";
+            }
+        }
+    });
+});
+rangeInput.forEach(input =>{
+    input.addEventListener("input", e =>{
+        let minVal = parseInt(rangeInput[0].value),
+        maxVal = parseInt(rangeInput[1].value);
+        if((maxVal - minVal) < priceGap){
+            if(e.target.className === "range-min"){
+                rangeInput[0].value = maxVal - priceGap
+            }else{
+                rangeInput[1].value = minVal + priceGap;
+            }
+        }else{
+            priceInput[0].value = minVal;
+            priceInput[1].value = maxVal;
+            range.style.left = ((minVal / rangeInput[0].max) * 100) + "%";
+            range.style.right = 100 - (maxVal / rangeInput[1].max) * 100 + "%";
+        }
+    });
+});

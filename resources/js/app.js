@@ -81,9 +81,7 @@ window.onscroll = function() {
     }
         
 };
-import './jquery-3.7.1.js'
-import './jquery.mask.js'
-import './jquery-ui.js'
+
 import './filter.js'
 import './slider.js'
 import './mask.js'

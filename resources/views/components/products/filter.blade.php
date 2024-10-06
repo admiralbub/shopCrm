@@ -13,17 +13,22 @@
     @endif
     <div class="filter-price mt-3">
         <strong class="fs-5">{{__('Price')}}</strong>
-        <div id="slider"></div>
-                               
-        <div class="price_input">
-            <input type="text" class="form-control" name="min_price" data-price="2980" value="2980" id="min" width="10%" style="">
-            <input type="text" class="form-control" name="max_price" data-price="8464" value="8464" id="max" width="10%" style="">
-                
-            <input type="text" class="form-control" data-price="2980" value="2980" id="min_defult" width="10%" style="display: none;">
-            <input type="text" class="form-control" data-price="8464" value="8464" id="max_defult" width="10%" style="display: none;">
+        <div class="price-input">
+            <div class="field">
+                <input type="number" class="input-min form-control" value="2500">
+            </div>
+            <div class="separator">-</div>
+            <div class="field">
+                <input type="number" class="input-max form-control" value="7500">
+            </div>
         </div>
-        <div id="slider-value1"></div>
-        <div id="slider-value2"></div>
+        <div class="slider">
+            <div class="progress"></div>
+        </div>
+        <div class="range-input">
+            <input type="range" class="range-min" min="0" max="10000" value="2500" step="100">
+            <input type="range" class="range-max" min="0" max="10000" value="7500" step="100">
+        </div>   
     </div>
     @if($brands->count())
         <div class="producer">

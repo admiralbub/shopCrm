@@ -25,7 +25,7 @@ class UpdateAccountRequest extends FormRequest
             'first_name' => ['required','string','max:255'],
             'last_name' =>  ['required','string','max:255'],
             'middle_name' =>  ['required','string','max:255'],
-            'phone' => ['required','min:18'],
+            'phone' => ['required','min:16'],
             'email' => ['required','email','max:255'],
         ];
     }
@@ -44,7 +44,7 @@ class UpdateAccountRequest extends FormRequest
             'middle_name.max' => __('validation_max_title',['attribute'=>__('MiddleName_title'),'max'=>'255']),
             
             'phone.required' => __('validation_required_title',['attribute'=>__('Phone_title')]),
-            'phone.min' => __('validation_min_title',['attribute'=>__('Phone_title'),'min'=>'18']),
+            'phone.min' => __('validation_min_title',['attribute'=>__('Phone_title'),'min'=>'16']),
 
             'email.required' => __('validation_required_title',['attribute'=>__('Email')]),
             'email.email' => __('validation_email_title',['attribute'=>__('Email')]),
