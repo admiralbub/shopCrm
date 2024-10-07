@@ -5,6 +5,7 @@
     use App\Models\Brand;
     use App\Models\Product; 
     use App\Models\Category; 
+    use Illuminate\Pagination\LengthAwarePaginator;
     class CategoryService implements CategoryInterface {
      
         public function getCategories($slug) {
@@ -26,7 +27,8 @@
                 ->published()
                 ->get()
                 ->pluck('id');
-            $products = Product::whereIn('id', $products_id)->get();
+                
+            $products = Product::whereIn('id', $products_id)->isCategory();
 
             return $products;
         }
@@ -41,13 +43,35 @@
             $brands = Brand::whereIn("id",$list_brand)->get();
             return $brands;
         }
-        public function getSortProduct(Product $product,$sort) {
-            $products_id = $category->products()
-                ->orderBy("status","ASC")
-                ->published()
-                ->get()
-                ->pluck('id');
-            $products_brands = Product::whereIn('id', $products_id)->get(); 
+        public function getSortProduct($products,Category $category,$sort) {
+            //Сортировка названий товар по возрастанию
+            if ($sort== 'sort-name_asc') {
+                $products = $products->orderBy('name_'.app()->getLocale(), 'asc');
+            }else if ($sort == 'sort-name_desc') { //Сортировка названий товар по убыванию
+                $products = $products->orderBy('name_'.app()->getLocale(), 'desc');
+            }else if ($sort == 'sort-price_desc') {  //Сортировка цен по убыванию
+                $paginated_shops =$products->with('packs')
+                    ->paginate(10);
+                $shops = $paginated_shops->sortByDESC(function($prod) {
+                    return ceil(($prod->packs->count() > 0 ? $prod->packs->first()->volume : 1) * $prod->price);
+                });
+                $page = request()->get('page', 1);
+                $products = new LengthAwarePaginator($shops, $paginated_shops->total(), $paginated_shops->perPage());
+                $currentURL = url()->current();
+                $products = $products->withPath($currentURL); 
+            }else if ($sort == 'sort-price_asc') { //Сортировка цен по возростанию
+                $paginated_shops = $products->with('packs')->paginate(10);
+                $shops = $paginated_shops->sortBy(function($prod) {
+                    return ceil(($prod->packs->count() > 0 ? $prod->packs->first()->volume : 1) * $prod->price);
+                });
+                $page = request()->get('page', 1);
+                $products = new LengthAwarePaginator($shops, $paginated_shops->total(), $paginated_shops->perPage());
+                $currentURL = url()->current();
+                $products = $products->withPath($currentURL); 
+                return $products;
+            } else {
+                return $products;
+            }
         }
      
     }

@@ -7,8 +7,8 @@
                     <div class="swiper main_banner">
                         <div class="swiper-wrapper main_banner-wrapper">
                             <div class=" main_banner-wrapper-slide swiper-slide">
-                                <img src="{{asset('images/img/banner11.png')}}">
-                                <div class="main_banner_content">
+                                <img src="{{asset('images/2338e05efe6bdbd6c7ddccd47e8490e1bfc43e7d.png')}}">
+                                <div class="main_banner_content d-none">
                                     <div class="main_banner_content-heading">
                                         Mi 9T Pro
                                     </div>
@@ -37,14 +37,14 @@
                     <div class="right-banners mt-2">
                         <div class="right-banner mb-3">
                             <a href="#">
-                                <img src="{{asset('images/img/banner_right1.png')}}">
+                                <img src="{{asset('images/img/eeee.png')}}">
                             </a>
                             <div class="right-banner_content">
                                 <strong class="fs-6">
-                                        Fitness tracker <br>SOUSHTRACK IFaT<br> ACTIVE 3 IN 1
+                                    Ківі "Соло" <br> (самозапильний) ...
                                 </strong>
                                 <div class="pt-3">
-                                    <a type="button" class="btn btn-primary">Show</a>
+                                    <a type="button" class="btn btn-primary">{{__('Show')}}</a>
 
                                 </div>
                             </div>
@@ -52,14 +52,14 @@
                         </div> 
                         <div class="right-banner mвb-3">
                             <a href="#">
-                                 <img src="{{asset('images/img/banner_right2.png')}}">
+                                 <img src="{{asset('images/img/eeee.png')}}">
                             </a>
                             <div class="right-banner_content">
                                 <strong class="fs-6">
-                                    Fitness tracker <br>SOUSHTRACK IFaT<br> ACTIVE 3 IN 1
+                                    Ківі "Соло" <br> (самозапильний) ...
                                 </strong>
                                 <div class="pt-3">
-                                    <a type="button" class="btn btn-primary">Show</a>
+                                    <a type="button" class="btn btn-primary">{{__('Show')}}</a>
 
                                 </div>
                             </div>

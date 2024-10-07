@@ -6,6 +6,6 @@ interface CategoryInterface {
     public function getCategories($slug);
     public function getProduct(Category $category);
     public function getBrand($products,Category $category);
-   // public function getSortProduct(Category $category,$sort);
+    public function getSortProduct($products,Category $category,$sort);
 }
 ?>

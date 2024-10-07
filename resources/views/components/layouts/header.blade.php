@@ -3,7 +3,7 @@
     <div class="container">
         <div class="d-flex  justify-content-between">
             <div class="top-nav-left">
-                From 25th spring to 30th leaf fall discounts on electric tools up to - 30%
+                {{__('From 25th march to 30th march fall discounts on electric tools up to - 30%')}}
             </div>
             <div class="top-nav-right">
                 <ul class="top-nav-right-list d-lg-flex d-none">
@@ -81,7 +81,7 @@
         <div class="row align-items-center">
             <div class="header-logo col col-lg-3">
                 <a href="{{route('index')}}">
-                    <img src="{{asset('images/img/Logo.png')}}" >
+                    <img src="{{asset('images/logo_black.svg')}}" width="150px">
                 </a>
                     
             </div>

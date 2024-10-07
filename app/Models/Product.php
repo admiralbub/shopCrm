@@ -136,4 +136,9 @@ class Product extends Model
     {
         return $query->where('is_publish', 1);
     }
+   
+    public function scopeIsCategory($query)
+    {
+        return $query->where('hide_from_categories', 0);
+    }
 }

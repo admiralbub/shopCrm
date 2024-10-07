@@ -12,7 +12,7 @@
             </div>
                     
             <div class="advantage-content">
-                FREE SHIPPING & RETURN
+                {{__('Free shipping and returns')}}
              </div>
         </div>
         <div class="advantage col-xl-3 col-lg-6 col-md-6 col-sm-6 d-flex align-items-center">
@@ -24,7 +24,7 @@
                 </span>
             </div>
             <div class="advantage-content">
-                MONEY BACK GUARANTEE
+                {{__('Money back guarantee')}}
             </div>
         </div>
         <div class="advantage col-xl-3 col-lg-6 col-md-6 col-sm-6 d-flex align-items-center">
@@ -39,7 +39,7 @@
             </div>
                     
             <div class="advantage-content">
-                ONLINE SUPPORT 24/7
+                {{__('24/7 online support')}}
             </div>
         </div>
         <div class="advantage col-xl-3 col-lg-6 col-md-6 col-sm-6 d-flex align-items-center">
@@ -51,7 +51,7 @@
                 </span>
             </div>
             <div class="advantage-content">
-                SECURE PAYMENT
+                {{__('Secure payment')}}
             </div>
         </div>
     </div>

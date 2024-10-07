@@ -63,11 +63,9 @@
                         height: 100%;
                         outline: none;
                         font-size: 19px;
-                        margin-left: 12px;
                         border-radius: 5px;
                         text-align: center;
                         border: 1px solid var(--border-actio);
-                        -moz-appearance: textfield;
                     }
                     & input[type="number"]::-webkit-outer-spin-button,
                     & input[type="number"]::-webkit-inner-spin-button {

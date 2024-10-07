@@ -10,6 +10,7 @@
         }
         &-content {
             font-weight: 500;
+            text-transform: uppercase;
         }
         &:nth-child(4) {
             border-right: 0px; 
@@ -216,7 +217,7 @@
 
 }
 .home-text {
-    font-weight: 300;
+
     font-size: 18px;
     line-height: 200%;
     color: #767676;

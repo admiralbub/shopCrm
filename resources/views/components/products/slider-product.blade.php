@@ -1,6 +1,6 @@
 <div class="swiper-slide card_prdouct ">
     <div class="card_prdouct-img">
-        <img src="img/1.png" alt="">
+        <img src="{{asset('images/img/8e9600549e420d8211772097e3d8fedefc90c37a.jpg')}}" alt="">
     </div>
     <div class="card_prdouct-managment">
         <div class="card_prdouct-managment_scale">
@@ -44,7 +44,7 @@
     </div>
     <div class="card_prdouct-button mt-3">
         <button type="button" class="btn btn-primary">
-             Add to card
+            {{__('Add to cart')}}
         </button>
     </div>
  </div>

@@ -44,9 +44,12 @@ class CategoryController extends Controller
 
         $product = $categoryInt->getProduct($category);
         $brands = $categoryInt->getBrand($product,$category);
+        $products = $categoryInt->getSortProduct($product,$category,$request->get('sort'));
+        
         return view('products.list',[
             'category'=>$category,
             'brands'=>$brands,
+            'products'=>$products->paginate(22),
             'breadcrumbs'=>$breadcrumbs
         ]);
 

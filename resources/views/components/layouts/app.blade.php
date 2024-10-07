@@ -24,7 +24,7 @@
         <div class="main">
             {{ $slot }}
         </div>
-        <x-block.subscribers/>
+        
         <x-layouts.footer/>
         <x-layouts.mob_nav_bottom/>
     </body>

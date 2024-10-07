@@ -1,8 +1,8 @@
 <div class="catalog-mob d-lg-none d-block" >
     <div class="catalog-mob--header d-flex  justify-content-between">
         <div class="catalog-mob--logo">
-            <a href="#">
-                <img src="{{asset('images/img/Logo.png')}}">
+            <a href="{{route('index')}}">
+                <img src="{{asset('images/logo_black.svg')}}" width="150px">
             </a>
         </div>
         <div class="catalog-mob--language  d-flex">

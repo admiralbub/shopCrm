@@ -2,13 +2,13 @@
     <div class="d-flex justify-content-between">
         <div class="main-products_heading">
             <h3 class="fs-2 ">
-                <span>Popular</span> product
+                {!! __('Popular products') !!}
         
             </h3>
         </div>
         <div class="main-products_link">
             <a href="#">
-                All product
+                {{__('All product')}}
             </a>
         </div>
     </div>

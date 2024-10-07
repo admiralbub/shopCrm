@@ -1,6 +1,6 @@
 <div class="main-categories container">
     <h3 class="fs-2 text-center"> 
-        <span>Top Categories</span> in Sales and Trending 
+        {!!__('The most popular categories in sales and trends')!!}
     </h3>
 
     <!-- Swiper Slider -->
@@ -10,7 +10,7 @@
             <div class="main-categories_slider-content swiper-slide">
                 <div class="main-categories_slider-content--img">
                     <a href="#">
-                        <img src="img/4 1.png" alt="Smart Watch" class="img-fluid">
+                        <img src="{{asset('images/6p3h1iyas8tsctkpb2owh4nn2qsivo9q 1.png')}}" alt="Smart Watch" class="img-fluid">
                     </a>
                 </div>
                 <div class="main-categories_slider-content--heading text-center">
@@ -27,7 +27,7 @@
             <div class="main-categories_slider-content swiper-slide">
                 <div class="main-categories_slider-content--img">
                     <a href="#">
-                        <img src="img/4 1.png" alt="Smart Watch" class="img-fluid">
+                        <img src="{{asset('images/6p3h1iyas8tsctkpb2owh4nn2qsivo9q 1.png')}}" alt="Smart Watch" class="img-fluid">
                     </a>
                 </div>
                 <div class="main-categories_slider-content--heading text-center">
@@ -44,7 +44,7 @@
             <div class="main-categories_slider-content swiper-slide">
                 <div class="main-categories_slider-content--img">
                     <a href="#">
-                        <img src="img/4 1.png" alt="Smart Watch" class="img-fluid">
+                        <img src="{{asset('images/6p3h1iyas8tsctkpb2owh4nn2qsivo9q 1.png')}}" alt="Smart Watch" class="img-fluid">
                     </a>
                 </div>
                 <div class="main-categories_slider-content--heading text-center">
@@ -61,7 +61,7 @@
             <div class="main-categories_slider-content swiper-slide">
                 <div class="main-categories_slider-content--img">
                     <a href="#">
-                        <img src="img/4 1.png" alt="Smart Watch" class="img-fluid">
+                        <img src="{{asset('images/6p3h1iyas8tsctkpb2owh4nn2qsivo9q 1.png')}}" alt="Smart Watch" class="img-fluid">
                     </a>
                 </div>
                 <div class="main-categories_slider-content--heading text-center">
@@ -78,7 +78,7 @@
             <div class="main-categories_slider-content swiper-slide">
                 <div class="main-categories_slider-content--img">
                     <a href="#">
-                        <img src="img/4 1.png" alt="Smart Watch" class="img-fluid">
+                        <img src="{{asset('images/6p3h1iyas8tsctkpb2owh4nn2qsivo9q 1.png')}}" alt="Smart Watch" class="img-fluid">
                     </a>
                 </div>
                 <div class="main-categories_slider-content--heading text-center">

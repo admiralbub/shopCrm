@@ -4,7 +4,7 @@
             <div class="col-xl-5 col-lg-3 col-md-4 col-sm-6 py-3 py-lg-0">
                 <div class="footer-logo">
                     <a href="#">
-                        <img src="{{asset('images/img/Logo.png')}}" alt="">
+                        <img src="{{asset('images/logo_black.svg')}}" width="150px">
                     </a>
                         
                 </div>
