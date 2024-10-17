@@ -7,9 +7,11 @@ use Orchid\Screen\AsSource;
 use Orchid\Screen\Actions\Link;
 use Orchid\Filters\Filterable;
 use Orchid\Filters\Types\Where;
+use App\Traits\LocalizationTrait;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Pack extends Model
 {
-    use AsSource,Filterable;
+    use LocalizationTrait,AsSource,Filterable,HasFactory;
     protected $fillable = [
         'volume',
         'name_ru',

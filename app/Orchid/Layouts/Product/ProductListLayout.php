@@ -55,7 +55,7 @@ class ProductListLayout extends Table
                 ->render(function (Product $product) {
                     return $product->packs() ? ceil($product->packs()->min('volume') * $product->price) .' грн.' : $product->price.' грн.';
                 }),
-            TD::make('publish', 'Статус')->width(80)
+            TD::make('publish', __('Status'))->width(80)
                 ->render(function (Product $product) {
                     if ($product->is_publish==1) {
                         return "<span class=\"badge bg-success  text-white\" >".__('Active')."</span>";

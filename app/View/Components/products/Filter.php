@@ -13,10 +13,17 @@ class Filter extends Component
      */
     public $brand;
     public $category;
-    public function __construct($brand,$category)
+    public $price;
+    public $attrs;
+    public $selectedFilter;
+    public function __construct($brand,$category,$price,$attrs,$selectedFilter)
     {
         $this->brand = $brand;
         $this->category = $category;
+        $this->price = $price;
+
+        $this->attrs = $attrs;
+        $this->attrs = $selectedFilter;
     }
 
     /**

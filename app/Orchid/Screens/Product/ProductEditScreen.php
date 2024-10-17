@@ -3,6 +3,7 @@
 namespace App\Orchid\Screens\Product;
 
 use App\Models\Category;
+use App\Models\Attr;
 use App\Models\Product;
 use App\Models\Price;
 use App\Models\Brand;
@@ -126,7 +127,7 @@ class ProductEditScreen extends Screen
                             ])
                             ->title(__('Price for')),    
                         Select::make('product.status')
-                            ->options(Product::getStatuses())
+                            ->options(Product::getStatusUnitAttribute())
                             ->required()
                             ->title(__('Product availability')), 
                         CheckBox::make('product.is_new')
@@ -177,6 +178,14 @@ class ProductEditScreen extends Screen
                         
                     ])
                 ],  
+                __('Attribute') => [
+                    Layout::rows([
+                        Select::make('product.attrs')
+                            ->fromModel(Attr::where('status','=',1), 'name_ua')
+                            ->multiple()
+                            ->title(__('Attribute')),
+                    ])
+                ],
                 __('Wholesale prices') => [
                      Layout::rows([
                           Input::make('product.wholesale_p3')
@@ -199,24 +208,18 @@ class ProductEditScreen extends Screen
                 'SEO' => [
                     Layout::rows([
                         Input::make('product.h1_ru')
-                            ->required()
                             ->title('H1 (ru)'),
                         Input::make('product.h1_ua')
-                            ->required()
                             ->title('H1 (ua)'),
 
                         Input::make('product.meta_title_ru')
-                            ->required()
                             ->title('Title (ru)'),
                         Input::make('product.meta_title_ua')
-                            ->required()
                             ->title('Title (ua)'),
                         TextArea::make('product.meta_description_ru')
-                            ->required()
                             ->title('Meta description (ru)')
                             ->rows(5),
                         TextArea::make('product.meta_description_ua')
-                            ->required()
                             ->title('Meta description (ua)')
                             ->rows(5),
 
@@ -251,6 +254,7 @@ class ProductEditScreen extends Screen
 
         //dd($request->get('product'));
         $this->product->unit = $request->get('product')['unit'];
+        
         //$product->categories = $request->get('product')['categories'];
         //dd($request->get('product')['categories']);
 
@@ -261,6 +265,14 @@ class ProductEditScreen extends Screen
         $this->product->categories()->sync($request->get('product')['categories']);
 
         $this->product->packs()->sync($request->get('product')['packs']);
+
+
+      //  dd($request->get('product')['attrs']);
+
+        if ($request->filled('product.attrs')) {
+            $this->product->attrs()->sync($request->get('product')['attrs']);
+        }
+        
 
         $title_operation = $this->product->exists ? __("You have successfully completed the record changes.") : __("You have successfully completed adding a record."); 
         Toast::info($title_operation);

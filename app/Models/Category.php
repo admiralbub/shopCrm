@@ -18,7 +18,6 @@ class Category extends Model
         'h1_ru',
         'name_ru',
         'name_ua',
-        'images',
         'description_ru',
         'description_ua',
         'slug',
@@ -84,7 +83,7 @@ class Category extends Model
     }
     public static function checkIsRoot(Category $category)
     {
-        return is_null($category->parent_id) || $category->parent_id <= 0;
+        return is_null($category->category_id) || $category->category_id <= 0;
     }
    
     public function sluggable():array
@@ -100,6 +99,7 @@ class Category extends Model
     {
         return $query->where('status', 1);
     }
+    
 
     
 }

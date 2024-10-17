@@ -133,6 +133,12 @@
         padding: 6px 15px;
         border-radius: 5px;
     }
+    & .status-no {
+        background-color: rgb(255 0 3 / 20%);
+        color: var(--black);
+        padding: 6px 15px;
+        border-radius: 5px;
+    }
     &-manage {
         display: flex;
         -webkit-box-align: center;
@@ -285,6 +291,7 @@
             font-weight: 400;
         }
         & .reviews-tab {
+            
             & .reviews-tab-bb {
                 border: 1px solid var(--border-action);
                 border-radius: 10px;

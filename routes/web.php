@@ -9,6 +9,7 @@ use App\Http\Controllers\CabinetUser\PasswordChangeController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Middleware\GuestionUser;
 use App\Http\Middleware\AuthUser;
+use App\Http\Controllers\ViewProductController;
 require __DIR__ . '/admin/admin.php';
 $market = parse_url(config('app.url'), PHP_URL_HOST);
 Route::group([
@@ -18,9 +19,11 @@ Route::group([
     'prefix' => \LaravelLocalization::setLocale()
 ], function () {
     Route::group(['prefix' => 'products'], function () {
-        Route::get('/{slug}', CategoryController::class)->name('product.category');
+        Route::get('/{slug}/{filter?}', CategoryController::class)->name('product.category')->where('filter', '.*');
     });
-
+    Route::group(['prefix' => 'product'], function () {
+        Route::get('/{slug}', ViewProductController::class)->name('product.view');
+    });    
 
     Route::get('/', function () {
         return view('index');

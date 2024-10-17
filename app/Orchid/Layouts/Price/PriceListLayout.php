@@ -31,7 +31,7 @@ class PriceListLayout extends Table
         return [
             TD::make('id', 'ID')->sort()->width(120),
             TD::make('name_ua', __("Name")),
-            TD::make('status', 'Статус')->sort()->width(80)
+            TD::make('status', __('Status'))->sort()->width(80)
                 ->render(function (Price $price) {
                     if ($price->status==1) {
                         return "<span class=\"badge bg-success  text-white\" >".__('Active')."</span>";

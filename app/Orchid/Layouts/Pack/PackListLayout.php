@@ -34,7 +34,7 @@ class PackListLayout extends Table
             TD::make('id', 'ID')->sort()->width(120),
             TD::make('name_ua', __("Name")),
             TD::make('volume', __("Volume/value"))->width(200),
-            TD::make('status', 'Статус')->sort()->width(80)
+            TD::make('status', __('Status'))->sort()->width(80)
                 ->render(function (Pack $pack) {
                     if ($pack->status==1) {
                         return "<span class=\"badge bg-success  text-white\" >".__('Active')."</span>";

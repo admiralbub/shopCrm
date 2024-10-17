@@ -81,7 +81,7 @@ window.onscroll = function() {
     }
         
 };
-
+import './catalog.js'
 import './filter.js'
 import './slider.js'
 import './mask.js'

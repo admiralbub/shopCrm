@@ -208,4 +208,6 @@ $theme-colors:map-merge($theme-colors,$custom-color);
 
 @import "bootstrap-icons/font/bootstrap-icons.css";
 @import "bootstrap/scss/bootstrap";
+@import "bootstrap/scss/bootstrap";
+@import "nouislider/dist/nouislider.css";
 // Then add additional custom code here

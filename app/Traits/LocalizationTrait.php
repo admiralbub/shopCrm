@@ -1,49 +1,49 @@
 <?php 
-    namespace App\Traits;
+namespace App\Traits;
 
-    trait LocalizationTrait
+trait LocalizationTrait
+{
+    public function getNameAttribute()
     {
-        public function getNameAttribute()
-        {
-            return $this->getLocalizedAttr('name');
-        }
-        public function getDescriptionAttribute()
-        {
-            return $this->getLocalizedAttr('description');
-        }
-        public function getH1Attribute()
-        {
-            return $this->getLocalizedAttr('h1');
-        }
-        public function getMetaTitleAttribute()
-        {
-            return $this->getLocalizedAttr('meta_title');
-        }
-        public function getMetaDescriptionAttribute()
-        {
-            return $this->getLocalizedAttr('meta_description');
-        }
-        public function getMetaKeywordsAttribute()
-        {
-            return $this->getLocalizedAttr('meta_keywords');
+        return $this->getLocalizedAttr('name');
+    }
+    public function getDescriptionAttribute()
+    {
+        return $this->getLocalizedAttr('description');
+    }
+    public function getH1Attribute()
+    {
+        return $this->getLocalizedAttr('h1');
+    }
+    public function getMetaTitleAttribute()
+    {
+        return $this->getLocalizedAttr('meta_title');
+    }
+    public function getMetaDescriptionAttribute()
+    {
+        return $this->getLocalizedAttr('meta_description');
+    }
+    public function getMetaKeywordsAttribute()
+    {
+        return $this->getLocalizedAttr('meta_keywords');
+    }
+
+    public function getLocalizedAttrName($name)
+    {
+        return $name . '_' . app()->getLocale();
+    }
+    public function getLocalizedAttr($name, $defaultLocaleWhenEmpty = false)
+    {
+        $attr = $this->getAttribute($this->getLocalizedAttrName($name));
+
+        if (empty($attr) && $defaultLocaleWhenEmpty) {
+            $attr = $this->getAttribute($name . '_' . config()->get('app.fallback_locale'));
         }
 
-        public function getLocalizedAttrName($name)
-        {
-            return $name . '_' . app()->getLocale();
-        }
-        public function getLocalizedAttr($name, $defaultLocaleWhenEmpty = false)
-        {
-            $attr = $this->getAttribute($this->getLocalizedAttrName($name));
-
-            if (empty($attr) && $defaultLocaleWhenEmpty) {
-                $attr = $this->getAttribute($name . '_' . config()->get('app.fallback_locale'));
-            }
-
-            return $attr;
-        }
+        return $attr;
+    }
 
         
-    }
+}
 
 ?>

@@ -1,38 +1,51 @@
-const rangeInput = document.querySelectorAll(".range-input input"),
-priceInput = document.querySelectorAll(".price-input input"),
-range = document.querySelector(".slider .progress");
-let priceGap = 1000;
-priceInput.forEach(input =>{
-    input.addEventListener("input", e =>{
-        let minPrice = parseInt(priceInput[0].value),
-        maxPrice = parseInt(priceInput[1].value);
-        
-        if((maxPrice - minPrice >= priceGap) && maxPrice <= rangeInput[1].max){
-            if(e.target.className === "input-min"){
-                rangeInput[0].value = minPrice;
-                range.style.left = ((minPrice / rangeInput[0].max) * 100) + "%";
-            }else{
-                rangeInput[1].value = maxPrice;
-                range.style.right = 100 - (maxPrice / rangeInput[1].max) * 100 + "%";
-            }
-        }
-    });
-});
-rangeInput.forEach(input =>{
-    input.addEventListener("input", e =>{
-        let minVal = parseInt(rangeInput[0].value),
-        maxVal = parseInt(rangeInput[1].value);
-        if((maxVal - minVal) < priceGap){
-            if(e.target.className === "range-min"){
-                rangeInput[0].value = maxVal - priceGap
-            }else{
-                rangeInput[1].value = minVal + priceGap;
-            }
-        }else{
-            priceInput[0].value = minVal;
-            priceInput[1].value = maxVal;
-            range.style.left = ((minVal / rangeInput[0].max) * 100) + "%";
-            range.style.right = 100 - (maxVal / rangeInput[1].max) * 100 + "%";
-        }
-    });
-});
+import noUiSlider from 'nouislider'
+
+
+let priceRanges = document.querySelectorAll('.js-price-range');
+priceRanges.forEach(el => {
+    let downPriceInput = el.closest('.filter-price').querySelector('.js-price-down'),
+          upPriceInput   = el.closest('.filter-price').querySelector('.js-price-up'),
+          inputs         = [downPriceInput, upPriceInput];
+
+      const minPrice = +downPriceInput.getAttribute('data-min');
+      downPriceInput.value = minPrice.toLocaleString();  
+      //get maxPrice for slider price
+      const maxPrice = +upPriceInput.getAttribute('data-max');
+      upPriceInput.value = maxPrice.toLocaleString();
+     
+
+      //Init price range slider
+      noUiSlider.create(el, {
+          range: {
+              'min': minPrice,
+              'max': maxPrice
+          },
+          behaviour: 'drag',
+          connect  : true,
+          start    : [minPrice, maxPrice],
+          step     : 1
+      });
+
+      //Update value after scroll pointer in slider
+      el.noUiSlider.on('update', values => {
+          let [downPrice, upPrice] = values;
+
+          downPrice = Number(downPrice);
+          upPrice   = Number(upPrice);
+
+          downPriceInput.value = downPrice;
+          upPriceInput.value   = upPrice;
+      });
+
+      //Change slider value after inputs change
+      inputs.forEach(function (input, handle) {
+          input.addEventListener('change', function () {
+              let value = this.value;
+              value = value.replace(/\s+/g, '');
+              value = parseInt(value);
+
+              el.noUiSlider.setHandle(handle, value);
+          });
+      });
+
+  });

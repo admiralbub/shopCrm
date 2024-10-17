@@ -1,8 +1,8 @@
 <div class="col card_prdouct ">
-    <div class="card_prdouct-img">
+    <div class="card_prdouct-img" onclick="document.location='{{route('product.view',$product->slug)}}'">
         <img src="{{ asset($product->image)}}" alt="">
     </div>
-    <div class="card_prdouct-managment">
+    <div class="card_prdouct-managment" >
         <div class="card_prdouct-managment_scale">
             <button class="button_scale_card">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -19,11 +19,11 @@
         </div>    
     </div>
     <div class="card_prdouct-heading">
-        <a href="#">
+        <a href="{{route('product.view',$product->slug)}}">
             {{$product->name}}
         </a>
     </div>
-    <div class="card_prdouct-rating">
+    <div class="card_prdouct-rating" onclick="document.location='{{route('product.view',$product->slug)}}'" style="cursor:pointer;">
         <div class="card_prdouct-rating-icon">
             <svg viewBox="0 0 12 12" focusable="false" class="chakra-icon css-kkxboy" data-testid="reviewStar"><path d="M3.33385 10.9017L5.9998 9.29648L8.66575 10.9017C8.78353 10.9766 8.90665 11.0087 9.03513 10.998C9.16361 10.9873 9.27603 10.9445 9.37239 10.8696C9.46875 10.7947 9.5437 10.7011 9.59723 10.589C9.65077 10.4764 9.66147 10.3506 9.62935 10.2114L8.92271 7.17762L11.2835 5.13902C11.3906 5.04271 11.4576 4.93291 11.4846 4.80964C11.5112 4.68678 11.503 4.5665 11.4602 4.44879C11.4174 4.33107 11.3531 4.23476 11.2675 4.15985C11.1818 4.08494 11.064 4.03679 10.9142 4.01538L7.79852 3.7425L6.59402 0.885248C6.54049 0.756832 6.45762 0.66052 6.34541 0.596312C6.23278 0.532104 6.11757 0.5 5.9998 0.5C5.88203 0.5 5.76704 0.532104 5.65483 0.596312C5.5422 0.66052 5.45911 0.756832 5.40558 0.885248L4.20108 3.7425L1.08545 4.01538C0.935557 4.03679 0.817784 4.08494 0.732131 4.15985C0.646477 4.23476 0.582238 4.33107 0.539411 4.44879C0.496584 4.5665 0.488661 4.68678 0.515642 4.80964C0.542195 4.93291 0.609004 5.04271 0.716071 5.13902L3.07689 7.17762L2.37025 10.2114C2.33813 10.3506 2.34883 10.4764 2.40237 10.589C2.4559 10.7011 2.53085 10.7947 2.62721 10.8696C2.72357 10.9445 2.83599 10.9873 2.96447 10.998C3.09295 11.0087 3.21607 10.9766 3.33385 10.9017Z"></path></svg>
             <svg viewBox="0 0 12 12" focusable="false" class="chakra-icon css-kkxboy" data-testid="reviewStar"><path d="M3.33385 10.9017L5.9998 9.29648L8.66575 10.9017C8.78353 10.9766 8.90665 11.0087 9.03513 10.998C9.16361 10.9873 9.27603 10.9445 9.37239 10.8696C9.46875 10.7947 9.5437 10.7011 9.59723 10.589C9.65077 10.4764 9.66147 10.3506 9.62935 10.2114L8.92271 7.17762L11.2835 5.13902C11.3906 5.04271 11.4576 4.93291 11.4846 4.80964C11.5112 4.68678 11.503 4.5665 11.4602 4.44879C11.4174 4.33107 11.3531 4.23476 11.2675 4.15985C11.1818 4.08494 11.064 4.03679 10.9142 4.01538L7.79852 3.7425L6.59402 0.885248C6.54049 0.756832 6.45762 0.66052 6.34541 0.596312C6.23278 0.532104 6.11757 0.5 5.9998 0.5C5.88203 0.5 5.76704 0.532104 5.65483 0.596312C5.5422 0.66052 5.45911 0.756832 5.40558 0.885248L4.20108 3.7425L1.08545 4.01538C0.935557 4.03679 0.817784 4.08494 0.732131 4.15985C0.646477 4.23476 0.582238 4.33107 0.539411 4.44879C0.496584 4.5665 0.488661 4.68678 0.515642 4.80964C0.542195 4.93291 0.609004 5.04271 0.716071 5.13902L3.07689 7.17762L2.37025 10.2114C2.33813 10.3506 2.34883 10.4764 2.40237 10.589C2.4559 10.7011 2.53085 10.7947 2.62721 10.8696C2.72357 10.9445 2.83599 10.9873 2.96447 10.998C3.09295 11.0087 3.21607 10.9766 3.33385 10.9017Z"></path></svg>
@@ -33,16 +33,18 @@
         </div>
         <div class="card_prdouct-rating-count">
             <div class="count-text">
-                3 Reviews
+                3 {{__('Reviews')}}
             </div>
         </div>
     </div>
     <div class="card_prdouct-price">
         {{ $product->price * ($product->packs->count() > 0 ? $product->packs->sortBy('pivot.add_time')->first()->volume : 1) }} {{__("uah")}}
     </div>
-    <div class="card_prdouct-button mt-3">
-        <button type="button" class="btn btn-primary">
-            {{__('Add to cart')}}
-        </button>
-    </div>
+    @if($product->status_available)
+        <div class="card_prdouct-button mt-3">
+            <button type="button" class="btn btn-primary">
+                {{__('Add to cart')}}
+            </button>
+        </div>
+    @endif
  </div>
