@@ -39,7 +39,10 @@ class Brand extends Model
 	{
 		return $this->hasMany(Product::class);
 	}
-    
+    public function scopePublished($query)
+    {
+        return $query->where('status', 1);
+    }
     public function sluggable():array
     {
         return [

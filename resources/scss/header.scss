@@ -91,8 +91,7 @@
         cursor: pointer;
     }
     &-item {
-        border-right: 1px solid var(--line-color);
-        border-left: 1px solid var(--line-color);
+        background-color: var(--bg-catalog);
         position: relative;
         cursor: pointer;
         &:hover {
@@ -172,6 +171,7 @@
                         visibility: hidden;
                         position: fixed;
                         left: 292px;
+                        height: 300px;
                         & .top-navigation {
                             display: grid;
                             -ms-grid-columns: 1fr 1fr 1fr;

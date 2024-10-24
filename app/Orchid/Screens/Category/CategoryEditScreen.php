@@ -21,6 +21,7 @@ use Orchid\Screen\Actions\Button;
 use Nakipelo\Orchid\CKEditor\CKEditor;
 use Orchid\Support\Facades\Alert;
 use Orchid\Screen\Fields\CheckBox;
+use Orchid\Screen\Actions\Menu;
 class CategoryEditScreen extends Screen
 {
     /**
@@ -64,6 +65,11 @@ class CategoryEditScreen extends Screen
                 ->confirm(__('Once the account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.'))
                 ->method('remove')
                 ->canSee($this->category->exists),
+            Menu::make(__('Show'))
+                ->icon('bs.eye-fill')
+                ->canSee($this->category->exists)
+                ->url('/products/'.$this->category->slug), 
+            
         ];
     }
 

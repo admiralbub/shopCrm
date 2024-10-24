@@ -1,4 +1,4 @@
-# Logger
+# ShopCRM
 
 ## 1 Requirements
 

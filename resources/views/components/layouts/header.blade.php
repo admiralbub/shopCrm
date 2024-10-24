@@ -3,10 +3,22 @@
     <div class="container">
         <div class="d-flex  justify-content-between">
             <div class="top-nav-left">
-                {{__('From 25th march to 30th march fall discounts on electric tools up to - 30%')}}
+                <div class="d-none">
+                    dsdssd
+                </div>
             </div>
+            
             <div class="top-nav-right">
+                
                 <ul class="top-nav-right-list d-lg-flex d-none">
+                    @auth
+              
+                        @if(!empty(auth()->user()->permissions))
+                            <li>
+                                <a href="/admin" target="_blank" >{{__('Admin panel')}}</a>
+                            </li>
+                        @endif
+                    @endif
                     <li class="dropdown">
                          <a href="#" data-bs-toggle="dropdown" aria-expanded="false">
                            
@@ -89,7 +101,7 @@
                 <ul class="header-menu pt-2">
                     <li class="header-menu-item"><a href="{{route('index')}}">{{__('Home')}}</a></li>
                     <li class="header-menu-item"><a href="#">{{__('Stocks')}}</a></li>
-                    <li class="header-menu-item"><a href="#">{{__('Brand')}}</a></li>
+                    <li class="header-menu-item"><a href="{{route('product.brand.list')}}">{{__('Brand')}}</a></li>
                     <li class="header-menu-item"><a href="#">{{__('Blog')}}</a></li>
                 </ul>
             </div>

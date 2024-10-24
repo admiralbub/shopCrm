@@ -4,44 +4,28 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Interfaces\ProductShowInterface;
+use App\Breadcrumbs\Breadcrumb;
 class ViewProductController extends Controller
 {
-    protected $breadcrumbs;
-
-    public function __construct()
+    private $breadcrumbs;
+    private $productService;
+    public function __construct(ProductShowInterface $productService, Breadcrumb $breadcrumbs)
     {
-        $this->breadcrumbs = collect();
+        $this->breadcrumbs = $breadcrumbs;
+        $this->productService = $productService;
     }
 
-    protected function breadcrumbs($item,$product)
-    {
-        if($item) {
-            if ($item->parent) {
-                $this->breadcrumbs($item->parent,$product);
-            }
-            $this->breadcrumbs->push([
-                'id' => $item->id,
-                'slug' => $item->slug,
-                'name' => $item->name,
-                'name_product'=>$product->name,
-                'name_slug'=>$product->slug,
-            ]);
-        } else {
-            abort(404);
-        }
-        
-
-       
-
-        return $this->breadcrumbs;
-    }
+    
     public function __invoke($slug) {
-        $product = Product::where('slug',$slug)->first();
+        $product =$this->productService->showProduct($slug);
         if (!$product) {
             abort(404);
         }
         $category = $product->categories->first->getRootCategory();
-        $breadcrumbs = $this->breadcrumbs($category,$product);
-        return view('products.show',['product'=>$product,'breadcrumbs'=>$breadcrumbs]);
+        $breadcrumbs = $this->breadcrumbs->breadCategoryProduct($category,$product);
+        $attrs =$this->productService->attrProduct($product);
+        
+        return view('products.show',['product'=>$product,'attrs'=>$attrs,'breadcrumbs'=>$breadcrumbs]);
     }
 }

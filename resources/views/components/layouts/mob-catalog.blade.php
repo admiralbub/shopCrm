@@ -79,7 +79,7 @@
             <ul>
                 <li><a href="{{route('index')}}">{{__('Home')}}</a></li>
                 <li><a href="#">{{__('Stocks')}}</a></li>
-                <li><a href="#">{{__('Brand')}}</a></li>
+                <li><a href="{{route('product.brand.list')}}">{{__('Brand')}}</a></li>
                 <li><a href="#">{{__('Blog')}}</a></li>
             </ul>    
         </div>

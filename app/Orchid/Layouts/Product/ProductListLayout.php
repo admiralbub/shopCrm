@@ -9,7 +9,7 @@ use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\Actions\DropDown;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Components\Cells\DateTimeSplit;
-
+use Orchid\Screen\Actions\Menu;
 class ProductListLayout extends Table
 {
     /**
@@ -87,6 +87,7 @@ class ProductListLayout extends Table
                             ->method('remove_product', [
                                 'id' => $product->id,
                             ]),
+
                     ])),
 
         ];

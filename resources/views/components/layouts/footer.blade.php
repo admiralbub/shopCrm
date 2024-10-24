@@ -56,7 +56,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="{{route('product.brand.list')}}">
                             {{__('Brand')}}
                         </a>
                     </li>

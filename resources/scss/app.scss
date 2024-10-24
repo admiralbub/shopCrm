@@ -76,7 +76,7 @@ $theme-colors:map-merge($theme-colors,$custom-color);
 @import 'show_product.scss';
 @import 'auth.scss';
 @import 'account.scss';
-
+@import 'brand.scss';
 .footer {
     background-color: var(--footer-color);
     font-size: 14px;
@@ -205,6 +205,10 @@ $theme-colors:map-merge($theme-colors,$custom-color);
         }
     }
 }
+$pagination-active-bg:  $green;
+$pagination-active-border-color:$green;
+
+
 
 @import "bootstrap-icons/font/bootstrap-icons.css";
 @import "bootstrap/scss/bootstrap";

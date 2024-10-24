@@ -21,7 +21,7 @@ use Orchid\Support\Facades\Layout;
 use Orchid\Screen\Fields\Select;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Screen;
-
+use Orchid\Screen\Actions\Menu;
 use Nakipelo\Orchid\CKEditor\CKEditor;
 use Orchid\Support\Facades\Alert;
 use Orchid\Screen\Fields\CheckBox;
@@ -63,7 +63,6 @@ class ProductEditScreen extends Screen
                 ->icon('bs.pencil')
                 ->method('createOrUpdate')
                 ->canSee(!$this->product->exists),
-
             Button::make( __("Edit product"))
                 ->icon('bs.pencil')
                 ->method('createOrUpdate')
@@ -74,6 +73,10 @@ class ProductEditScreen extends Screen
                 ->method('remove')
                 ->confirm(__('Once the account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.'))
                 ->canSee($this->product->exists),
+            Menu::make(__('Show'))
+                ->icon('bs.eye-fill')
+                ->canSee($this->product->exists)
+                ->url('/product/'.$this->product->slug), 
         ];
     }
 

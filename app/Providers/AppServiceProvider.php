@@ -5,6 +5,13 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use App\Interfaces\CategoryInterface;
 use App\Services\CategoryService;
+
+use App\Interfaces\ProductShowInterface;
+use App\Services\ProductShowService;
+
+use App\Interfaces\BrandInterface;
+use App\Services\BrandService;
+use Illuminate\Pagination\Paginator;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -20,9 +27,25 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Paginator::useBootstrap();
         $this->app->bind(
             CategoryInterface::class,
             CategoryService::class,
+
         );
+        $this->app->bind(
+            ProductShowInterface::class,
+            ProductShowService::class,
+
+        );
+
+        $this->app->bind(
+            BrandInterface::class,
+            BrandService::class,
+
+        );
+        
     }
+
+
 }

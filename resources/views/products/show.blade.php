@@ -40,11 +40,53 @@
                         </span>
                          
                     </div>
-                    <div class="show_phoduct-price pt-3">
-                        {{ $product->price * ($product->packs->count() > 0 ? $product->packs->first()->volume : 1) }} {{__("uah")}}
+                    
+                    <div class="show_phoduct-price pt-3 fs-2">
+                        <strong>{{ $product->price * ($product->packs->count() > 0 ? $product->packs->first()->volume : 1) }} {{__("uah")}}</strong>
                     </div>
+                    <div class="show_phoduct-choice pt-3">
+                        <div class="row">
+                            <div class="col col-lg-2 fs-6 pt-2">
+                                <strong>{{__('Pack')}}</strong>
+                            </div>
+                            <div class="col col-lg-10">
+                                <select   class="form-select pack_select w-50" id="pack_{{$product->id}}" aria-label="Default select example" >
+                                    @foreach($product->packs as $pack)
+                                        <option value="{{ $pack->volume }}" id="{{ $pack->id }}" data-price="{{ $pack->volume * $product->price }}" >{{ $pack->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row pt-2 pb-2">
+                            <div class="col col-lg-2 fs-6 pt-2">
+                                <strong>{{__('Brand')}}</strong>
+                            </div>
+                            <div class="col col-lg-10 pt-2">
+                                {{$product->brand->name}}
+                            </div>
+                        </div>
+                        @if($attrs->count())
+                            @foreach($attrs as $groupName => $attributes)
+                                <div class="row pt-2 pb-3">
+                                    <div class="col col-lg-2 fs-6 pt-2">
+                                        <strong>{{$groupName}}</strong>
+                                    </div>
+                                    <div class="col col-lg-10 pt-2">
+                                        @foreach ($attributes as $attr) 
+                                            {{ $attr->name }}
+                                            @if(!$loop->last) | @endif
+                                        @endforeach
+                                    </div>
+                                </div>            
+                            @endforeach
+                        @endif
+                        
+                        
+                    </div>
+                  
+                    
                     @if($product->status_available)
-                        <div class="show_phoduct-manage py-3">
+                        <div class="show_phoduct-manage py-4">
                             <div class="show_phoduct-manage_quantity">
                                 <div class="quantity">
                                     <div class="quantity-button minus">

@@ -7,41 +7,27 @@ use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Support\Facades\App;
 use App\Interfaces\CategoryInterface;
+use App\Breadcrumbs\Breadcrumb;
 class CategoryController extends Controller
 {
-    protected $breadcrumbs;
+    private $breadcrumbs;
 
+    private $categoryInt;
 
-
-    public function __construct(private CategoryInterface $categoryInt)
+    public function __construct(CategoryInterface $categoryInt, Breadcrumb $breadcrumbs)
     {
-        $this->breadcrumbs = collect();
+        $this->breadcrumbs = $breadcrumbs;
+        $this->categoryInt = $categoryInt;
     }
 
-    protected function breadcrumbs($item)
-    {
-        if($item) {
-            if ($item->parent) {
-                $this->breadcrumbs($item->parent);
-            }
-            $this->breadcrumbs->push([
-                'id' => $item->id,
-                'slug' => $item->slug,
-                'name' => $item->name
-            ]);
-        } else {
-            abort(404);
-        }
     
-        return $this->breadcrumbs;
-    }
     public function __invoke(Request $request,$slug, $filter = null) {
         $category = $this->categoryInt->getCategories($request->slug);
 
         if (!$category) {
             abort(404);
         }
-        $breadcrumbs = $this->breadcrumbs($category);
+        $breadcrumbs = $this->breadcrumbs->breadCategoryProduct($category);
 
         $productsCategory = $this->categoryInt->getProduct($category);
         $brands = $this->categoryInt->getBrand($productsCategory,$category);

@@ -10,6 +10,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Middleware\GuestionUser;
 use App\Http\Middleware\AuthUser;
 use App\Http\Controllers\ViewProductController;
+use App\Http\Controllers\BrandController;
 require __DIR__ . '/admin/admin.php';
 $market = parse_url(config('app.url'), PHP_URL_HOST);
 Route::group([
@@ -24,6 +25,14 @@ Route::group([
     Route::group(['prefix' => 'product'], function () {
         Route::get('/{slug}', ViewProductController::class)->name('product.view');
     });    
+
+
+    Route::group(['prefix' => 'brands'], function () {
+        Route::get('/', BrandController::class)->name('product.brand.list');
+    });   
+    Route::group(['prefix' => 'brand'], function () {
+        Route::get('/{slug}', [BrandController::class,'show'])->name('product.brand.show');
+    }); 
 
     Route::get('/', function () {
         return view('index');

@@ -34,16 +34,18 @@ class PlatformProvider extends OrchidServiceProvider
     public function menu(): array
     {
         return [
-
+            Menu::make(__('Turn around to the store'))->icon('bs.layers')->url('/'),
             Menu::make(__('Products'))
                 ->icon('bs.cart')
                 ->list([
+                    
                     Menu::make(__('Goods'))->route('platform.products.list'),
                     Menu::make(__('Brand'))->route('platform.brands.list'),
                     Menu::make(__('Pack'))->route('platform.packs.list'),
                     Menu::make(__('Catogories'))->route('platform.catogories.list'),
                     Menu::make(__('Attribute group'))->route('platform.attrgroup.list'),
                     Menu::make(__('Attribute'))->route('platform.attr.list'),
+                   
                   //  Menu::make(__('Price variation'))->route('platform.prices.list'),
                 ]),
 
