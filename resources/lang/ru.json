@@ -142,8 +142,14 @@
     "Reviews":"Отзывов",
     "description_two":"Описание",
     "Admin panel":"Админ панель",
-    "Turn around to the store":"Вернуться в магазин"
-    
+    "Turn around to the store":"Вернуться в магазин",
+    "Success":"Успех",
+    "You have successfully added the product to your cart.":"Вы успешно добавили товар в корзину.",
+    "Basket":"Корзина",
+    "Quantity":"Количество",
+    "Conclusion":"Итог",
+    "Continue shopping":"Оформить заказ",
+    "Cart is empty":"Корзина пуста"
    
 
 }

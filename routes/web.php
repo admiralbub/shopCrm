@@ -11,6 +11,7 @@ use App\Http\Middleware\GuestionUser;
 use App\Http\Middleware\AuthUser;
 use App\Http\Controllers\ViewProductController;
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\BasketController;
 require __DIR__ . '/admin/admin.php';
 $market = parse_url(config('app.url'), PHP_URL_HOST);
 Route::group([
@@ -32,6 +33,17 @@ Route::group([
     });   
     Route::group(['prefix' => 'brand'], function () {
         Route::get('/{slug}', [BrandController::class,'show'])->name('product.brand.show');
+    }); 
+
+    Route::group(['prefix' => 'basket'], function () {
+        Route::get('/', BasketController::class)->name('basket.index');
+        Route::get('/basketJson', [BasketController::class,'basketJson'])->name('basket.basketJson');
+        
+        Route::post('/addBasket', [BasketController::class,'addBasket'])->name('basket.addBasket');
+        Route::post('/quantity', [BasketController::class,'quantity'])->name('basket.quantity');
+        
+        Route::get('/countBasket', [BasketController::class,'countBasket'])->name('basket.count');
+        Route::delete('/deleteBasker/{id}', [BasketController::class,'deleteBasket'])->name('basket.delete');
     }); 
 
     Route::get('/', function () {

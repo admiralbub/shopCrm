@@ -14,6 +14,47 @@ const categor_mob = document.querySelector('#categor_mob');
 const button_submenu_mob = document.querySelectorAll('.button-submenu_click');
 
 
+const openRightBasket = document.querySelector('#openRightBasket');
+const openRightBasketMob = document.querySelector('#openRightBasketMob');
+const closeRightBasket = document.querySelector('#closeRightBasket');
+const body_overlay = document.querySelector('.body-overlay');
+const quantity = document.querySelector('.quantity');
+
+
+if (openRightBasket) {
+    openRightBasket.addEventListener('click', function() {
+        document.querySelector('.cartmini__area').classList.add('cartmini__area-opened');
+        document.querySelector('.body-overlay').classList.add('opened');
+
+    })
+
+    
+}
+if (openRightBasketMob) {
+    openRightBasketMob.addEventListener('click', function() {
+        document.querySelector('.cartmini__area').classList.add('cartmini__area-opened');
+        document.querySelector('.body-overlay').classList.add('opened');
+
+    })
+
+    
+}
+
+if (closeRightBasket) {
+    closeRightBasket.addEventListener('click', function() {
+        document.querySelector('.cartmini__area').classList.remove('cartmini__area-opened');
+        document.querySelector('.body-overlay').classList.remove('opened');
+    
+    })
+}
+body_overlay.addEventListener('click', function() {
+    if (body_overlay.classList.contains('opened')) {
+        document.querySelector('.cartmini__area').classList.remove('cartmini__area-opened');
+        document.querySelector('.body-overlay').classList.remove('opened');
+    }
+
+})
+
 open_mob.addEventListener('click',  function() {
     catalog_menu.classList.add("open");
 })
@@ -81,7 +122,35 @@ window.onscroll = function() {
     }
         
 };
+
+//Увеличить количество товара
+quantity.onclick = function(event) {
+    if (event.target.closest('.minus')) {
+        const qty = event.target.closest('.quantity').querySelector('.qty');
+       
+        let quantity = parseInt(qty.value);
+        
+        if (quantity > 1) { // Предотвращаем уменьшение ниже 1
+            quantity--;
+            qty.value = quantity;
+        }
+    }
+    if (event.target.closest('.plus')) {
+        const qty = event.target.closest('.quantity').querySelector('.qty');
+       
+        let quantity = parseInt(qty.value);
+       
+        quantity++;
+        qty.value = quantity;
+    }
+}
+
+
+//////
+
+
 import './catalog.js'
+import './basket.js'
 import './filter.js'
 import './slider.js'
 import './mask.js'

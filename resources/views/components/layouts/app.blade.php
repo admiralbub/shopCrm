@@ -18,15 +18,17 @@
     </head>
     
     <body>
-
+        <x-alert.toast/>
         <x-layouts.header/>
         <x-layouts.header-mob/>
         <x-layouts.catalog/>
-        <div class="main">
+        <div class="main mt-2 mt-md-1">
             {{ $slot }}
         </div>
         <x-block.subscribers/>
         <x-layouts.footer/>
         <x-layouts.mob_nav_bottom/>
+        <x-basket/>
+        <div class="body-overlay"></div>
     </body>
 </html>

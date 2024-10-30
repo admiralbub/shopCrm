@@ -312,7 +312,14 @@
     "Reviews":"Відгуків",
     "description_two":"Опис",
     "Admin panel":"Адмін панель",
-    "Turn around to the store":"Повернутись до магазину"
+    "Turn around to the store":"Повернутись до магазину",
+    "Success":"Успіх",
+    "You have successfully added the product to your cart.":"Ви успішно додали товар до кошика.",
+    "Basket":"Кошик",
+    "Quantity":"Кількість",
+    "Conclusion":"Підсумок",
+    "Continue shopping":"Оформити замовлення",
+    "Cart is empty":"Кошик порожній"
 
 
 

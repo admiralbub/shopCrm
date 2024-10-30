@@ -11,6 +11,10 @@ use App\Services\ProductShowService;
 
 use App\Interfaces\BrandInterface;
 use App\Services\BrandService;
+
+use App\Interfaces\BasketInterface;
+use App\Services\BasketService;
+
 use Illuminate\Pagination\Paginator;
 class AppServiceProvider extends ServiceProvider
 {
@@ -42,6 +46,12 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             BrandInterface::class,
             BrandService::class,
+
+        );
+
+        $this->app->bind(
+            BasketInterface::class,
+            BasketService::class,
 
         );
         

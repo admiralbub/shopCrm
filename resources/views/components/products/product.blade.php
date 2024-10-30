@@ -38,11 +38,11 @@
         </div>
     </div>
     <div class="card_prdouct-price">
-        {{ $product->price * ($product->packs->count() > 0 ? $product->packs->sortBy('pivot.add_time')->first()->volume : 1) }} {{__("uah")}}
+        {{ $product->price * ($product->packs->count() > 0 ? $product->packs->first()->volume : 1) }} {{__("uah")}}
     </div>
     @if($product->status_available)
         <div class="card_prdouct-button mt-3">
-            <button type="button" class="btn btn-primary">
+            <button type="button" class="btn btn-primary" id="addBasketList" data-id="{{$product->id}}" data-packid="{{$product->packs->first()->id}}">
                 {{__('Add to cart')}}
             </button>
         </div>

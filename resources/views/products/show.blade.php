@@ -7,12 +7,12 @@
         <x-breadcrumbs :breadcrumbs="$breadcrumbs"></x-breadcrumbs>
         <div class="show_phoduct py-2">
             <div class="row">
-                <div class="col col-lg-6 col-md-12">
+                <div class="col-12 col-lg-6 col-md-12">
                     <div class="show_phoduct-img">
-                        <img src="{{ asset($product->image)}}" alt="">
+                        <img src="{{ asset($product->image)}}" class="img-fluid" >
                     </div>       
                 </div>
-                <div class="col col-lg-6 col-md-12 pt-2">
+                <div class="col-12 col-lg-6 col-md-12 pt-2">
                     <div class="show_phoduct-heading">
                         <h1 class="fs-3">{{$product->h1_parsed}}</h1>
                     </div>
@@ -96,7 +96,7 @@
                                         </svg>
                                             
                                     </div>
-                                    <input type="text" id="quantity_66d024a216ee1" class="input-text qty text" name="quantity" value="1" aria-label="Product quantity" size="4" min="1" max="" step="1" placeholder="" inputmode="numeric" autocomplete="off">
+                                    <input type="text"  id="qty" class="input-text qty text" name="quantity" value="1" size="4" min="1" max="" step="1" placeholder="" inputmode="numeric" autocomplete="off">
                                         
                                     <div class="quantity-button plus">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -108,7 +108,7 @@
                                 </div>
                             </div>
                             <div class="show_phoduct-manage_addbasket">
-                                <button class="btn btn-primary px-5 py-2">{{__('Add to cart')}}</button>
+                                <button class="btn btn-primary px-5 py-2" data-id="{{$product->id}}" data-packid="{{$product->packs->first()->id}}" id="AddBasketView">{{__('Add to cart')}}</button>
                             </div>
                             <div class="show_phoduct-manage_oneclick">
                                 <button class="btn btn-light px-5">{{__('Buy in 1 click')}}</button>
