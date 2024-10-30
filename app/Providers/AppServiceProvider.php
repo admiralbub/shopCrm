@@ -15,7 +15,11 @@ use App\Services\BrandService;
 use App\Interfaces\BasketInterface;
 use App\Services\BasketService;
 
+use App\Interfaces\WishlistInterface;
+use App\Services\WishlistService;
+
 use Illuminate\Pagination\Paginator;
+use Orchid\Support\Facades\Dashboard;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -32,6 +36,10 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Paginator::useBootstrap();
+        Dashboard::useModel(
+            \Orchid\Platform\Models\User::class,
+            \App\Models\User::class
+        );
         $this->app->bind(
             CategoryInterface::class,
             CategoryService::class,
@@ -54,6 +62,14 @@ class AppServiceProvider extends ServiceProvider
             BasketService::class,
 
         );
+
+        $this->app->bind(
+            WishlistInterface::class,
+            WishlistService::class,
+
+        );
+
+        
         
     }
 

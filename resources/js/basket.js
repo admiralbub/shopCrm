@@ -182,7 +182,6 @@ document.addEventListener("DOMContentLoaded", function() {
             const packid = dataAttributes.packid;
             const qty = document.querySelector('#qty');
 
-            console.log(qty.value)
             const asyncAddBasket = async () => {
                 try {
                     const response = await axios.post('/basket/addBasket', {

@@ -7,6 +7,9 @@ use Orchid\Filters\Types\Where;
 use Orchid\Filters\Types\WhereDateStartEnd;
 use Orchid\Platform\Models\User as Authenticatable;
 use Orchid\Screen\AsSource;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Orchid\Support\Facades\Dashboard;
 class User extends Authenticatable
 {
     /**
@@ -14,7 +17,7 @@ class User extends Authenticatable
      *
      * @var array
      */
-    use AsSource;
+    use AsSource,HasFactory;
     protected $fillable = [
         'first_name',
         'middle_name',
@@ -70,4 +73,18 @@ class User extends Authenticatable
         'updated_at',
         'created_at',
     ];
+
+    public static function createAdmin(string $name, string $email, string $password): void
+    {
+        throw_if(static::where('email', $email)->exists(), 'User already exists');
+
+        static::create([
+            'first_name'        => $name,
+            'last_name'        => $name,
+            'email'       => $email,
+            'phone'       => "+222222222",
+            'password'    => Hash::make($password),
+            'permissions' => Dashboard::getAllowAllPermission(),
+        ]);
+    }
 }

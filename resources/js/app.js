@@ -122,28 +122,30 @@ window.onscroll = function() {
     }
         
 };
-
-//Увеличить количество товара
-quantity.onclick = function(event) {
-    if (event.target.closest('.minus')) {
-        const qty = event.target.closest('.quantity').querySelector('.qty');
-       
-        let quantity = parseInt(qty.value);
+if(quantity) {
+    //Увеличить количество товара
+    quantity.onclick = function(event) {
+        if (event.target.closest('.minus')) {
+            const qty = event.target.closest('.quantity').querySelector('.qty');
         
-        if (quantity > 1) { // Предотвращаем уменьшение ниже 1
-            quantity--;
+            let quantity = parseInt(qty.value);
+            
+            if (quantity > 1) { // Предотвращаем уменьшение ниже 1
+                quantity--;
+                qty.value = quantity;
+            }
+        }
+        if (event.target.closest('.plus')) {
+            const qty = event.target.closest('.quantity').querySelector('.qty');
+        
+            let quantity = parseInt(qty.value);
+        
+            quantity++;
             qty.value = quantity;
         }
     }
-    if (event.target.closest('.plus')) {
-        const qty = event.target.closest('.quantity').querySelector('.qty');
-       
-        let quantity = parseInt(qty.value);
-       
-        quantity++;
-        qty.value = quantity;
-    }
 }
+
 
 
 //////
