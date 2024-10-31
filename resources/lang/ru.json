@@ -149,7 +149,12 @@
     "Quantity":"Количество",
     "Conclusion":"Итог",
     "Continue shopping":"Оформить заказ",
-    "Cart is empty":"Корзина пуста"
+    "Cart is empty":"Корзина пуста",
+    "You have successfully added the product to your favorites.":"Вы успешно добавили товар в избранное",
+    "The item has already been added to your wish list.":"Товар уже добавлен в список желаний.",
+    "Fail":"Проблема",
+    "You do not have any products in your favorites list":"У вас нет товаров в списке избранных товаров"
+    
    
 
 }

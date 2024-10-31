@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Actions\UpdateAccount\UpdateAccountAction;
 class ProfileController extends Controller
 {
+    
     public function __invoke() {
         return view('cabinet.profile');
     }
@@ -16,4 +17,6 @@ class ProfileController extends Controller
         $user = (new UpdateAccountAction())->execute($request->validated());
         return redirect(route('profile'))->with('success', __('profil_edit_success'));
     }
+
+   
 }

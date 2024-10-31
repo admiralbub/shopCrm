@@ -12,7 +12,46 @@ document.addEventListener("DOMContentLoaded", function() {
     const AddBasketView = document.querySelector('#AddBasketView');
     
     
+    const openRightBasket = document.querySelector('#openRightBasket');
+    const openRightBasketMob = document.querySelector('#openRightBasketMob');
+    const closeRightBasket = document.querySelector('#closeRightBasket');
+    const body_overlay = document.querySelector('.body-overlay');
 
+
+
+    if (openRightBasket) {
+        openRightBasket.addEventListener('click', function() {
+            document.querySelector('.cartmini__area').classList.add('cartmini__area-opened');
+            document.querySelector('.body-overlay').classList.add('opened');
+    
+        })
+    
+        
+    }
+    if (openRightBasketMob) {
+        openRightBasketMob.addEventListener('click', function() {
+            document.querySelector('.cartmini__area').classList.add('cartmini__area-opened');
+            document.querySelector('.body-overlay').classList.add('opened');
+    
+        })
+    
+        
+    }
+    
+    if (closeRightBasket) {
+        closeRightBasket.addEventListener('click', function() {
+            document.querySelector('.cartmini__area').classList.remove('cartmini__area-opened');
+            document.querySelector('.body-overlay').classList.remove('opened');
+        
+        })
+    }
+    body_overlay.addEventListener('click', function() {
+        if (body_overlay.classList.contains('opened')) {
+            document.querySelector('.cartmini__area').classList.remove('cartmini__area-opened');
+            document.querySelector('.body-overlay').classList.remove('opened');
+        }
+    
+    })
 
     basketNavbar.onclick = async function(event) {
         if(event.target.id == "btn_delete") {
@@ -37,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         quantity: quantity,
                     });
                 } catch (error) {
-                    console.error(error);
+                    console.log(error);
                 }
                 countBasketLabel();
                 basketNavbarLabel()
@@ -56,7 +95,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     quantity: quantity,
                 });
             } catch (error) {
-                console.error(error);
+                console.log(error);
             }
             countBasketLabel();
             basketNavbarLabel()
@@ -158,12 +197,16 @@ document.addEventListener("DOMContentLoaded", function() {
                         
                         countBasket.innerText = response.data.count;
                         countBasketMob.innerText = response.data.count;
-                        var myAlert = document.getElementById('toastSuccess'); // select id of toast
+                        /*var myAlert = document.getElementById('toastSuccess'); // select id of toast
                         if (myAlert) {
                             var bsAlert = new Toast(myAlert); // initialize it
                             bsAlert.show(); // show it
                         }
                         document.querySelector('#toastSuccessbody').innerHTML=response.data.mess['success'];
+                        basketNavbarLabel()*/
+
+                        document.querySelector('.cartmini__area').classList.add('cartmini__area-opened');
+                        document.querySelector('.body-overlay').classList.add('opened');
                         basketNavbarLabel()
                     } catch (error) {
                         console.error(error);
@@ -197,10 +240,13 @@ document.addEventListener("DOMContentLoaded", function() {
                         var bsAlert = new Toast(myAlert); // initialize it
                         bsAlert.show(); // show it
                     }
-                    document.querySelector('#toastSuccessbody').innerHTML=response.data.mess['success'];
+                    //document.querySelector('#toastSuccessbody').innerHTML=response.data.mess['success'];
+
+                    document.querySelector('.cartmini__area').classList.add('cartmini__area-opened');
+                    document.querySelector('.body-overlay').classList.add('opened');
                     basketNavbarLabel()
                 } catch (error) {
-                    console.error(error);
+                    console.log(error);
                 }
             };
             asyncAddBasket();

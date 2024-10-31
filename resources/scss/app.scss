@@ -68,12 +68,25 @@ $theme-colors:map-merge($theme-colors,$custom-color);
         color: var(--white) !important;
     }
 }
-
+.status-stock {
+    background-color: rgb(64, 192, 87,.2);
+    color: var(--status_success);
+    padding: 6px 15px;
+    border-radius: 5px;
+}
+.status-no {
+    background-color: rgb(255 0 3 / 20%);
+    color: var(--black);
+    padding: 6px 15px;
+    border-radius: 5px;
+}
 
 @import 'header';
 @import 'main_slider';
 @import 'mob-menu';
 @import 'card_product';
+@import 'toast';
+@import 'table';
 @import 'main_page';
 @import 'category-lists';
 @import 'show_product.scss';
@@ -273,6 +286,8 @@ $theme-colors:map-merge($theme-colors,$custom-color);
         width: 20px;
     }
 }
+
+
 
 $pagination-active-bg:  $green;
 $pagination-active-border-color:$green;

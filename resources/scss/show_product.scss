@@ -129,18 +129,7 @@
         color: var(--main_gray);
         
     }
-    & .status-stock {
-        background-color: rgb(64, 192, 87,.2);
-        color: var(--status_success);
-        padding: 6px 15px;
-        border-radius: 5px;
-    }
-    & .status-no {
-        background-color: rgb(255 0 3 / 20%);
-        color: var(--black);
-        padding: 6px 15px;
-        border-radius: 5px;
-    }
+    
     &-manage {
         display: flex;
         -webkit-box-align: center;

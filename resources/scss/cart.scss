@@ -1,49 +1,5 @@
 .cart {
-    & .table-responsive {
-        border: 1px solid var(--border-action);
-        border-radius: 10px;
-        & a {
-            text-decoration: none !important;
-            font-size: 15px;
-            color:var(--black) !important;
-        }
-        & thead {
-            & th:first-child {
-                width: 120px;
-            }
-            & th {
-                white-space: nowrap;
-                padding: 12px 25px;
-                border-top: none;
-            }
-        }
-        & tbody {
-            & tr {
-                & td {
-                    padding-top: 20px;
-                    min-width: 120px;
-                    padding: 15px 25px;
-                    & .product-image {
-                        height: 60px;
-                        width: 60px;
-                        &>img {
-                            position: absolute;
-                            top: 50%;
-                            max-height: 100%;
-                            max-width: 100%;
-                        }
-                    }
-                    &:last-child {
-                        width: 70px;
-                        min-width: unset;
-                        padding-left: 0;
-                        padding-right: 0;
-                        text-align: center;
-                    }
-                }
-            }
-        }
-    }
+    
     & .orders_summa {
         background-color: var(--color-white-dark);
         border-radius: 10px;

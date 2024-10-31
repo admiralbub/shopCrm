@@ -319,7 +319,11 @@
     "Quantity":"Кількість",
     "Conclusion":"Підсумок",
     "Continue shopping":"Оформити замовлення",
-    "Cart is empty":"Кошик порожній"
+    "Cart is empty":"Кошик порожній",
+    "You have successfully added the product to your favorites.":"Ви успішно додали товар до обраного.",
+    "The item has already been added to your wish list.":"Товар вже додано до списку бажань.",
+    "Fail":"Проблема",
+    "You do not have any products in your favorites list":"У вас немає товарів у списку обраних"
 
 
 

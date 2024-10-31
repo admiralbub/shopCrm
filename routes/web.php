@@ -6,12 +6,16 @@ use App\Http\Controllers\CustomerAuth\AuthController;
 use App\Http\Controllers\CustomerAuth\RegisterController;
 use App\Http\Controllers\CabinetUser\ProfileController;
 use App\Http\Controllers\CabinetUser\PasswordChangeController;
+
+use App\Http\Controllers\CabinetUser\WishlistController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Middleware\GuestionUser;
 use App\Http\Middleware\AuthUser;
 use App\Http\Controllers\ViewProductController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\BasketController;
+
+
 require __DIR__ . '/admin/admin.php';
 $market = parse_url(config('app.url'), PHP_URL_HOST);
 Route::group([
@@ -36,7 +40,7 @@ Route::group([
     }); 
 
     Route::group(['prefix' => 'basket'], function () {
-        Route::get('/', BasketController::class)->name('basket.index');
+        //Route::get('/', BasketController::class)->name('basket.index');
         Route::get('/basketJson', [BasketController::class,'basketJson'])->name('basket.basketJson');
         
         Route::post('/addBasket', [BasketController::class,'addBasket'])->name('basket.addBasket');
@@ -51,11 +55,21 @@ Route::group([
     })->name('index');;
     Route::group(['middleware' => ['auth_user']], function () {
         Route::get('/signout', LogoutController::class)->name('auth.signout');
-        Route::get('/profile', ProfileController::class)->name('profile');
+        
 
-        Route::post('/profile', [ProfileController::class, 'getUpdate'])->name('profile.edit');
-        Route::get('/change_password', PasswordChangeController::class)->name('change_password');
-        Route::post('/change_password', [PasswordChangeController::class,'updatePassword'])->name('change_password.update');
+        Route::group(['prefix' => 'wislist'], function () {
+            Route::post('/add', [WishlistController::class, 'addWislist'])->name('wislist.add');
+            Route::delete('/delete/{id}', [WishlistController::class, 'deleteWislist'])->name('wislist.delete');
+            Route::get('/count', [WishlistController::class, 'count'])->name('wislist.count');
+        });
+       
+        Route::group(['prefix' => 'cabinet'], function () {
+            Route::get('/', ProfileController::class)->name('profile');
+            Route::post('/', [ProfileController::class, 'getUpdate'])->name('profile.edit');
+            Route::get('/change_password', PasswordChangeController::class)->name('change_password');
+            Route::post('/change_password', [PasswordChangeController::class,'updatePassword'])->name('change_password.update');
+            Route::get('/wislist', WishlistController::class)->name('profile.wislist');
+        });
         
         
     });
