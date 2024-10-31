@@ -323,7 +323,17 @@
     "You have successfully added the product to your favorites.":"Ви успішно додали товар до обраного.",
     "The item has already been added to your wish list.":"Товар вже додано до списку бажань.",
     "Fail":"Проблема",
-    "You do not have any products in your favorites list":"У вас немає товарів у списку обраних"
+    "You do not have any products in your favorites list":"У вас немає товарів у списку обраних",
+    "not_found_title":"ПОМИЛКА 404! СТОРІНКА НЕ ЗНАЙДЕНА",
+    "not_found_text":[
+        "<span>Можливі кілька причин, чому ви бачите цю сторінку:</span>",
+        "<ul>",
+           "<li>- cторінку було переміщено, видалено або перейменовано;</li>",
+           "<li>- ви ввели недійсну адресу;</li>",
+           "<li>- виникли деякі проблеми на самому сайті.</li>",
+        "</ul>",
+        "<a href='/'><strong>Перейти на головну</strong></a>"
+    ]
 
 
 
