@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", function() {
             let id = dataAttr.id;
             let isAuth = dataAttr.auth;
             if(isAuth == 1) {
-                const asyncDeleteWislist= async () => {
+                const asyncAddWislistShow= async () => {
                     try {
                         const response = await axios.post('/wislist/add', {
                             id: id,
@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         console.log(error);
                     }
                 }
-                asyncDeleteWislist()
+                asyncAddWislistShow()
             } else {
                 document.location.href = "/auth";
             } 

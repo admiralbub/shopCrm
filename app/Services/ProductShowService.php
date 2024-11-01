@@ -22,7 +22,7 @@ class ProductShowService implements ProductShowInterface {
         }
         $attr = Attr::whereIn("id",$list_attr)->with('attrGroup')->get();
         $attr = $attr->groupBy(function($item) {
-            return $item->attrGroup ? $item->attrGroup->first()->name : 'Без группы';
+            return $item->attrGroup ? $item->attrGroup->first()->name : '';
         });
         return $attr;
     }

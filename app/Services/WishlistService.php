@@ -12,11 +12,12 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 
 class WishlistService implements WishlistInterface {
+    public const PAGE_COUNT = 10;
     public function addWislist(int $productId) {
         $authId = auth()->user()->id;
         $isWishlist = Wishlist::where('user_id',$authId)->where('product_id',$productId)->count();
         if ($isWishlist == 0) {
-            return (new addWislistAction())->execute($authId,$productId);
+            (new addWislistAction())->execute($authId,$productId);
             return true;
         } else {
             return false;
@@ -29,7 +30,7 @@ class WishlistService implements WishlistInterface {
         return (new deleteWislistAction())->execute($wishition);
     }
     public function getWislist() {
-        return Wishlist::where('user_id',auth()->user()->id)->get();
+        return Wishlist::where('user_id',auth()->user()->id)->paginate(self::PAGE_COUNT);
     }
     public function countWislist() {
         if(auth()->check()) {

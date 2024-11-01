@@ -18,6 +18,9 @@ use App\Services\BasketService;
 use App\Interfaces\WishlistInterface;
 use App\Services\WishlistService;
 
+use App\Interfaces\CompareInterface;
+use App\Services\CompareService;
+
 use Illuminate\Pagination\Paginator;
 use Orchid\Support\Facades\Dashboard;
 class AppServiceProvider extends ServiceProvider
@@ -66,6 +69,12 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             WishlistInterface::class,
             WishlistService::class,
+
+        );
+
+        $this->app->bind(
+            CompareInterface::class,
+            CompareService::class,
 
         );
 

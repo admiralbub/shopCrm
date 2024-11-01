@@ -163,7 +163,10 @@
             "<li>- возникли некоторые проблемы на самом сайте.</li>",
          "</ul>",
          "<a href='/'><strong>Перейти на главную</strong></a>"
-    ]
+    ],
+    "You have successfully added the product to your compare.":"Вы успешно добавили товар в сравнение.",
+    "The item has already been added to your compare list.":"Этот товар уже добавлен в ваш список сравнения.",
+    "You have no products in the comparison list.":"У вас нет товаров в списке сравнения."
     
    
 

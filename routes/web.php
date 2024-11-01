@@ -14,7 +14,7 @@ use App\Http\Middleware\AuthUser;
 use App\Http\Controllers\ViewProductController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\BasketController;
-
+use App\Http\Controllers\CompareController;
 
 require __DIR__ . '/admin/admin.php';
 $market = parse_url(config('app.url'), PHP_URL_HOST);
@@ -31,7 +31,12 @@ Route::group([
         Route::get('/{slug}', ViewProductController::class)->name('product.view');
     });    
 
-
+    Route::group(['prefix' => 'compare'], function () {
+        Route::get('/', CompareController::class)->name('compare.index');
+        Route::post('/add', [CompareController::class,'add'])->name('compare.add');
+        Route::get('/count', [CompareController::class,'count'])->name('compare.count');
+        Route::delete('/delete/{id}', [CompareController::class,'delete'])->name('compare.delete');
+    });   
     Route::group(['prefix' => 'brands'], function () {
         Route::get('/', BrandController::class)->name('product.brand.list');
     });   

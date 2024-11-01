@@ -11,5 +11,6 @@ interface WishlistInterface {
     public function deleteProductWislist($id);
     static public function isMessageSuccess();
     static public function isMessageFail();
+   
 }
 ?>

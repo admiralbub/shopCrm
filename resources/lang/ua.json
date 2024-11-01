@@ -333,7 +333,11 @@
            "<li>- виникли деякі проблеми на самому сайті.</li>",
         "</ul>",
         "<a href='/'><strong>Перейти на головну</strong></a>"
-    ]
+    ],
+    "You have successfully added the product to your compare.": "Ви успішно додали товар у порівняння.",
+    "The item has already been added to your compare list.": "Цей товар уже додано до вашого списку порівняння.",
+    "You have no products in the comparison list.":"У вас немає товарів в списку порівняння."
+
 
 
 
