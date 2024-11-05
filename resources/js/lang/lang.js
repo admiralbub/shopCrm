@@ -22,8 +22,8 @@ function Lang() {
             window.lang.validator.phone = "Невірний формат номера телефона";
             window.lang.validator.maxlength = "Дуже багато символів";
             window.lang.validator.minlength = "Дуже мало символів";
-            window.lang.validator.confirm_pass = "не збігається пароль із підтвердженням.";
-            
+            window.lang.validator.confirm_pass = "Не збігається пароль із підтвердженням.";
+            window.lang.validator.emptyBasket = "Ваш кошик порожній";
             break;
         case 'ru':
             window.lang.validator.empty = 'Данное поле пустое';
@@ -34,6 +34,7 @@ function Lang() {
             window.lang.validator.maxlength = "Очень много символов";
             window.lang.validator.minlength = "Очень мало символов";
             window.lang.validator.confirm_pass = "Не совпадает пароль с подтверждением."
+            window.lang.validator.emptyBasket = "Ваша корзина пуста";
             break;
         // Вы можете добавить дополнительные языки здесь
     }  

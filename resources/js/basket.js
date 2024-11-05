@@ -1,7 +1,10 @@
 
 
 import { Tooltip, Toast, Popover } from 'bootstrap';
+import Lang from './lang/lang'
 
+
+Lang();
 document.addEventListener("DOMContentLoaded", function() {
     const AddBaskets = document.querySelectorAll('#addBasketList');
     const deleteBaskets = document.querySelectorAll('.deleteBasket');
@@ -54,8 +57,39 @@ document.addEventListener("DOMContentLoaded", function() {
         
         })
     }
+    const basketNavbarLabel = async () => {
     
+            
+        try {
+            const response = await axios.get('/basket/basketJson');
+            if(response.data.baskets.length != 0) {
+                render(response.data.baskets)
+                document.querySelector('.cartmini__area-wrapper_checkout').style.display = 'block';
+                document.querySelector('.cartmini__area-wrapper_buttons').style.display = 'block';
+                
+            } else {
+              
+                document.querySelector('.cartmini__area-wrapper_checkout').style.display = 'none';
+                document.querySelector('.cartmini__area-wrapper_buttons').style.display = 'none';
+                basketNavbar.innerHTML = `<span class="fs-5">${window.lang.validator.emptyBasket}</span>`;
+                
+            }
+            
+        } catch (error) {
+            basketNavbar.innerHTML = error;
+        }
+    };
     if(basketNavbar) {
+        const countBasketLabel = async () => {
+            try {
+                const response = await axios.get('/basket/countBasket');
+                countBasket.innerText = response.data.count;
+                countBasketMob.innerText = response.data.count;
+                
+            } catch (error) {
+                console.log(error);
+            }
+        };
         basketNavbar.onclick = async function(event) {
             if(event.target.id == "btn_delete") {
                 try {
@@ -106,18 +140,7 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         }    
     
-        const basketNavbarLabel = async () => {
-    
-            
-            try {
-                const response = await axios.get('/basket/basketJson');
-                    
-                    
-                render(response.data.baskets)
-            } catch (error) {
-                basketNavbar.innerHTML = error;
-            }
-        };
+        
         countBasketLabel();
         basketNavbarLabel()    
     
@@ -215,7 +238,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         document.querySelector('.body-overlay').classList.add('opened');
                         basketNavbarLabel()
                     } catch (error) {
-                        console.error(error);
+                        console.log(error);
                     }
                 };
                 asyncAddBasket();
@@ -260,16 +283,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
     
 
-    const countBasketLabel = async () => {
-        try {
-            const response = await axios.get('/basket/countBasket');
-            countBasket.innerText = response.data.count;
-            countBasketMob.innerText = response.data.count;
-            
-        } catch (error) {
-            console.error(error);
-        }
-    };
+    
     
 
 
