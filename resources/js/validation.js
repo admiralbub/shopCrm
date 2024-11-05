@@ -25,6 +25,9 @@ function hideErr(field) {
     }
     
 }
+
+
+
 function validateEmail(email) {
     // Regular expression for a basic email pattern
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
