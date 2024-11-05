@@ -1,0 +1,16 @@
+#toastMess {
+    & .iconToast {
+        &.success {
+            & svg {
+                color: var(--status_success);
+            }
+            
+        }
+        &.fail {
+            & svg {
+                color: var(--danger);
+            }
+            
+        }
+    }
+}

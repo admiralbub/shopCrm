@@ -1,0 +1,39 @@
+.account {
+    &-menu {
+        & li {
+            margin: 6px 0;
+            & a {
+                font-size: 16px;
+                line-height: 36px;
+                position: relative;
+                display: flex;
+                align-items: center;
+                color: var(--black);
+                &>i {
+                    margin-right: 10px;
+                    font-size: 24px;
+                }
+                &:hover {
+                    color: var(--main-color);
+                    font-weight: 600;
+                }
+                &.active {
+                    color: var(--main-color);
+                    font-weight: 600;
+                }
+            }
+        }
+        
+    }
+   
+
+    & .account_panel {
+        border:1px solid var(--border-panel);
+        border-radius: 10px;
+        padding: 20px 30px;
+    }
+    &_heading {
+        padding: 15px 25px;
+        background-color: var(--heading-panel);
+    }
+}

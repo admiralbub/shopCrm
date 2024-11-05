@@ -1,0 +1,346 @@
+// Custom.scss
+// Option A: Include all of Bootstrap
+
+// Include any default variable overrides here (though functions won't be available)
+@import 'bootstrap/scss/_functions.scss';
+@import 'bootstrap/scss/_variables.scss';
+@import 'bootstrap/scss/mixins';
+
+@import 'color';
+html {
+    overflow: scroll;
+    overflow-x: hidden;
+}
+svg {
+    width: 26px;
+}
+h1,h2,h3,h4,h5,h6 {
+    font-weight: 400;
+}
+@media (max-width: 990px) {
+
+    h2 {
+        font-size: 22px;
+    }
+    h3 {
+        font-size: 20px;
+    }
+    h4 {
+        font-size: 18px;
+    }
+}
+
+@media (min-width: 990px) {
+
+    h2 {
+        font-size: 24px;
+    }
+    h3 {
+        font-size: 20px;
+    }
+    h4 {
+        font-size: 18px;
+    }
+}
+.active_icon_sub {
+    transform: rotate(90deg) !important;
+}
+ul,li {
+    list-style: none;
+}
+a {
+    text-decoration: none !important;
+    font-size: 15px;
+}
+:active, :hover, :focus {
+    outline: 0;
+    outline-offset: 0;
+}
+
+.form-label {
+    color: var(--main-color);
+    font-size: 13px;
+    font-weight: 600;
+}
+.form-control {
+    border: 1px solid var(--border-form) !important;
+   
+}
+$font-size-base: 14px;
+
+$body-color: $mgray;
+
+$navbar-light-color: rgba($primary, .5);
+$navbar-light-hover-color: rgba($primary, .7);
+$navbar-light-active-color: rgba($primary, .9);
+
+$dropdown-link-active-color:var(--main-color);
+$dropdown-link-active-bg:var(--white);
+
+$link-color: $lk_gray;   
+$link-hover-color: $mgray;
+
+
+$btn-link-color:  var(--white);
+$custom-color: (
+    "primary":$green
+);
+$theme-colors:map-merge($theme-colors,$custom-color);
+
+.btn-primary {
+    --bs-btn-color: var(--white) !important;
+    &:hover {
+        color: var(--white) !important;
+    }
+}
+.status-stock {
+    background-color: rgb(64, 192, 87,.2);
+    color: var(--status_success);
+    padding: 6px 15px;
+    border-radius: 5px;
+}
+.status-no {
+    background-color: rgb(255 0 3 / 20%);
+    color: var(--black);
+    padding: 6px 15px;
+    border-radius: 5px;
+}
+
+.not-page {
+    padding-top: 64px;
+    padding-bottom: 80px;
+    line-height: 35px;
+    
+    & a {
+        color: var(--main-color)
+    }
+    & p {
+        font-size: 16px;
+    }
+    & span {
+        font-size: 20px;
+        padding-top: 15px;
+    }
+    & ul,li {
+        padding: 0;
+        font-size: 18px;
+    }
+   
+}
+@import 'header';
+@import 'main_slider';
+@import 'mob-menu';
+@import 'card_product';
+@import 'toast';
+@import 'table';
+@import 'main_page';
+@import 'category-lists';
+@import 'show_product.scss';
+@import 'auth.scss';
+@import 'account.scss';
+@import 'brand.scss';
+@import 'cart.scss';
+@import 'validation.scss';
+.footer {
+    background-color: var(--footer-color);
+    font-size: 14px;
+    font-weight: 500;
+    padding-top: 40px;
+    & .footer-heading {
+        font-weight: 600;
+        color: var(--main-color);
+    }
+    & svg {
+        width: 21px;
+        color: var(--main-color);
+    }
+    & .footer-social  {
+        display: flex;
+        flex-wrap: wrap;
+        gap: .25rem;
+        &-item {
+            border: 1px solid var(--green-white);
+            border-radius: 0;
+            box-shadow: none;
+            & > a {
+                font-size: 21px;
+                color: var(--main_gray);
+                align-items: center;
+                border-radius: 6px;
+                box-shadow: 0 1px 1px rgba(1, 15, 28, .2);
+                display: flex;
+                height: 38px;
+                justify-content: center;
+                line-height: 38px;
+                text-align: center;
+                width: 38px;
+                &:hover {
+                    background: var(--main_grain_hover);
+                    color: var(--white);
+                    transition: 0.5s ease-in-out;
+                }
+            }
+        }
+        
+        
+    }
+    & .footer-links {
+        padding: 0;
+        margin: 0;
+        line-height: 30px;
+        & .footer-icon_link {
+            margin-left: 5px;
+        }
+        & a {
+            color: var(--main_gray);
+            font-size: 15px;
+            font-weight: 500;
+            &:hover {
+                color: var(--main-color);
+                transition: 0.5s ease-in-out;
+            }
+        }
+    }
+}
+.nav-tabs {
+    border-bottom: 1px solid var(--gree_navbar);
+    -moz-column-gap: 40px;
+    column-gap: 40px;
+    display: flex;
+    padding-bottom: 12px;
+    row-gap: 20px;
+    border-bottom: none !important;
+    
+    & .nav-link {
+        font-size: 20px;
+        padding-left: 9px;
+        padding-right: 7px;
+        position: relative;
+        border: 0;
+        &.active {
+            position: relative;
+            border: 0;
+            border-bottom: 1px solid var(--main_gray) !important;
+        }
+    }
+}
+.breadcrumbs {
+    & ul {
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        gap: 0.3125rem;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        & li {
+            position: relative;
+            display: inline-flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            line-height: 1;
+            font-size: 0.8125rem;
+            & a {
+                color: var(--main_gray);
+                &.active {
+                    color: var(--main_gray);
+                    font-weight: 700;
+                }
+                &:hover {
+                    color: var(--main_grain_hover);
+                    transition: 0.5s ease-in-out;
+                }
+            }
+            &:not(:last-child):after {
+                background-color: var(--main_gray);
+                border-radius: 50%;
+                content: "";
+                height: 4px;
+                position: absolute;
+                right: 0;
+                top: 48%;
+                width: 4px;
+            }
+            &:not(:last-child) {
+                margin-right: 8px;
+                padding-right: 12px;
+            }
+        }
+    }
+}
+.body-overlay {
+    background-color: var(--black);
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    position: fixed;
+    top: 0;
+    transition: all .3s ease-out 0s;
+    visibility: hidden;
+    width: 100%;
+    z-index: 999;
+    &.opened {
+        opacity: .7;
+        visibility: visible;
+    }
+}
+
+.amt {
+    position: relative;
+    padding: 0;
+    width: 100px;
+    border-radius: 20px;
+    position: relative;
+    & input {
+        appearance: textfield;
+        background-color: var(--border-action);
+        border: 1px solid #dadce0;
+        border-radius: 20px;
+        font-size: 14px;
+        height: 30px;
+        padding: 0 30px;
+        text-align: center;
+        width: 100%;
+        line-height: 56px;
+        outline: none;
+    }
+    & .plus, & .minus {
+        position: absolute;
+        cursor: pointer;
+        color: var(--black);
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    & .plus {
+        display: inline-block;
+        font-size: 13px;
+        height: 30px;
+        left: 3px;
+        line-height: 30px;
+        text-align: center;
+        width: 20px;
+        left: auto;
+        right: 7px;
+    }
+    & .minus {
+        display: inline-block;
+        font-size: 13px;
+        height: 30px;
+        left: 3px;
+        line-height: 30px;
+        text-align: center;
+        width: 20px;
+    }
+}
+
+
+
+$pagination-active-bg:  $green;
+$pagination-active-border-color:$green;
+
+@import "bootstrap-icons/font/bootstrap-icons.css";
+@import "bootstrap/scss/bootstrap";
+@import "bootstrap/scss/bootstrap";
+@import "nouislider/dist/nouislider.css";
+// Then add additional custom code here

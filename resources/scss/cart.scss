@@ -1,0 +1,118 @@
+.cart {
+    
+    & .orders_summa {
+        background-color: var(--color-white-dark);
+        border-radius: 10px;
+        &_together {
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 19px;
+            padding-bottom: 13px;
+            margin-top: 19px;
+            &-title {
+                font-size: 20px;
+                font-weight: 500;
+            }
+            &-summ {
+                font-weight: 700;
+                font-size: 20px;
+            }
+        }
+    }
+}
+.cartmini__area {
+    background: var(--white) none repeat scroll 0 0;
+    height: 100%;
+    position: fixed;
+    right: 0;
+    
+    scrollbar-width: none;
+    top: 0;
+    transform: translateX(calc(100% + 80px));
+    transition: .45s ease-in-out, opacity .45s ease-in-out;
+    width: 380px;
+    z-index: 9999;
+    &-opened {
+        transform: translateX(0);
+    }
+    &-wrapper {
+        min-height: 100%;
+        padding-left: 25px;
+        padding-right: 25px;
+        position: relative;
+        &_checkout {
+            padding-bottom: 10px;
+            padding-top: 15px;
+            width: 100%;
+            & h4 {
+                display: inline-block;
+                font-size: 20px;
+                font-weight: 500;
+                margin-bottom: 0;
+                text-transform: capitalize;
+            }
+            & span {
+                color: var(--black);
+                float: right;
+                font-size: 22px;
+                font-weight: 500;
+            }
+        }
+    }
+    &-title {
+        border-bottom: 1px solid var(--heading-panel);
+        padding: 20px 0;
+    }
+    & .cartmini__close {
+        position: absolute;
+        right: 0;
+        top: 17px;
+        border: 0;
+        & button {
+            border: 0;
+            background: var(--white);
+        }
+
+    }
+    &-items {
+        padding-bottom: 18px;
+        border-bottom: 1px solid var(--border-action);
+        margin-bottom: 18px;
+       
+    }
+    &-item {
+        margin-bottom: 20px;
+       
+        & .item_into_content {
+            font-size: 14px;
+            &-img {
+                margin-right: 30px;
+                & img {
+                    height: auto;
+                    width: 70px;
+                }
+            }
+            &-spend {
+                & a {
+                    color: var(--black);
+                    &:hover {
+                        color: var(--hover-navber);
+                    }
+                }
+            }
+            
+     
+        }
+        
+        & .item_into_delete {
+            padding-bottom: 15px;
+        }
+        
+    }
+    &-widget {
+        height: calc(100vh - 230px);
+        overflow-y: scroll;
+        overscroll-behavior-y: contain;
+        scrollbar-width: none;
+    }
+    
+}

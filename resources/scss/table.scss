@@ -1,0 +1,102 @@
+.table-wislist {
+    & .table {
+        border: 1px solid var(--border-action);
+        border-radius: 10px;
+        overflow: auto;
+        border-collapse: separte;
+        border-spacing: 0;
+        & a {
+            text-decoration: none !important;
+            font-size: 15px;
+            color:var(--black) !important;
+        }
+        & thead {
+            & th:first-child {
+                width: 120px;
+            }
+            & th {
+                white-space: nowrap;
+                padding: 12px 25px;
+                border: 1px solid rgba(1, 15, 28, .1);
+                vertical-align: middle;
+            }
+        }
+        & tbody {
+            & tr {
+                & td {
+                    padding-top: 20px;
+                    min-width: 120px;
+                    padding: 15px 25px;
+                    border: 1px solid rgba(1, 15, 28, .1);
+                    & .image {
+                        height: 60px;
+                        width: 60px;
+                        &>img {
+                            position: absolute;
+                            top: 50%;
+                            max-height: 100%;
+                            max-width: 100%;
+                        }
+                    }
+                    &:last-child {
+                        width: 70px;
+                        min-width: unset;
+                        padding-left: 0;
+                        padding-right: 0;
+                        text-align: center;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.table-compare {
+    overflow: auto;
+    border-collapse: separte;
+    border-spacing: 0;
+    margin-top: 40px;
+    & a {
+        color: var(--main-color);
+    }
+    & table {
+        border: 1px solid var(--border-action);
+        padding: 20px;
+        text-align: center;
+        font-weight: 600;
+        & tbody {
+            & th {
+                padding: 15px 35px;
+                border-top: none;
+                text-align: center;
+                vertical-align: middle;
+                border: 1px solid rgba(1, 15, 28, .1);
+            }
+            & .name_product {
+                & a {
+                    color: var(--main-color);
+                }
+            }
+            & tr {
+                & td {
+                    padding: 15px 25px;
+                    border: 1px solid rgba(1, 15, 28, .1);
+                    & .image {
+                        height: 120px;
+                        width: 120px;
+                        margin: 0 auto;
+                        &>img {
+                           
+                            max-height: 100%;
+                            max-width: 100%;
+                            object-fit: cover;
+                        }
+                    }
+                    
+                }
+            }
+        }
+    }
+   
+        
+}
