@@ -11,11 +11,12 @@ class AddBasketAction
      */
     public function execute($id_user,$id_product,$packId,$quantity)
     {
-        $basket = new Basket();
-        $basket->user_id = $id_user;
-        $basket->product_id = $id_product;
-        $basket->quantity = $quantity;
-        $basket->pack_id = $packId;
-        $basket->save();
+        return Basket::create([
+            "user_id"=>$id_user,
+            "product_id"=>$id_product,
+            "quantity"=>$quantity,
+            "pack_id"=>$packId
+        ]);
+       
     }
 }

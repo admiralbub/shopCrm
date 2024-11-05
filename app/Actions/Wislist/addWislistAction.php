@@ -10,12 +10,11 @@ class addWislistAction
      */
     public function execute($user_id,$product_id) : Wishlist
     {
-        $wishlist = new Wishlist();
-        $wishlist->user_id = $user_id;
-        $wishlist->product_id = $product_id;
-        $wishlist->save();
-        
-        return $wishlist;
+
+        return Wishlist::create([
+            "user_id"=>$user_id,
+            "product_id"=>$product_id
+        ]);
         
     }
 }
