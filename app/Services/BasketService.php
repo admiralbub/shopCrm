@@ -33,7 +33,7 @@ class BasketService implements BasketInterface {
                 $prod->id_basket = $data->id;
                 $prod->pack_volume =$prod->packs->find($data->pack_id)->volume ?? $prod->packs()->min('volume');
                 $prod->pack_name = $prod->packs->find($data->pack_id)->name ?? $prod->packs()->min('title_'.app()->getLocale());
-                $prod->price = $prod->price *$prod->pack_volume;
+                $prod->price =  ceil($prod->price *$prod->pack_volume);
                     
                 ////////////
                 return $prod;
@@ -59,7 +59,7 @@ class BasketService implements BasketInterface {
                     $prod->pack_id = $data['pack_id'];
                     $prod->pack_volume =$prod->packs->find($data['pack_id'])->volume ?? $prod->packs()->min('volume');
                     $prod->pack_name = $prod->packs->find($data['pack_id'])->title ?? $prod->packs()->min('name_'.app()->getLocale());
-                    $prod->price = $prod->price*$prod->packs->find($data['pack_id'])->volume;    
+                    $prod->price = ceil($prod->price*$prod->packs->find($data['pack_id'])->volume);    
                         
                         
                      ////////////

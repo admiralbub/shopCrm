@@ -38,7 +38,7 @@
         </div>
     </div>
     <div class="card_prdouct-price">
-        {{ $product->price * ($product->packs->count() > 0 ? $product->packs->first()->volume : 1) }} {{__("uah")}}
+        {{ ceil($product->price * ($product->packs->count() > 0 ? $product->packs->first()->volume : 1)) }}  {{__("uah")}}
     </div>
     @if($product->status_available)
         <div class="card_prdouct-button mt-3">

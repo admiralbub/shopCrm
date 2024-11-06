@@ -18,7 +18,7 @@
                 <div class="filter-price__slider js-price-range"></div>
                 <div class="filter-price__row">
                     <div class="field">
-                        <input type="text" class="input-min form-control js-price-down" value="{{intval(min($price))}}" name="min_price" data-min="{{intval(min($price))}}">
+                        <input type="text" class="input-min form-control js-price-down" value="1" name="min_price" data-min="1">
                     </div>
                     <div class="separator">-</div>
                     <div class="field">

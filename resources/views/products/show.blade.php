@@ -42,7 +42,7 @@
                     </div>
                     
                     <div class="show_phoduct-price pt-3 fs-2">
-                        <strong>{{ $product->price * ($product->packs->count() > 0 ? $product->packs->first()->volume : 1) }} {{__("uah")}}</strong>
+                        <strong>{{ ceil($product->price * ($product->packs->count() > 0 ? $product->packs->first()->volume : 1)) }} {{__("uah")}}</strong>
                     </div>
                     <div class="show_phoduct-choice pt-3">
                         <div class="row">
