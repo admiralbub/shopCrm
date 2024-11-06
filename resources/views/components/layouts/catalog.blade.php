@@ -43,7 +43,7 @@
 
                                 @else
                                     <li>
-                                        <a href="#">
+                                        <a href="{{route('product.category',['slug'=>$category->slug])}}">
                                             {{$category->name_ua}}
                                         </a>
                                     </li>

@@ -15,6 +15,18 @@
                 <div class="mt-4">
                      {!! $brand->description !!}
                 </div>
+                <div class="mt-4">
+                    @auth
+                
+                        @if(!empty(auth()->user()->permissions))
+                            <a href="/admin/brands/{{$brand->id}}/edit" target="_blank" class="primary">
+                                <i class="bi bi-pencil-fill"></i>
+
+                                <span>{{__('Edit')}}</span>
+                            </a>
+                        @endif
+                    @endif
+                </div>
             </div>
             
         </div>

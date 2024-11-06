@@ -93,6 +93,10 @@ $theme-colors:map-merge($theme-colors,$custom-color);
         color: var(--white) !important;
     }
 }
+.primary {
+    color: var(--green_link);
+    font-weight: 700;
+}
 .status-stock {
     background-color: rgb(64, 192, 87,.2);
     color: var(--status_success);

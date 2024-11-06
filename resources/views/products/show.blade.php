@@ -158,6 +158,18 @@
                 </div>
             </div>
         </div>
+        <div class="mt-4">
+            @auth
+              
+                @if(!empty(auth()->user()->permissions))
+                    <a href="/admin/products/{{$product->id}}/edit" target="_blank" class="primary">
+                        <i class="bi bi-pencil-fill"></i>
+
+                        <span>{{__('Edit')}}</span>
+                    </a>
+                @endif
+            @endif
+        </div>
         <div class="tp-product-details mt-5">
             <nav>
                 <div class="nav nav-tabs  justify-content-center" id="nav-tab" role="tablist">

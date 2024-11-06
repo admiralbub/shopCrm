@@ -8,6 +8,18 @@
 
         <div class="mt-2 category-heading">
             <h1 class="fs-2">{{$category->h1}}</h1>
+            <div class="mt-4">
+                @auth
+                
+                    @if(!empty(auth()->user()->permissions))
+                        <a href="/admin/categories/{{$category->id}}/edit" target="_blank" class="primary">
+                            <i class="bi bi-pencil-fill"></i>
+
+                            <span>{{__('Edit')}}</span>
+                        </a>
+                    @endif
+                @endif
+            </div>
         </div>
         <div class="category-lists mt-3 mb-4">
             <div class="row">
