@@ -42,7 +42,7 @@ class MainPageService implements MainPageInterface {
    }
    static public function getMainPage() {
         return Page::available()
-            ->where('url','')
+            ->where('url','/')
             ->first();
    }
     

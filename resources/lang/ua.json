@@ -214,7 +214,7 @@
     "Popular product":"Популярний товар",
     "Recommended product":"Рекомендований товар",
     "Sale":"Розпродаж",
-    "Price for thing":"Ціна за штуку",
+    "Price for":"Ціна за",
     "liter":"літр",
     "bag": "мішок",
     "tones": "тони",
@@ -363,7 +363,8 @@
     "Sale products":"<span>Розпродаж</span> товарів",
     "Pages":"Сторінки",
     "Add page":"Додати сторінку",
-    "Edit page":"Редагувати сторінку"
+    "Edit page":"Редагувати сторінку",
+    "thing":"шт."
 
 
 

@@ -122,13 +122,14 @@ class ProductEditScreen extends Screen
                         Select::make('product.unit')
                             ->options([
                                  
-                                 1 => __('liter'),
-                                 2 => __('bag'),
-                                 3 => __('tones'),
-                                 4 => __('kg'),
+                                1 => __('liter'),
+                                2 => __('bag'),
+                                3 => __('tones'),
+                                4 => __('kg'),
+                                5 => __('thing'),
                             
                             ])
-                            ->title(__('Price for thing')),    
+                            ->title(__('Price for')),    
                         Select::make('product.status')
                             ->options(Product::getStatusUnitAttribute())
                             ->required()

@@ -39,7 +39,7 @@
     "New product":"Новый товар",
     "Popular product":"Популярный товар",
     "Sale":"Распродажа",
-    "Price for thing":"Цена за штуку",
+    "Price for":"Цена за",
     "Recommended product":"Рекомендуемый товар",
     "liter":"литр",
     "bag":"мешок",
@@ -193,7 +193,8 @@
     "Sale products":"<span>Распродажа</span> товаров",
     "Pages":"Страницы",
     "Add page":"Добавить страницу",
-    "Edit page":"Редактировать страницу"
+    "Edit page":"Редактировать страницу",
+    "thing":"шт."
     
    
 
