@@ -21,6 +21,9 @@ class MainController extends Controller
         
         $popularProduct = $this->mainPage->getProductPopular();
         $page = $this->mainPage->getMainPage();
+        if(!$page) {
+            abort(404);
+        }
         return view('index',compact(
             'slidersMains',
             'newProduct',
