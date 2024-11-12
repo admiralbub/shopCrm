@@ -31,6 +31,12 @@ use App\Orchid\Screens\AttrGroup\AttrGroupEditScreen;
 
 use App\Orchid\Screens\Attr\AttrListScreen;
 use App\Orchid\Screens\Attr\AttrEditScreen;
+
+use App\Orchid\Screens\MainSlider\MainSliderEditScreen;
+use App\Orchid\Screens\MainSlider\MainSliderListScreen;
+
+use App\Orchid\Screens\Page\PageEditScreen;
+use App\Orchid\Screens\Page\PageListScreen;
 /*
 |--------------------------------------------------------------------------
 | Dashboard Routes
@@ -231,3 +237,41 @@ Route::screen('attrs/create', AttrEditScreen::class)
     ->breadcrumbs(fn (Trail $trail) => $trail
         ->parent('platform.attr.list')
         ->push(__('Add attribute'), route('platform.attr.create')));
+
+///////Main slider
+Route::screen('/mainsliders', MainSliderListScreen::class)
+    ->name('platform.mainslider.list')
+    ->breadcrumbs(fn (Trail $trail) => $trail
+        ->parent('platform.index')
+        ->push(__('Sliders'), route('platform.mainslider.list')));
+ 
+Route::screen('mainsliders/{mainslider}/edit', MainSliderEditScreen::class)
+    ->name('platform.mainslider.edit')
+    ->breadcrumbs(fn (Trail $trail, $mainslider) => $trail
+        ->parent('platform.mainslider.list')
+        ->push(__("Edit slider"), route('platform.mainslider.edit', $mainslider)));
+    
+Route::screen('mainsliders/create', MainSliderEditScreen::class)
+    ->name('platform.mainslider.create')
+    ->breadcrumbs(fn (Trail $trail) => $trail
+        ->parent('platform.mainslider.list')
+        ->push(__('Add slider'), route('platform.mainslider.create')));
+
+///////Page
+Route::screen('/pages', PageListScreen::class)
+    ->name('platform.page.list')
+    ->breadcrumbs(fn (Trail $trail) => $trail
+        ->parent('platform.index')
+        ->push(__('Pages'), route('platform.page.list')));
+ 
+Route::screen('pages/{page}/edit', PageEditScreen::class)
+    ->name('platform.page.edit')
+    ->breadcrumbs(fn (Trail $trail, $page) => $trail
+        ->parent('platform.page.list')
+        ->push(__("Edit page"), route('platform.page.edit', $page)));
+    
+Route::screen('pages/create', PageEditScreen::class)
+    ->name('platform.page.create')
+    ->breadcrumbs(fn (Trail $trail) => $trail
+        ->parent('platform.page.list')
+        ->push(__('Add page'), route('platform.page.create')));

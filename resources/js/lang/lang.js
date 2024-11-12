@@ -24,6 +24,7 @@ function Lang() {
             window.lang.validator.minlength = "Дуже мало символів";
             window.lang.validator.confirm_pass = "Не збігається пароль із підтвердженням.";
             window.lang.validator.emptyBasket = "Ваш кошик порожній";
+            window.lang.validator.select_required = "Ви не обрали значення у списку, що випадає";
             break;
         case 'ru':
             window.lang.validator.empty = 'Данное поле пустое';
@@ -35,6 +36,7 @@ function Lang() {
             window.lang.validator.minlength = "Очень мало символов";
             window.lang.validator.confirm_pass = "Не совпадает пароль с подтверждением."
             window.lang.validator.emptyBasket = "Ваша корзина пуста";
+            window.lang.validator.select_required = "Вы не выбрали значения в выпадающем списке";
             break;
         // Вы можете добавить дополнительные языки здесь
     }  

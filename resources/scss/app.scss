@@ -144,6 +144,7 @@ $theme-colors:map-merge($theme-colors,$custom-color);
 @import 'account.scss';
 @import 'brand.scss';
 @import 'cart.scss';
+@import 'orders.scss';
 @import 'validation.scss';
 .footer {
     background-color: var(--footer-color);
@@ -337,7 +338,6 @@ $theme-colors:map-merge($theme-colors,$custom-color);
         width: 20px;
     }
 }
-
 
 
 $pagination-active-bg:  $green;

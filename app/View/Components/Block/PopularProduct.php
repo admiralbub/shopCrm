@@ -1,19 +1,20 @@
 <?php
 
-namespace App\View\Components\block;
+namespace App\View\Components\Block;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class advantages extends Component
+class PopularProduct extends Component
 {
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public $popularProducts;
+    public function __construct($popularProducts)
     {
-        //
+        $this->popularProducts = $popularProducts;
     }
 
     /**
@@ -21,6 +22,6 @@ class advantages extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.block.advantages');
+        return view('components.block.popular-product');
     }
 }

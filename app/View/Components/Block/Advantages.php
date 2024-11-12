@@ -1,12 +1,12 @@
 <?php
 
-namespace App\View\Components\block;
+namespace App\View\Components\Block;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class top-categories extends Component
+class Advantages extends Component
 {
     /**
      * Create a new component instance.
@@ -21,6 +21,6 @@ class top-categories extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.block.top-categories');
+        return view('components.block.advantages');
     }
 }

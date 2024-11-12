@@ -1,19 +1,20 @@
 <?php
 
-namespace App\View\Components\block;
+namespace App\View\Components\Block;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class blog extends Component
+class SaleProduct extends Component
 {
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public $saleProducts;
+    public function __construct($saleProducts)
     {
-        //
+        $this->saleProducts = $saleProducts;
     }
 
     /**
@@ -21,6 +22,6 @@ class blog extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.block.blog');
+        return view('components.block.sale-product');
     }
 }

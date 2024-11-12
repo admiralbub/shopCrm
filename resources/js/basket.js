@@ -13,15 +13,19 @@ document.addEventListener("DOMContentLoaded", function() {
     const basketNavbar = document.querySelector('#basketNavbar');
     const totalbBasket = document.querySelector('#totalbBasket');
     const AddBasketView = document.querySelector('#AddBasketView');
-    
+
     
     const openRightBasket = document.querySelector('#openRightBasket');
     const openRightBasketMob = document.querySelector('#openRightBasketMob');
     const closeRightBasket = document.querySelector('#closeRightBasket');
     const body_overlay = document.querySelector('.body-overlay');
 
+    const showTableCart = document.querySelector('#showTableCart');
+    const TotalBasketOrder = document.querySelector('#TotalBasketOrder');
+    
 
 
+    
     if (openRightBasket) {
         openRightBasket.addEventListener('click', function() {
             document.querySelector('.cartmini__area').classList.add('cartmini__area-opened');
@@ -31,6 +35,9 @@ document.addEventListener("DOMContentLoaded", function() {
     
         
     }
+
+    
+
     if (openRightBasketMob) {
         openRightBasketMob.addEventListener('click', function() {
             document.querySelector('.cartmini__area').classList.add('cartmini__area-opened');
@@ -57,6 +64,7 @@ document.addEventListener("DOMContentLoaded", function() {
         
         })
     }
+    
     const basketNavbarLabel = async () => {
     
             
@@ -64,6 +72,10 @@ document.addEventListener("DOMContentLoaded", function() {
             const response = await axios.get('/basket/basketJson');
             if(response.data.baskets.length != 0) {
                 render(response.data.baskets)
+                if(showTableCart) {
+                    renderOrder(response.data.baskets)
+                }
+                
                 document.querySelector('.cartmini__area-wrapper_checkout').style.display = 'block';
                 document.querySelector('.cartmini__area-wrapper_buttons').style.display = 'block';
                 
@@ -79,6 +91,36 @@ document.addEventListener("DOMContentLoaded", function() {
             basketNavbar.innerHTML = error;
         }
     };
+
+    function renderOrder(basket = []) {
+        const html = Array.isArray(basket) ? basket.map(toHtmlOrder).join('') : '';
+        showTableCart.innerHTML = html;
+        if(TotalBasketOrder) {
+            TotalBasketOrder.innerHTML =  totalBasketParser(basket);
+        }
+        
+    }
+    function toHtmlOrder(basket) {
+        return  `
+            
+
+             <li class="order_summ-order">
+                <a href="/product/${basket.slug}" class="product-image position-relative">
+                    <img src="${basket.image}" alt="">
+                    <span class="qty-count">${basket.quantity}</span>
+                </a>
+                <div class="product-info">
+                     <a href="/product/${basket.slug}" class="product-name">
+                        ${basket.name}
+                    </a>
+                </div>
+                <div class="product-price">
+                    ${basket.price*basket.quantity} грн
+                </div>
+            </li>
+        `;
+    }
+    
     if(basketNavbar) {
         const countBasketLabel = async () => {
             try {

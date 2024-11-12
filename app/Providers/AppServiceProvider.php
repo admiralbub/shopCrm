@@ -21,8 +21,15 @@ use App\Services\WishlistService;
 use App\Interfaces\CompareInterface;
 use App\Services\CompareService;
 
+use App\Interfaces\MainPageInterface;
+use App\Services\MainPageService;
+
 use Illuminate\Pagination\Paginator;
 use Orchid\Support\Facades\Dashboard;
+
+use App\Interfaces\PageInterface;
+use App\Services\PageService;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -43,6 +50,18 @@ class AppServiceProvider extends ServiceProvider
             \Orchid\Platform\Models\User::class,
             \App\Models\User::class
         );
+        $this->app->bind(
+            PageInterface::class,
+            PageService::class,
+
+        );
+
+        $this->app->bind(
+            MainPageInterface::class,
+            MainPageService::class,
+
+        );
+
         $this->app->bind(
             CategoryInterface::class,
             CategoryService::class,

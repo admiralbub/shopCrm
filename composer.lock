@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ca953aa6db5ea81b0e5f43526d26f827",
+    "content-hash": "fdfd2a30c230ba3d9198ee06d27f6de6",
     "packages": [
         {
             "name": "brick/math",
@@ -282,6 +282,67 @@
                 }
             ],
             "time": "2024-03-13T02:44:01+00:00"
+        },
+        {
+            "name": "daaner/novaposhta",
+            "version": "1.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/daaner/NovaPoshta.git",
+                "reference": "be9e7469359de859c5c70b1e8ea9c9f8a6cbc6f0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/daaner/NovaPoshta/zipball/be9e7469359de859c5c70b1e8ea9c9f8a6cbc6f0",
+                "reference": "be9e7469359de859c5c70b1e8ea9c9f8a6cbc6f0",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "laravel/framework": ">=7.0",
+                "php": ">=7.2.5"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Daaner\\NovaPoshta\\NovaPoshtaServiceProvider"
+                    ],
+                    "aliases": {
+                        "NovaPoshta": "Daaner\\NovaPoshta\\Facades\\NovaPoshta"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Daaner\\NovaPoshta\\": "src",
+                    "Daaner\\NovaPoshta\\Facades\\": "src/Facades"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Daan",
+                    "email": "daan@ukr.net"
+                }
+            ],
+            "description": "NovaPoshta (API 2.0) for Laravel 7+",
+            "keywords": [
+                "daaner",
+                "delivery",
+                "laravel-novaposhta",
+                "laravel-np",
+                "novaposhta",
+                "ukraine-delivery"
+            ],
+            "support": {
+                "issues": "https://github.com/daaner/NovaPoshta/issues",
+                "source": "https://github.com/daaner/NovaPoshta/tree/1.4"
+            },
+            "time": "2024-06-14T11:06:58+00:00"
         },
         {
             "name": "dflydev/dot-access-data",

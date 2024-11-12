@@ -1,6 +1,11 @@
 .main_banner {
     width: auto;
-    height: 400px;
+    @media (max-width: 990px) {
+        height: 150px;
+    }
+    @media (min-width: 990px) {
+        height: 450px;
+    }
     margin: 0 !important;
     padding: 0 !important;
     border: 1px solid var(--border-right);
@@ -15,37 +20,15 @@
                 display: block;
                 width: 100%;
                 height: 100%;
-                object-fit: cover;
+                
+               
             }
             
         } 
     }
    
   
-    &_content {
-        position: absolute;
-        color: var(--white);
-        top: 0;
-        height: 100%;
-        width: 100%;
-        padding-top: 100px;
-        padding-left: 40px;
-        &-heading {
-            font-weight: 700;
-            font-size: 40px;
-        }
-        &-text {
-            color: var(--main_gray);
-            font-size: 15px;
-            margin-top: 15px;
-            
-        }
-        &-description {
-            padding-top: 10px;
-            font-size: 17px;
-            padding-bottom: 20px;
-        }
-    }
+ 
     @media (max-width: 990px) {
         &_content {
             padding-top: 80px;
@@ -56,39 +39,7 @@
 .swiper-pagination-bullets {
     right: 40px !important;
 }
-.right-banners {
-    & .right-banner {
-        width: auto;
-        height: 190px;
-        border: 1px solid var(--border-right);
-        border-radius: 10px;
-        position: relative;
-        display: block;
-        border-radius: 8px;
-        overflow: hidden;
-        z-index: 0;
-        
-        & a {
-            color: var(--white);
-            font-size: 16px;
-            font-weight: 500;
-            & img {
-                /*width: 100%;
-                height: 100%;
-                object-fit: cover;*/
-                position: absolute;
-                left: 250px;
-                
-            }
-        }
-        &_content {
-            position: absolute;
-            top: 0;
-            padding: 35px 25px;
-        }
-        
-    }
-}
+
 .swiper-pagination-bullet-active {
     background-color: var(--black);
 }

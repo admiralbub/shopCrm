@@ -32,7 +32,7 @@
         </div>
         <div class="cartmini__area-wrapper_buttons">
             <div class="d-grid gap-2">
-                <a href="#" type="button" class="btn btn-primary py-3 fw-bold">{{__('Continue shopping')}}</a>
+                <a href="{{route('order.index')}}" type="button" class="btn btn-primary py-3 fw-bold">{{__('Continue shopping')}}</a>
                 
             </div>
         </div>

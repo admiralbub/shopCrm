@@ -1,12 +1,12 @@
 <?php
 
-namespace App\View\Components\products;
+namespace App\View\Components\Block;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class slider-product extends Component
+class Blog extends Component
 {
     /**
      * Create a new component instance.
@@ -21,6 +21,6 @@ class slider-product extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.products.slider-product');
+        return view('components.block.blog');
     }
 }

@@ -15,6 +15,9 @@ use App\Http\Controllers\ViewProductController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\BasketController;
 use App\Http\Controllers\CompareController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\Deliver\NovaPoshtaController;
+use App\Http\Controllers\Page\MainController;
 
 require __DIR__ . '/admin/admin.php';
 $market = parse_url(config('app.url'), PHP_URL_HOST);
@@ -37,6 +40,7 @@ Route::group([
         Route::get('/count', [CompareController::class,'count'])->name('compare.count');
         Route::delete('/delete/{id}', [CompareController::class,'delete'])->name('compare.delete');
     });   
+
     Route::group(['prefix' => 'brands'], function () {
         Route::get('/', BrandController::class)->name('product.brand.list');
     });   
@@ -54,10 +58,12 @@ Route::group([
         Route::get('/countBasket', [BasketController::class,'countBasket'])->name('basket.count');
         Route::delete('/deleteBasker/{id}', [BasketController::class,'deleteBasket'])->name('basket.delete');
     }); 
+    Route::get('/order', OrderController::class)->name('order.index');
 
-    Route::get('/', function () {
-        return view('index');
-    })->name('index');;
+
+    Route::get('/', MainController::class)->name('index');
+
+
     Route::group(['middleware' => ['auth_user']], function () {
         Route::get('/signout', LogoutController::class)->name('auth.signout');
         
@@ -86,4 +92,10 @@ Route::group([
         
         
     });
+    
+    Route::group(['prefix' => 'novaposhta'], function () {
+        Route::post('/getCity', [NovaPoshtaController::class,'getCity'])->name('novaposhta.getCity');
+        Route::post('/getWarehouse', [NovaPoshtaController::class,'getWarehouse'])->name('novaposhta.getWarehouse');
+    });
 });
+

@@ -1,5 +1,5 @@
 <div class="sadbar_catalog">
-    @if($category->count()!=0)
+    @if(count($category)!=0)
         <div class="categories">
             <strong class="fs-5">{{__('Product categories')}}</strong>
             <ul class="categories_links">
@@ -34,7 +34,7 @@
             
         </div>
     @endif
-    @if($attrs->count())
+    @if($attrs)
         @foreach ($attrs as $groupName => $attributes)
             <div class="producer">
                 <strong class="fs-5">{{$groupName}}</strong>
@@ -56,7 +56,7 @@
         @endforeach
     @endif
     
-    @if($brands->count())
+    @if($brands)
         <div class="producer">
             <strong class="fs-5">{{__('Brand')}}</strong>
             <div class="producer_radio">

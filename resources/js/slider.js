@@ -43,7 +43,7 @@ var swiper_category = new Swiper(".main-categories_slider", {
     },
   });
 
-  var card_prdoucts_main = new Swiper(".card_prdoucts_main", {
+  var card_prdoucts_main = new Swiper(".card_products_main", {
     slidesPerView: 1,
     spaceBetween: 10,
     autoplay: {

@@ -57,6 +57,22 @@ class Product extends Model
 
         'name'
     ];
+    public function scopeNew($q) {
+        $q->where("is_new",1);
+    }
+    public function scopeReccomended($q) {
+        $q->where("is_recommender",1);
+    }
+    public function scopePopular($q) {
+        $q->where("is_top",1);
+    }
+
+    public function scopeSale($q) {
+        $q->where("is_sale",1);
+    }
+    public function scopeAvailable($q) {
+        $q->where("is_publish",1);
+    }
     
     public function packs()
     {

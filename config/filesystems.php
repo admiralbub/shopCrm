@@ -64,6 +64,22 @@ return [
             'visibility' => 'public',
             'throw' => false,
         ],
+        'main_banner' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/main_banner'),
+            'url' => env('APP_URL').'/storage/main_banner',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+
+        'images_page' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/images_page'),
+            'url' => env('APP_URL').'/storage/images_page',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+        
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),

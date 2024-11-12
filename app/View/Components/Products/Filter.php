@@ -11,14 +11,14 @@ class Filter extends Component
     /**
      * Create a new component instance.
      */
-    public $brand;
+    public $brands;
     public $category;
     public $price;
     public $attrs;
     public $selectedFilter;
-    public function __construct($brand,$category,$price,$attrs,$selectedFilter)
+    public function __construct($brands,$category,$price,$attrs,$selectedFilter)
     {
-        $this->brand = $brand;
+        $this->brands = $brands;
         $this->category = $category;
         $this->price = $price;
 

@@ -25,7 +25,7 @@
         <div class="main mt-2 mt-md-1">
             {{ $slot }}
         </div>
-        <x-block.subscribers/>
+        {{-- <x-block.subscribers/>--}}
         <x-layouts.footer/>
         <x-layouts.mob_nav_bottom/>
         <x-basket/>

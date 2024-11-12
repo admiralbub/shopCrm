@@ -49,12 +49,20 @@ class PlatformProvider extends OrchidServiceProvider
                   //  Menu::make(__('Price variation'))->route('platform.prices.list'),
                 ]),
 
+            Menu::make(__('Pages'))
+                ->icon('bs.files')
+                ->route('platform.page.list')
+                ->permission('platform.systems.users'),        
+            Menu::make(__('Sliders'))
+                ->icon('bs.card-image')
+                ->route('platform.mainslider.list')
+                ->permission('platform.systems.users'),        
             Menu::make(__('Users'))
                 ->icon('bs.people')
                 ->route('platform.systems.users')
                 ->permission('platform.systems.users'),
                 
-
+           
             Menu::make(__('Roles'))
                 ->icon('bs.shield')
                 ->route('platform.systems.roles')

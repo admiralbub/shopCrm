@@ -1,12 +1,12 @@
 <?php
 
-namespace App\View\Components\banner;
+namespace App\View\Components\Block;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class main-slider extends Component
+class TopCategories extends Component
 {
     /**
      * Create a new component instance.
@@ -21,6 +21,6 @@ class main-slider extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.banner.main-slider');
+        return view('components.block.top-categories');
     }
 }

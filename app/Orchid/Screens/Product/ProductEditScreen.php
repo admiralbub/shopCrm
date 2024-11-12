@@ -128,7 +128,7 @@ class ProductEditScreen extends Screen
                                  4 => __('kg'),
                             
                             ])
-                            ->title(__('Price for')),    
+                            ->title(__('Price for thing')),    
                         Select::make('product.status')
                             ->options(Product::getStatusUnitAttribute())
                             ->required()
