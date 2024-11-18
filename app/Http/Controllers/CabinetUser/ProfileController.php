@@ -15,7 +15,11 @@ class ProfileController extends Controller
     }
     public function getUpdate(UpdateAccountRequest $request) {
         $user = (new UpdateAccountAction())->execute($request->validated());
-        return redirect(route('profile'))->with('success', __('profil_edit_success'));
+
+        return response()->json([
+            'success'=>  __('profil_edit_success'),
+            'redirect' => route('profile')
+        ]);
     }
 
    

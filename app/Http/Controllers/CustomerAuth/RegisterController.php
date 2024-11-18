@@ -15,7 +15,10 @@ class RegisterController extends Controller
     public function getRegister(RegisterRequest $request) {
         $user = (new CreatedUserAction())->execute($request->validated());
         Auth::login($user);
-        return redirect(route('profile'));
+        return response()->json([
+            'success'=>  __('Login berhasil'),
+            'redirect' => route('profile')
+        ]);
     }
      
 }

@@ -35,5 +35,7 @@ document.addEventListener("turbo:load", () => {
             
         })
     });
-
+    
 });
+
+import './fieldAdmin.js'

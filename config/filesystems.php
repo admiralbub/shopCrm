@@ -79,6 +79,13 @@ return [
             'visibility' => 'public',
             'throw' => false,
         ],
+        'images_site' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/images_site'),
+            'url' => env('APP_URL').'/storage/images_site',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
         
         's3' => [
             'driver' => 's3',

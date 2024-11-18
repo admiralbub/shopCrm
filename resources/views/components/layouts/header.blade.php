@@ -93,7 +93,7 @@
         <div class="row align-items-center">
             <div class="header-logo col col-lg-3">
                 <a href="{{route('index')}}">
-                    <img src="{{asset('images/logo_black.svg')}}" width="150px">
+                    <img src="{{settings('logo_site')}}" width="150px">
                 </a>
                     
             </div>
@@ -116,7 +116,7 @@
                     <span class="header-menu-phone-content pl-2">
                         <small>{{__('Phone_title')}}:</small>
                         <p>
-                            <a href="#">8 800 332 65-66</a>
+                            <a href="tel:{{ str_replace([' ', '(', ')', '-'], '', settings('phone_site'))}}">{{settings('phone_site')}}</a>
                         </p>
                     </span>
                 </div>

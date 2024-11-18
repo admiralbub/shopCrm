@@ -3,7 +3,7 @@
         <div class="d-lg-none d-flex open-mob-menu justify-content-between">
             <div>
                 <a href="{{route('index')}}">
-                    <img src="{{asset('images/logo_black.svg')}}" width="150px">
+                    <img src="{{settings('logo_site')}}" width="150px">
                 </a>
             </div>
             <div class="mt-2">

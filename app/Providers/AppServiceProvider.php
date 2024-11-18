@@ -30,6 +30,9 @@ use Orchid\Support\Facades\Dashboard;
 use App\Interfaces\PageInterface;
 use App\Services\PageService;
 
+use App\Interfaces\OrderInterface;
+use App\Services\OrderService;
+use App\Models\Setting;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -45,6 +48,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+
+        $this->app->bind(
+            OrderInterface::class,
+            OrderService::class,
+
+        );
         Paginator::useBootstrap();
         Dashboard::useModel(
             \Orchid\Platform\Models\User::class,
@@ -96,7 +105,9 @@ class AppServiceProvider extends ServiceProvider
             CompareService::class,
 
         );
-
+        $this->app->singleton('settings', function () {
+            return Setting::all()->pluck('value', 'key');
+        });
         
         
     }

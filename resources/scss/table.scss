@@ -101,3 +101,58 @@
         
 }
 
+.table-orderAccount {
+    overflow: auto;
+    border-collapse: separte;
+    border-spacing: 0;
+    & .table {
+        border: 1px solid var(--border-action);
+        border-radius: 10px;
+        overflow: auto;
+        border-collapse: separte;
+        border-spacing: 0;
+        & a {
+            text-decoration: none !important;
+            font-size: 15px;
+            color:var(--black) !important;
+        }
+        & thead {
+            & th:first-child {
+                width: 120px;
+            }
+            & th {
+                white-space: nowrap;
+                padding: 12px 25px;
+                border: 1px solid rgba(1, 15, 28, .1);
+                vertical-align: middle;
+            }
+        }
+        & tbody {
+            & tr {
+                & td {
+                    padding-top: 20px;
+                    min-width: 120px;
+                    padding: 15px 25px;
+                    border: 1px solid rgba(1, 15, 28, .1);
+                    &.image {
+                        height: 100%;
+                        width: 71px;
+                        text-align: center;
+                        &>img {
+                            height: 100%;
+                            width: 100%;
+                            object-fit: cover;
+                        }
+                    }
+                    &:last-child {
+                        width: 70px;
+                        min-width: unset;
+                        padding-left: 0;
+                        padding-right: 0;
+                        text-align: center;
+                    }
+                }
+            }
+        }
+    }
+}

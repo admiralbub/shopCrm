@@ -7,11 +7,7 @@
         <div class="py-3">
             <h1 class="heading_auth  fs-3">{{__("Entrance to the personal office")}}</h1>
             <p class="pt-2 heading_title">{{__('title_register')}}</p>
-            @if(Session::has('error'))
-                <x-alert.alert status="danger">
-                    {{ Session::get('error') }}    
-                </x-alert.alert>
-            @endif
+            
             <form method="POST" action="{{route('auth.enter')}}" id="form">
                 @csrf
                 <div class="form-group py-2">

@@ -364,7 +364,28 @@
     "Pages":"Сторінки",
     "Add page":"Додати сторінку",
     "Edit page":"Редагувати сторінку",
-    "thing":"шт."
+    "thing":"шт.",
+    "Write and select a city": "Напишіть і виберіть місто",
+    "All branches": "Усі відділення",
+    "You have successfully placed your order":"Ви успішно зробили ваше замовлення",
+    "My order":"Мої замовлення",
+    "from":"від",
+    "total":"Сума",
+    "Info deliver":"Інформація о доставці",
+    "New order":"Нове замовлення",
+    "You have no orders":"У вас відсутні замовлення",
+    "Nova Poshta":"Нова пошта",
+    "Payment per hour of picking up the goods":"Оплата під час отримання товару",
+    "Edit order":"Регувати замовлення №:number",
+    "Order":"Замовлення",
+    "In progress":"У роботі",
+    "To pay":"До оплати",
+    "Paid": "Оплачений",
+    "Sent":"Відправлено",
+    "Cancel order":"Скасовано",
+    "Setting":"Налаштування",
+    "Review":"Огляд"
+
 
 
 

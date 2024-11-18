@@ -25,7 +25,7 @@
                         <div class="d-flex justify-content-between align-items-center mb-3">
 
                             <a href="{{route('index')}}">
-                                <img src="{{asset('images/logo_black.svg')}}" width="150px">
+                                <img src="{{settings('logo_site')}}" width="150px">
                             </a>
                             <a href="#" data-bs-toggle="dropdown" aria-expanded="false" class="langue">
                            

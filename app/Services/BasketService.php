@@ -161,7 +161,7 @@ class BasketService implements BasketInterface {
         if($isAuth) {
             $baskets = Basket::where('user_id',auth()->user()->id)->get();
             foreach ($baskets as $basket) {
-                $_count+=($basket->products->price * $basket->products->packs->first()->volume)*$basket->quantity;
+                $_count+=ceil(($basket->products->price * $basket->products->packs->first()->volume))*$basket->quantity;
             }
             return $_count;
         } else {
@@ -170,7 +170,7 @@ class BasketService implements BasketInterface {
             if($cart) {
                 foreach ($cart as $item) {
                     $product = Product::find($item['id'])->first();
-                    $_count+=($product->price * $product->packs->find($item['pack_id'])->volume)*$item['quantity'];
+                    $_count+=ceil(($product->price * $product->packs->find($item['pack_id'])->volume))*$item['quantity'];
                 }
             }
            
@@ -211,6 +211,14 @@ class BasketService implements BasketInterface {
             }
         }
         return $count;
+    }
+    static public function clearBasket($isAuth) {
+        if($isAuth) {
+            $clear_cart = Basket::where("user_id", auth()->user()->id);
+            return $clear_cart->delete();
+        } else {
+            return session()->forget('cart');
+        }
     }
     
 }

@@ -2,7 +2,7 @@
     <div class="catalog-mob--header d-flex  justify-content-between">
         <div class="catalog-mob--logo">
             <a href="{{route('index')}}">
-                <img src="{{asset('images/logo_black.svg')}}" width="150px">
+                <img src="{{settings('logo_site')}}" width="150px">
             </a>
         </div>
         <div class="catalog-mob--language  d-flex">
@@ -86,25 +86,20 @@
         <div class="catalog-mob--content_footer">
             <ul class="catalog-mob--footer_list">
                 <li class="catalog-mob--footer_list-item">
-                    <a href="#">
-                        +1 900 777525
+                    <a href="tel:{{ str_replace([' ', '(', ')', '-'], '', settings('phone_site'))}}">{{settings('phone_site')}}</a>
+
+                </li>
+                <li class="catalog-mob--footer_list-item">
+                    <a href="mailto:{{settings('email_site')}}">
+                        {{settings('email_site')}}
                     </a>
                 </li>
                 <li class="catalog-mob--footer_list-item">
-                    <a href="#">
-                        info@tasty-daily.com
+                    <a href="{{settings('link_adress_site')}}">
+                        {{settings('adress_site_'.app()->getLocale())}}
                     </a>
                 </li>
-                <li class="catalog-mob--footer_list-item">
-                    <a href="#">
-                        Vokzalnaya street, 34, Pervomaysk, Nikolaev region, Ukraine© Growex
-                    </a>
-                </li>
-                <li class="catalog-mob--footer_list-item">
-                    <a href="#">
-                        from 8:30 to 18:00
-                    </a>
-                </li>
+                
                     
             </ul>
         </div>

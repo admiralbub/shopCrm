@@ -4,22 +4,20 @@ namespace App\Http\Controllers\Deliver;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Daaner\NovaPoshta\Models\Address;
+use App\Deliver\Novaposhta;
 
 class NovaPoshtaController extends Controller
 {
     public function getCity(Request $request) {
-        $adr = new Address;
-        //работает ф-ция лимита, но можно и без нее, setPage - НЕ применяется
-        $adr->setLimit(20);
+        $adr = new Novaposhta;
+    
+        $settlements = $adr->getCityFilter($request->city);
 
-        $settlements = $adr->searchSettlements($request->city);
-
-        return $settlements['result'][0]['Addresses'];
+        return $settlements->data[0]->Addresses;
     }
     public function getWarehouse(Request $request) {
-        $adr = new Address;
-        $warehouses = $adr->getWarehouses($request->warehouse, false);
-        dd($warehouses);
+        $adr = new Novaposhta;
+        $warehouses = $adr->getWarehouseFilter($request->city, $request->warehouse);
+        return $warehouses->data;
     }
 }

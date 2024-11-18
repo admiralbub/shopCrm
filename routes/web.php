@@ -58,7 +58,10 @@ Route::group([
         Route::get('/countBasket', [BasketController::class,'countBasket'])->name('basket.count');
         Route::delete('/deleteBasker/{id}', [BasketController::class,'deleteBasket'])->name('basket.delete');
     }); 
-    Route::get('/order', OrderController::class)->name('order.index');
+    Route::group(['prefix' => 'order'], function () {
+        Route::get('/', OrderController::class)->name('order.index');
+        Route::post('/post', [OrderController::class,'store'])->name('order.post');
+    });
 
 
     Route::get('/', MainController::class)->name('index');
@@ -80,6 +83,7 @@ Route::group([
             Route::get('/change_password', PasswordChangeController::class)->name('change_password');
             Route::post('/change_password', [PasswordChangeController::class,'updatePassword'])->name('change_password.update');
             Route::get('/wislist', WishlistController::class)->name('profile.wislist');
+            Route::get('/orders', [OrderController::class,'getOrder'])->name('profile.orders');
         });
         
         
@@ -95,6 +99,7 @@ Route::group([
     
     Route::group(['prefix' => 'novaposhta'], function () {
         Route::post('/getCity', [NovaPoshtaController::class,'getCity'])->name('novaposhta.getCity');
+      //  Route::get('/getCityAdmin', [NovaPoshtaController::class,'getCityAdmin'])->name('novaposhta.getCityAdmin');
         Route::post('/getWarehouse', [NovaPoshtaController::class,'getWarehouse'])->name('novaposhta.getWarehouse');
     });
 });

@@ -12,8 +12,14 @@ class AuthController extends Controller
     }
     public function getAuth(Request $request) {
         if (Auth::attempt($request->only('email', 'password'))) {
-            return redirect(route('profile'))->with('success', __('Login berhasil'));
+           
+            return response()->json([
+                'success'=>  __('Login berhasil'),
+                'redirect' => route('profile')
+            ]);
         }
-        return back()->with('error', __('title_auth_error'));
+        return response()->json([
+            'error' => __('title_auth_error')
+        ]);;
     }
 }

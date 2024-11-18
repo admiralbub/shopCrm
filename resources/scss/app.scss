@@ -17,6 +17,9 @@ svg {
 h1,h2,h3,h4,h5,h6 {
     font-weight: 400;
 }
+input[readonly] {
+    background-color: var(--ccc-gray) !important;
+}
 @media (max-width: 990px) {
 
     h2 {
@@ -69,6 +72,8 @@ a {
 $font-size-base: 14px;
 
 $body-color: $mgray;
+
+$accordion-button-active-bg: #F3F3F3;
 
 $navbar-light-color: rgba($primary, .5);
 $navbar-light-hover-color: rgba($primary, .7);
@@ -180,8 +185,7 @@ $theme-colors:map-merge($theme-colors,$custom-color);
                 text-align: center;
                 width: 38px;
                 &:hover {
-                    background: var(--main_grain_hover);
-                    color: var(--white);
+                    background: var(--border-action);
                     transition: 0.5s ease-in-out;
                 }
             }

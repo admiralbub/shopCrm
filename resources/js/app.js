@@ -120,7 +120,7 @@ if(quantity) {
 
 //////
 
-//import './order.js'
+import './order.js'
 import './field.js'
 import './catalog.js'
 import './basket.js'

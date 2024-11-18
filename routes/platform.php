@@ -37,6 +37,11 @@ use App\Orchid\Screens\MainSlider\MainSliderListScreen;
 
 use App\Orchid\Screens\Page\PageEditScreen;
 use App\Orchid\Screens\Page\PageListScreen;
+
+use App\Orchid\Screens\Order\OrderEditScreen;
+use App\Orchid\Screens\Order\OrderListScreen;
+
+use App\Orchid\Screens\Setting\SettingScreen;
 /*
 |--------------------------------------------------------------------------
 | Dashboard Routes
@@ -275,3 +280,30 @@ Route::screen('pages/create', PageEditScreen::class)
     ->breadcrumbs(fn (Trail $trail) => $trail
         ->parent('platform.page.list')
         ->push(__('Add page'), route('platform.page.create')));
+
+
+///////Order
+Route::screen('/orders', OrderListScreen::class)
+    ->name('platform.order.list')
+    ->breadcrumbs(fn (Trail $trail) => $trail
+        ->parent('platform.index')
+        ->push(__('Order'), route('platform.order.list')));
+ 
+Route::screen('orders/{order}/edit', OrderEditScreen::class)
+    ->name('platform.order.edit')
+    ->breadcrumbs(fn (Trail $trail, $order) => $trail
+        ->parent('platform.order.list')
+        ->push(__("Edit order",["number"=>$order->id]), route('platform.order.edit', $order)));
+    
+
+Route::screen('/setting', SettingScreen::class)
+    ->name('platform.setting.list')
+    ->breadcrumbs(fn (Trail $trail) => $trail
+        ->parent('platform.index')
+        ->push(__('Setting'), route('platform.setting.list')));
+/*Route::screen('orders/create', OrderEditScreen::class)
+    ->name('platform.order.create')
+    ->breadcrumbs(fn (Trail $trail) => $trail
+        ->parent('platform.order.list')
+        ->push(__('Add page'), route('platform.page.create')));*/
+        

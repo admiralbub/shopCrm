@@ -14,6 +14,9 @@ class PasswordChangeController extends Controller
     }
     public function updatePassword(ChangePasswordRequest $request) {
         $user = (new ChangePasswordAction())->execute($request->validated());
-        return redirect(route('change_password'))->with('success', __("password_edit_success")); 
+        return response()->json([
+            'success'=>  __('password_edit_success'),
+            'redirect' => route('change_password')
+        ]);
     }
 }

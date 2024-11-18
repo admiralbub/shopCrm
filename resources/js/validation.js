@@ -41,7 +41,9 @@ function validField(input) {
     hideErr(input)
     let result = true;
     let pass = document.getElementById('password');
-    
+    if (input.classList.contains("d-none")) {
+        return true; // Если у поля есть этот класс, игнорируем валидацию
+    }
     if(input.dataset.require == "true") {
         if (input.tagName === 'INPUT') {
             if(input.value == "") {
@@ -106,7 +108,7 @@ if(form) {
     form.addEventListener('submit',function(event) {
         event.preventDefault();
         if(validation(this) == true) {
-            form.submit();
+            submitForm(form)
         } else {
             Swal.fire({
                 title: window.lang.validator.error,
@@ -121,4 +123,58 @@ if(form) {
             validField(input)
         })
     })
+
+    // Функция отправки данных формы через AJAX
+    async function submitForm(form) {
+        const formData = new FormData(form);
+
+        try {
+            const response = await fetch(form.action, {
+                method: form.method,
+                body: formData,
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest', // Laravel expects this header for AJAX requests
+                },
+            });
+            
+            if (response.ok) {
+                // Optionally, handle the successful submission (e.g., redirect, show success message)
+                const result = await response.json();
+                //Проверям валидацию от сервера
+                if(result.error) {
+                    Swal.fire({
+                        title: window.lang.validator.error,
+                        text: result.error,
+                        icon: "error"
+                    });
+                } else {
+                    Swal.fire({
+                        title: '',
+                        text: result.success,
+                        icon: "success"
+                    });
+                    setTimeout(() => {
+                        document.location.href = result.redirect;
+                    }, 2000); // 5000 миллисекунд = 5 секунд
+                }
+                
+            } else {
+                const errors = await response.json();
+                
+                if (errors.errors) {
+                    // Display validation errors
+                    Swal.fire({
+                        title: window.lang.validator.error,
+                        text: window.lang.validator.error_valid,
+                        icon: "error"
+                    });
+                }
+            }
+           
+            
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
 }

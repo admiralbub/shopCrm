@@ -7,7 +7,6 @@
     "require": {
         "php": "^8.2",
         "cviebrock/eloquent-sluggable": "^11.0",
-        "daaner/novaposhta": "^1.4",
         "laravel/framework": "^11.9",
         "laravel/tinker": "^2.9",
         "mcamara/laravel-localization": "^2.0",
@@ -31,7 +30,8 @@
         },
         "files": [
             "app/Helpers/CustomHelpers.php",
-            "app/Breadcrumbs/Breadcrumb.php"
+            "app/Breadcrumbs/Breadcrumb.php",
+            "app/Deliver/Novaposhta.php"
         ]
         
     },

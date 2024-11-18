@@ -1,5 +1,15 @@
 .orders {
-    
+    & .close_input {
+        content: "&times;";
+        display: block;
+        cursor: pointer;
+        font-size: 20px;
+        font-weight: 700;
+        position: absolute;
+        top: 0px;
+        z-index: 10;
+        right: -10px;
+    }
     & .resusltInput {
         border-radius: 10px;
         font-size: 16px;
@@ -125,6 +135,7 @@
                 font-size: 20px;
                 font-weight: 600;
                 color: var(--main-color);
+                white-space: nowrap;
             }
         }
     }

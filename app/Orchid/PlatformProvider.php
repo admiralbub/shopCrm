@@ -35,6 +35,10 @@ class PlatformProvider extends OrchidServiceProvider
     {
         return [
             Menu::make(__('Turn around to the store'))->icon('bs.layers')->url('/'),
+            Menu::make(__('Order'))
+                ->icon('bs.currency-exchange')
+                ->route('platform.order.list')
+                ->permission('platform.systems.users'),   
             Menu::make(__('Products'))
                 ->icon('bs.cart')
                 ->list([
@@ -48,7 +52,10 @@ class PlatformProvider extends OrchidServiceProvider
                    
                   //  Menu::make(__('Price variation'))->route('platform.prices.list'),
                 ]),
-
+            Menu::make(__('Setting'))
+                ->icon('bi.tools')
+                ->route('platform.setting.list')
+                ->permission('platform.systems.users'),    
             Menu::make(__('Pages'))
                 ->icon('bs.files')
                 ->route('platform.page.list')

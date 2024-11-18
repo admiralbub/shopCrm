@@ -65,6 +65,7 @@
     "Pack":"Тара",
     "Top category":"Популярная категория",
     "Volume/value":"Объем/значение",
+    
 
 
     
@@ -194,7 +195,27 @@
     "Pages":"Страницы",
     "Add page":"Добавить страницу",
     "Edit page":"Редактировать страницу",
-    "thing":"шт."
+    "thing":"шт.",
+    "Write and select a city":"Напишите и выберите город",
+    "All branches":"Все отделения",
+    "You have successfully placed your order":"Вы успешно сделали ваш заказ",
+    "My order":"Мои заказы",
+    "from":"от",
+    "total":"Сумма",
+    "Info deliver":"Информация о доставке",
+    "New order":"Новый заказ",
+    "You have no orders":"У вас отсутствуют заказы",
+    "Nova Poshta":"Новая почта",
+    "Payment per hour of picking up the goods":"Оплата при получении товара",
+    "Edit order":"Редактировать заказ №:number",
+    "Order":"Заказы",
+    "In progress":"В работе",
+    "To pay":"К оплате",
+    "Paid":"Оплачен",
+    "Sent":"Отправлено",
+    "Cancel order":"Отменено",
+    "Setting":"Настройки",
+    "Review":"Обзор"
     
    
 

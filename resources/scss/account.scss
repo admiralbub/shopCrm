@@ -10,8 +10,8 @@
                 align-items: center;
                 color: var(--black);
                 &>i {
-                    margin-right: 10px;
-                    font-size: 24px;
+                    margin-right: 15px;
+                    font-size: 20px;
                 }
                 &:hover {
                     color: var(--main-color);
@@ -36,4 +36,34 @@
         padding: 15px 25px;
         background-color: var(--heading-panel);
     }
+    & .status_deliver {
+        background: var(--status_success);
+        width: 16px;
+        height: 16px;
+        border-radius: 50px;
+        position: absolute;
+        top: 17px;
+        left: 17px;
+        &.default {
+            background: var(--gray2);
+        }
+        &.work {
+            background: var(--work);
+        }
+        &.to_pay {
+            background-color: var(--gold);
+        }
+        &.success_pay {
+            background-color: var(--main_grain_hover);
+        }
+        &.success {
+            background: var(--status_success);
+        }
+        &.cancel {
+            background: var(--danger);
+        }
+       
+    }
+
+   
 }
