@@ -3,9 +3,7 @@
     <div class="container">
         <div class="d-flex  justify-content-between">
             <div class="top-nav-left">
-                <div class="d-none">
-                    dsdssd
-                </div>
+                {{settings('text_left_site_'.app()->getLocale())}}
             </div>
             
             <div class="top-nav-right">
