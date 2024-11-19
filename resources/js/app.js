@@ -159,7 +159,7 @@ if(search_mob) {
         }
     });
     function toHtmlProductMob(pr) {
-        return `<div class="py-3 px-4">
+        return `<div class="search-item py-3 px-4">
             <a href="/product/${pr.slug}" class="d-flex">
                 <div>
                     <img src="${pr.image}" width="60px">
@@ -211,7 +211,7 @@ if(search_descktop) {
         }
     });
     function toHtmlProduct(pr) {
-        return `<div class="py-3 px-4">
+        return `<div class="search-item py-3 px-4">
             <a href="/product/${pr.slug}" class="d-flex">
                 <div>
                     <img src="${pr.image}" width="60px">

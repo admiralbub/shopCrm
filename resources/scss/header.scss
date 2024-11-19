@@ -276,10 +276,13 @@
                     font-size: 14px;
                     color:var(--gray_card)
                 }
-                &:hover {
-                    background-color: var(--hover-search);
-                    cursor: pointer;
+                & .search-item {
+                    &:hover {
+                        background-color: var(--hover-search);
+                        cursor: pointer;
+                    }
                 }
+                
             }
         }
     }
