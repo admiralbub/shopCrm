@@ -151,6 +151,10 @@ $theme-colors:map-merge($theme-colors,$custom-color);
 @import 'cart.scss';
 @import 'orders.scss';
 @import 'validation.scss';
+
+@import 'mob-search.scss';
+
+
 .footer {
     background-color: var(--footer-color);
     font-size: 14px;

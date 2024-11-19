@@ -29,7 +29,10 @@
     top: 0;
     transform: translateX(calc(100% + 80px));
     transition: .45s ease-in-out, opacity .45s ease-in-out;
-    width: 380px;
+    @media (min-width: 990px) {
+        width: 380px;
+    }   
+    
     z-index: 9999;
     &-opened {
         transform: translateX(0);

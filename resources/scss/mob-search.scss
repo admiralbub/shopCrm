@@ -1,0 +1,50 @@
+.mob-search {
+    position: relative;
+    &-box {
+        width: 100%;
+        & input {
+            border-radius: 30px;
+            border: none;
+            padding: 10px 15px;
+            border-width: 2px 2px 2px 0;
+            width: 100%;
+            position: relative;
+            background-color: var(--main_green);
+        }
+        &-btn {
+            position: absolute;
+            z-index: 11;
+            top: 4px;
+            right: 6px;
+            border: 0;
+            background-color: var(--main-color);
+            color: #fff;
+            height: 35px;
+            border-radius: 50%;
+            &:hover {
+                background-color: var(--main-color);
+                transition: 0.5s ease-in-out;
+            }
+        }
+        & .search_block_mob {
+            position: absolute;
+            z-index: 99999;
+            background: var(--white);
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            border-radius: 4px;
+            max-height: 350px;
+            border-radius: 10px;
+            overflow-y: scroll;
+            color: var(--gray_card);
+            & a {
+                font-size: 14px;
+                color:var(--gray_card)
+            }
+            &:hover {
+                background-color: var(--hover-search);
+                cursor: pointer;
+            }
+        }
+    }
+}

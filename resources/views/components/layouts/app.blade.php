@@ -29,6 +29,7 @@
         <x-layouts.footer/>
         <x-layouts.mob_nav_bottom/>
         <x-basket/>
+        <x-search-mob/>
         <div class="body-overlay"></div>
     </body>
 </html>

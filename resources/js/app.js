@@ -19,6 +19,13 @@ const quantity = document.querySelector('.quantity');
 
 
 
+const search_block = document.querySelector('.search_block');
+const search_descktop = document.querySelector('#search_descktop');
+
+
+const search_mob = document.querySelector('#search_mob');
+const search_block_mob = document.querySelector('.search_block_mob');
+
 if(open_mob) {
     open_mob.addEventListener('click',  function() {
         catalog_menu.classList.add("open");
@@ -113,6 +120,107 @@ if(quantity) {
             quantity++;
             qty.value = quantity;
         }
+    }
+}
+if(search_mob) {
+    search_mob.addEventListener('input', function() {
+        const asyncSearchProductMob = async () => {
+            try {
+                const response = await axios.post('/search_ajax', {
+                    query: this.value,
+                });
+                if(response['data'].length != 0) {
+                    renderProductSearchMob(response)
+                }
+                
+                
+               
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        if(this.value.length > 1) {
+            asyncSearchProductMob()
+        }
+        
+    })
+    function renderProductSearchMob(response = []) {
+        document.querySelector('.search_block_mob').classList.remove('d-none');
+        const html = Array.isArray(response['data']) ? response['data'].map(toHtmlProductMob).join('') : '';
+        search_block_mob.innerHTML = html;
+        
+    }
+    document.addEventListener('click', function(event) {
+        const search_block_mob = document.querySelector('.search_block_mob'); // Находим элемент resusltCityNp
+    
+        // Проверяем, произошел ли клик вне блока resusltCityNp
+        if (!search_block_mob.contains(event.target) && !search_block_mob.contains(event.target)) {
+            search_block_mob.classList.add('d-none'); // Скрываем элемент, если клик был вне блока и вне поля ввода
+        }
+    });
+    function toHtmlProductMob(pr) {
+        return `<div class="py-3 px-4">
+            <a href="/product/${pr.slug}" class="d-flex">
+                <div>
+                    <img src="${pr.image}" width="60px">
+                </div>
+                <div class="px-3 py-1">
+                    ${pr.name}
+                </div>
+            </a>
+        </div>`
+    }
+}   
+
+
+
+if(search_descktop) {
+    search_descktop.addEventListener('input', function() {
+        const asyncSearchProductDescktop = async () => {
+            try {
+                const response = await axios.post('/search_ajax', {
+                    query: this.value,
+                });
+                if(response['data'].length != 0) {
+                    renderProductSearch(response)
+                }
+                
+                
+               
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        if(this.value.length > 1) {
+            asyncSearchProductDescktop()
+        }
+        
+    })
+    function renderProductSearch(response = []) {
+        document.querySelector('.search_block').classList.remove('d-none');
+        const html = Array.isArray(response['data']) ? response['data'].map(toHtmlProduct).join('') : '';
+        search_block.innerHTML = html;
+        
+    }
+    document.addEventListener('click', function(event) {
+        const search_block = document.querySelector('.search_block'); // Находим элемент resusltCityNp
+    
+        // Проверяем, произошел ли клик вне блока resusltCityNp
+        if (!search_block.contains(event.target) && !search_descktop.contains(event.target)) {
+            search_block.classList.add('d-none'); // Скрываем элемент, если клик был вне блока и вне поля ввода
+        }
+    });
+    function toHtmlProduct(pr) {
+        return `<div class="py-3 px-4">
+            <a href="/product/${pr.slug}" class="d-flex">
+                <div>
+                    <img src="${pr.image}" width="60px">
+                </div>
+                <div class="px-3 py-1">
+                    ${pr.name}
+                </div>
+            </a>
+        </div>`
     }
 }
 

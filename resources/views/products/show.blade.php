@@ -46,11 +46,11 @@
                     </div>
                     <div class="show_phoduct-choice pt-3">
                         <div class="row">
-                            <div class="col col-lg-2 fs-6 pt-2">
+                            <div class="col-12 col-lg-2 fs-6 pt-2">
                                 <strong>{{__('Pack')}}</strong>
                             </div>
-                            <div class="col col-lg-10">
-                                <select   class="form-select pack_select w-50" id="pack_{{$product->id}}" aria-label="Default select example" >
+                            <div class="col-12 col-lg-10">
+                                <select  class="form-select pack_select w-100 w-lg-50" id="pack_{{$product->id}}" aria-label="Default select example" >
                                     @foreach($product->packs as $pack)
                                         <option value="{{ $pack->volume }}" id="{{ $pack->id }}" data-price="{{ $pack->volume * $product->price }}" >{{ $pack->name }}</option>
                                     @endforeach
@@ -58,20 +58,20 @@
                             </div>
                         </div>
                         <div class="row pt-2 pb-2">
-                            <div class="col col-lg-2 fs-6 pt-2">
+                            <div class="col-12 col-lg-2 fs-6 pt-2">
                                 <strong>{{__('Brand')}}</strong>
                             </div>
-                            <div class="col col-lg-10 pt-2">
+                            <div class="col-12 col-lg-10 pt-2">
                                 {{$product->brand->name}}
                             </div>
                         </div>
                         @if($attrs->count())
                             @foreach($attrs as $groupName => $attributes)
                                 <div class="row pt-2 pb-3">
-                                    <div class="col col-lg-2 fs-6 pt-2">
+                                    <div class="col-12 col-lg-2 fs-6 pt-2">
                                         <strong>{{$groupName}}</strong>
                                     </div>
-                                    <div class="col col-lg-10 pt-2">
+                                    <div class="col-12 col-lg-10 pt-2">
                                         @foreach ($attributes as $attr) 
                                             {{ $attr->name }}
                                             @if(!$loop->last) | @endif
@@ -110,7 +110,7 @@
                             <div class="show_phoduct-manage_addbasket">
                                 <button class="btn btn-primary px-5 py-2" data-id="{{$product->id}}" data-packid="{{$product->packs->first()->id}}" id="AddBasketView">{{__('Add to cart')}}</button>
                             </div>
-                            <div class="show_phoduct-manage_oneclick">
+                            <div class="show_phoduct-manage_oneclick d-none">
                                 <button class="btn btn-light px-5">{{__('Buy in 1 click')}}</button>
                             </div>
                         </div>

@@ -3,11 +3,11 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use App\Interfaces\CategoryInterface;
-use App\Services\CategoryService;
+/*use App\Interfaces\CategoryInterface;
+use App\Services\CategoryService;*/
 
-use App\Interfaces\ProductShowInterface;
-use App\Services\ProductShowService;
+use App\Interfaces\ProductInterface;
+use App\Services\ProductService;
 
 use App\Interfaces\BrandInterface;
 use App\Services\BrandService;
@@ -71,14 +71,15 @@ class AppServiceProvider extends ServiceProvider
 
         );
 
-        $this->app->bind(
+        /*$this->app->bind(
             CategoryInterface::class,
             CategoryService::class,
 
-        );
+        );*/
+
         $this->app->bind(
-            ProductShowInterface::class,
-            ProductShowService::class,
+            ProductInterface::class,
+            ProductService::class,
 
         );
 

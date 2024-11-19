@@ -18,7 +18,7 @@ use App\Http\Controllers\CompareController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\Deliver\NovaPoshtaController;
 use App\Http\Controllers\Page\MainController;
-
+use App\Http\Controllers\SearchController;
 require __DIR__ . '/admin/admin.php';
 $market = parse_url(config('app.url'), PHP_URL_HOST);
 Route::group([
@@ -96,6 +96,8 @@ Route::group([
         
         
     });
+    Route::get('/search', [SearchController::class, 'getProductByName'])->name('products.search');
+    Route::post('/search_ajax', [SearchController::class, 'getProductByNameAjax'])->name('products.search_ajax');
     
     Route::group(['prefix' => 'novaposhta'], function () {
         Route::post('/getCity', [NovaPoshtaController::class,'getCity'])->name('novaposhta.getCity');

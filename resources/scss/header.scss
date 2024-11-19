@@ -261,6 +261,26 @@
                     transition: 0.5s ease-in-out;
                 }
             }
+            & .search_block {
+                position: absolute;
+                z-index: 99999;
+                background: var(--white);
+                box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+                width: 100%;
+                border-radius: 4px;
+                max-height: 350px;
+                border-radius: 10px;
+                overflow-y: scroll;
+                color: var(--gray_card);
+                & a {
+                    font-size: 14px;
+                    color:var(--gray_card)
+                }
+                &:hover {
+                    background-color: var(--hover-search);
+                    cursor: pointer;
+                }
+            }
         }
     }
     &-action {
