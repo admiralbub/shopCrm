@@ -8,7 +8,22 @@ if (! function_exists('settings')) {
         return app('settings')->get($key, $default);
     }
 }
-function filter_url($url, $id,$prefix) {
+function findInNestedArray($needle, $haystack) {
+    foreach ($haystack as $value) {
+        if (is_array($value)) {
+            // Рекурсивный вызов, если значение - массив
+            if (findInNestedArray($needle, $value)) {
+                return true;
+            }
+        } elseif ($value === $needle) {
+            // Нашли значение
+            return true;
+        }
+    }
+    return false;
+}
+
+function filterUrlAttr($url, $id,$prefix) {
     //Проверяем, если есть в url атрибут $prefix
     $brand = strripos($url, $prefix.'-'); 
     //Верно

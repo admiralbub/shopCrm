@@ -16,20 +16,20 @@ class Filter extends Component
     public $price;
     public $attrs;
     public $selectedFilter;
-    public function __construct($brands,$category,$price,$attrs,$selectedFilter)
+    public function __construct($brands,$price,$selectedFilter,$attrs,$category)
     {
         $this->brands = $brands;
         $this->category = $category;
         $this->price = $price;
 
         $this->attrs = $attrs;
-        $this->attrs = $selectedFilter;
+        $this->selectedFilter = $selectedFilter;
     }
 
     /**
      * Get the view / contents that represent the component.
      */
-    public function render(): View|Closure|string
+    public function render()
     {
         return view('components.products.filter');
     }

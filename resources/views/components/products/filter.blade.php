@@ -11,6 +11,7 @@
             </ul>
         </div>
     @endif
+
     @if(count($price))
         <div class="filter-price mt-3">
             <strong class="fs-5">{{__('Price')}}</strong>
@@ -22,7 +23,7 @@
                     </div>
                     <div class="separator">-</div>
                     <div class="field">
-                        <input type="text" class="input-max form-control js-price-up" value="{{intval(max($price))}}" name="max_price" data-max="{{intval(max($price))}}">
+                        <input type="text" class="input-max form-control js-price-up" value="{{max($price)}}" name="max_price" data-max="{{max($price)}}">
                     </div>
                 </div>
                 <div class="mt-2 d-grid gap-2">
@@ -41,10 +42,11 @@
                 <div class="producer_radio">
                 
                     @foreach ($attributes as $attr) 
+                
                         <div class="form-check mb-3 d-flex">
-                            <input class="form-check-input filter_brand_check" type="checkbox" name="brand" value="{{filter_url(\Request::url(), $attr->id, $attr->attrGroup->first()->slug)}}" {{ isset($selectedFilter["attr_group"]) && in_array($attr->attrGroup->first()->id, $selectedFilter["attr_group"]) ? 'checked' : '' }}>
+                            <input class="form-check-input filter_attr_check" type="checkbox" name="brand" value="{{filterUrlAttr(\Request::url(), $attr->id, $attr->group)}}" {{isset($selectedFilter[$attr->group]) ? in_array($attr->id,$selectedFilter[$attr->group] ) ? 'checked' : "" : ""}}>
                             <label class="form-check-label">
-                                <a href="{{filter_url(\Request::url(), $attr->id, $attr->attrGroup->first()->slug)}}" class="text-secondary">{{$attr->name}}</a>
+                                <a href="{{filterUrlAttr(\Request::url(), $attr->id, $attr->group)}}" class="text-secondary">{{$attr->name}}</a>
 
                             </label>
                                     
@@ -56,16 +58,17 @@
         @endforeach
     @endif
     
-    @if($brands)
+    @if($brands->count() != 0)
         <div class="producer">
             <strong class="fs-5">{{__('Brand')}}</strong>
             <div class="producer_radio">
             
                 @foreach($brands as $brand)
+             
                     <div class="form-check d-flex mt-3">
-                        <input class="form-check-input filter_brand_check" type="checkbox" name="brand" value="{{filter_url(\Request::url(),$brand->id,'brand')}}" {{ isset($selectedFilter["brand"]) && in_array($brand->id, $selectedFilter["brand"]) ? 'checked' : '' }}>
+                        <input class="form-check-input filter_brand_check" type="checkbox" name="brand" value="{{filterUrlAttr(\Request::url(),$brand->id,'brand')}}" {{isset($selectedFilter["brand"]) ? in_array($brand->id,$selectedFilter["brand"] ) ? 'checked' : "" : ""}}>
                         <label class="form-check-label">
-                            <a href="{{filter_url(\Request::url(),$brand->id,'brand')}}" class="text-secondary">{{$brand->name}}</a>
+                            <a href="{{filterUrlAttr(\Request::url(),$brand->id,'brand')}}" class="text-secondary">{{$brand->name}}</a>
                         </label>
                             
                     </div>

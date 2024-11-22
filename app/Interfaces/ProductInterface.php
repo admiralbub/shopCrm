@@ -14,8 +14,8 @@ interface ProductInterface {
     public function getAllProduct($products,Category $category);
     public function filterPrice($minPrice,$maxPrice,$products,Category $category);
     public function attrProduct($products,Category $category);
-    public function filterAttr($filter);
-    public function setFilter($products, $filter);
+    public function filterAttr($products,$filter);
+    public function setFilter($filter);
     public function selectedFilter($attrFilter);
 }
 ?>

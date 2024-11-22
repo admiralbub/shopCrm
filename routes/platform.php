@@ -26,8 +26,8 @@ use App\Orchid\Screens\Product\ProductEditScreen;
 use App\Orchid\Screens\Pack\PackListScreen;
 use App\Orchid\Screens\Pack\PackEditScreen;
 
-use App\Orchid\Screens\AttrGroup\AttrGroupListScreen;
-use App\Orchid\Screens\AttrGroup\AttrGroupEditScreen;
+///use App\Orchid\Screens\AttrGroup\AttrGroupListScreen;
+//use App\Orchid\Screens\AttrGroup\AttrGroupEditScreen;
 
 use App\Orchid\Screens\Attr\AttrListScreen;
 use App\Orchid\Screens\Attr\AttrEditScreen;
@@ -205,7 +205,7 @@ Route::screen('packs/create', PackEditScreen::class)
         ->push(__('Add pack'), route('platform.pack.create')));
 
 ///////Attr Group
-Route::screen('/attrgroups', AttrGroupListScreen::class)
+/*Route::screen('/attrgroups', AttrGroupListScreen::class)
     ->name('platform.attrgroup.list')
     ->breadcrumbs(fn (Trail $trail) => $trail
         ->parent('platform.index')
@@ -221,7 +221,7 @@ Route::screen('attrgroups/create', AttrGroupEditScreen::class)
     ->name('platform.attrgroup.create')
     ->breadcrumbs(fn (Trail $trail) => $trail
         ->parent('platform.attrgroup.list')
-        ->push(__('Add attribute group'), route('platform.attrgroup.create')));
+        ->push(__('Add attribute group'), route('platform.attrgroup.create')));*/
 
 
 ///////Attr

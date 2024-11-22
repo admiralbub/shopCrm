@@ -21,13 +21,12 @@ class ProductService implements ProductInterface {
         foreach( $product->attrs as $attr) {
             $list_attr[] = $attr->id;
         }
-        $attr = Attr::whereIn("id",$list_attr)->with('attrGroup')->get();
+        $attr = Attr::whereIn("id",$list_attr)->get();
         $attr = $attr->groupBy(function($item) {
-            return $item->attrGroup ? $item->attrGroup->first()->name : '';
+            return $item->group_text;
         });
         return $attr;
     }
-
     public function getCategories($slug) {
         $category = Category::where('slug', $slug)->published()->first();
             
@@ -132,61 +131,104 @@ class ProductService implements ProductInterface {
                 $list_attr[] = $attr->id;
             }
         }
-        $attr = Attr::whereIn("id",$list_attr)->with('attrGroup')->get();
+        $attr = Attr::whereIn("id",$list_attr)->get();
         $attr = $attr->groupBy(function($item) {
-            return $item->attrGroup ? $item->attrGroup->first()->name : 'Без группы';
+            return $item->group_text;
         });
         return $attr;
     }
-    public function filterAttr($filter) {
+    public function setFilter($filter) {
         $filter_str = explode('/',$filter);
-                
+            
         //dd($filter_str);
         $filter = array();
         if (sizeof($filter_str)) {
             foreach ($filter_str as $key=>$str) {
                 if ($str!='') {
                     $val= explode('-',$str);
-                    if (isset($val[1])) {
-                        $filter[$val[0]] = explode('_', $val[1]);
-                    }
+                    $filter[$val[0]] = explode('_',$val[1]);
                 }
  
             }
         }
         return $filter;
     }
+    public function filterAttr($productsQuery, $filter) {
+        if ($filter) {
+            $filter = $this->setFilter($filter);
+        }
+    
+        // Фильтр по брендам
+        if (!empty($filter["brand"])) {
+            $r_brands = $filter["brand"];
+            $productsQuery->whereHas(
+                'brand',
+                function ($q) use ($r_brands) {
+                    $q->whereIn('id', $r_brands);
+                }
+            );
+        }
+    
+        // Фильтр по культурам
+        if (!empty($filter["cult"])) {
+            $r_cult = $filter["cult"];
+            $productsQuery->whereHas(
+                'attrs',
+                function ($q) use ($r_cult) {
+                    $q->whereIn('attrs.id', $r_cult)
+                      ->where('attrs.group', 'cult');
+                }
+            );
+        }
+    
+        // Фильтр по аналогам
+        if (!empty($filter["analog"])) {
+            $r_analog = $filter["analog"];
+            $productsQuery->whereHas(
+                'attrs',
+                function ($q) use ($r_analog) {
+                    $q->whereIn('attrs.id', $r_analog)
+                      ->where('attrs.group', 'analog');
+                }
+            );
+        }
+    
+        // Фильтр по веществам
+        if (!empty($filter["sub"])) {
+            $r_sub = $filter["sub"];
+            $productsQuery->whereHas(
+                'attrs',
+                function ($q) use ($r_sub) {
+                    $q->whereIn('attrs.id', $r_sub)
+                      ->where('attrs.group', 'sub');
+                }
+            );
+        }
+    
+        return $productsQuery->paginate(self::PAGE_COUNT);
+    }
     public function selectedFilter($attrFilter) {
-        $selectedFilter = [];
-        if(!empty($attrFilter["brand"])) {
-            $selectedFilter = $attrFilter["brand"]  ? array_map('intval', $attrFilter["brand"]) : [];
-        } 
-        $selectedFilter[] = $attrFilter;
+        $selectedFilter= [];
+        if($attrFilter) {
+            $filter = $this->setFilter($attrFilter);
+         
+        }
+        if(!empty($filter["brand"])) {
+            $selectedFilter["brand"] = $filter["brand"]  ? array_map('intval', $filter["brand"]) : [];
+        }
+        
+        if(!empty($filter["cult"])) {
+            $selectedFilter["cult"]  = $filter["cult"] ? array_map('intval', $filter["cult"]) : [];
+        }
+        if(!empty($filter["analog"])) {
+            $selectedFilter["analog"]  = $filter["analog"] ? array_map('intval', $filter["analog"]) : [];
+        }
+        if(!empty($filter["sub"])) {
+            $selectedFilter["sub"] = $filter["sub"]? array_map('intval', $filter["sub"]) : [];
+        }
+        
         return $selectedFilter;
     }
-    public function setFilter($products,$filter) {
-        $filter_str = str_replace('-'.explode('-', $filter)[1], '', $filter);
-        if($filter_str == "brand") {
-            preg_match_all('/\d+/', $filter, $matches);
-            $brand_ids = $matches[0];
-               
-            return $products = $products->whereHas(
-                'brand',
-                function ($q) use ($brand_ids) {
-                    $q->whereIn('id', $brand_ids);
-                }
-            )->paginate(self::PAGE_COUNT);
-        } else {
-            $filter_slug = str_replace('-'.explode('-', $filter)[1], '', $filter);
-            $id_group = AttrGroup::where('slug',$filter_slug)->first();
-            return $products = $products->whereHas(
-                'attrs',
-                function ($q) use ($id_group) {
-                    $q->whereIn('group_id', $id_group);
-                }
-            )->paginate(self::PAGE_COUNT);
-        }
-            
-    }
+  
 }
 ?>

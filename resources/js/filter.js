@@ -49,3 +49,23 @@ priceRanges.forEach(el => {
       });
 
   });
+
+// Обработчик событий для всех чекбоксов с классом filter_attr_check
+document.querySelectorAll('.filter_attr_check').forEach(checkbox => {
+    checkbox.addEventListener('click', function () {
+        // Получаем значение URL из атрибута value
+        const url = this.value;
+        // Перенаправляем пользователя по указанному URL
+        window.location.href = url;
+    });
+});
+
+// Обработчик событий для всех чекбоксов с классом filter_attr_check
+document.querySelectorAll('.filter_brand_check').forEach(checkbox => {
+    checkbox.addEventListener('click', function () {
+        // Получаем значение URL из атрибута value
+        const url = this.value;
+        // Перенаправляем пользователя по указанному URL
+        window.location.href = url;
+    });
+});

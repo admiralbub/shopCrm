@@ -24,7 +24,7 @@
         <div class="category-lists mt-3 mb-4">
             <div class="row">
                 <div class="col col-lg-3 col-12">
-                    <x-products.filter :brands="$brands ?? null" :price="$price" :selectedFilter="$selectedFilter" :attrs="$attrs ?? 0" :category="$category->children"></x-products.filter>
+                    <x-products.filter :brands="$brands ?? null" :price="$price" :selectedFilter="$selectedFilter" :attrs="$attrs" :category="$category->children"></x-products.filter>
                 </div>
                 <div class="col col-lg-9 col-12">
                     <div class="px-4">
@@ -35,12 +35,13 @@
                                     <x-products.product :product="$product"></x-products.product>
                                 @endforeach
                             </div>
+                            <div class="mt-3">
+                                {{ $products->links() }}
+                            </div>
                         @else
                             <p class="fs-5">{{__('Unfortunately there are no products in this category')}}</p>
                         @endif
-                        <div class="mt-3">
-                            {{ $products->links() }}
-                        </div>
+                        
                     </div>
                    
                 </div>

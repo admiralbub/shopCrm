@@ -38,9 +38,9 @@ class CategoryController extends Controller
         
         if($filter) {
             
-            $selected = $this->productInt->filterAttr($filter);
-            $products = $this->productInt->setFilter($productsCategory,$filter);
-            $selectedFilter = $this->productInt->selectedFilter($selected);
+            $products = $this->productInt->filterAttr($productsCategory,$filter);
+          //  $products = $this->productInt->setFilter($productsCategory,$filter);
+           $selectedFilter = $this->productInt->selectedFilter($filter);
 
             //dd($setFilterBrand );
         } else {
@@ -59,7 +59,7 @@ class CategoryController extends Controller
             'brands'=>$brands,
             'products'=>$products,
             'price'=>$price,
-            'selectedFilter'=>$selectedFilter ?? '',
+            'selectedFilter'=>$selectedFilter ?? "",
             'attrs'=>$attrs,
             'breadcrumbs'=>$breadcrumbs
         ]);

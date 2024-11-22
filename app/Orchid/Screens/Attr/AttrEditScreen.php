@@ -92,9 +92,10 @@ class AttrEditScreen extends Screen
                     ->required()
                     ->title(__('Heading',['locale'=>'(ua)'])),
 
-                Select::make('attr.group_id')
+                Select::make('attr.group')
                     ->required()
-                    ->fromModel(AttrGroup::where('status','=',1), 'name_ua')
+                    ->empty(__('Select the required item'))
+                    ->options(Attr::getGroupUnitAttribute())
                     ->title(__('Attribute group')), 
                 CheckBox::make('attr.status')
                     ->sendTrueOrFalse()
