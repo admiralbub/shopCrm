@@ -40,10 +40,24 @@
                         </span>
                          
                     </div>
+                    @if ($product->stocks)
+                        <div class="show_phoduct-oldprice mt-3">
+                            <span>{{ ceil(($product->packs->count() > 0 ? $product->packs->first()->volume : 1)  * $product->price) }} {{__("uah")}}</span>
+                        </div>
+                    @endif 
+                    <div class="show_phoduct-price @if(!$product->stocks) pt-3 @endif fs-2">
+                        @if ($product->stocks)
+                            <strong>{{ ceil(($product->packs->count() > 0 ? $product->packs->first()->volume : 1)  * $product->price_stock) }} {{__("uah")}}</strong>
+                        @else
+                            <strong>{{ ceil(($product->packs->count() > 0 ? $product->packs->first()->volume : 1)  * $product->price) }} {{__("uah")}}</strong>
+                        @endif   
                     
-                    <div class="show_phoduct-price pt-3 fs-2">
-                        <strong>{{ ceil($product->price * ($product->packs->count() > 0 ? $product->packs->first()->volume : 1)) }} {{__("uah")}}</strong>
                     </div>
+                    @if ($product->stocks)
+                        <span class="text-danger fw-bold"> {{__("discount_price_title")}} - {!! $product->price_stock !!} {{__("uah")}}/{{ $product->unit_string }}</span>
+                    @else
+                        <span class="fw-normal">{!! $product->price !!} {{__("uah")}}/{{ $product->unit_string }}</span>
+                    @endif
                     <div class="show_phoduct-choice pt-3">
                         <div class="row">
                             <div class="col-12 col-lg-3 fs-6 pt-2">

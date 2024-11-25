@@ -155,7 +155,7 @@
                     </ul>
                     <div class="d-flex justify-content-between mt-2">
                         <div class="label_goods">
-                            <span>2 {{__('product(s)')}}</span>
+                            <span class="label_goods_total">2</span> {{__('product(s)')}}
                         </div>
                         
                     </div>

@@ -24,6 +24,17 @@
                 transition: transform 0.5s ease;
             
             }
+
+            
+        }
+        & .market_sale {
+            background: var(--danger);
+            border-radius: 5px;
+            color: var(--white);
+            padding: 3px 7px;
+            position: absolute;
+            top: 20px;
+            left: 15px;
         }
         &-managment {
             position: absolute;
@@ -136,12 +147,28 @@
                 padding-top: 6px;
             }
         }
-        &-price {
+        &-oldprice {
             @media (max-width: 990px) {
                 padding: 0px 10px;
             }
             padding: 0px 30px;
             margin-top: 10px;
+            color: var(--danger);
+            text-decoration: line-through;
+            padding-left: 30px;
+            font-weight: 400;
+            
+            font-size: 15px;
+            & span {
+                color: var(--gray_card);
+            }
+        }
+        &-price {
+            @media (max-width: 990px) {
+                padding: 0px 10px;
+            }
+            padding: 0px 30px;
+         
             color: #4B4A62;
             font-weight: 700;
             

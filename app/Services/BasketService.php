@@ -20,6 +20,45 @@ class BasketService implements BasketInterface {
     static public function isAuth() {
         return Auth::check();
     }
+
+    static public function priceProductGeneral ($prod) {
+        $price_total = 0;
+        $prod->wholesale_coef = ($prod->quantity >= 20 && $prod->wholesale_p10>0) ? $prod->wholesale_p10 : (($prod->quantity >= 5  && $prod->wholesale_p3>0) ? $prod->wholesale_p3 : $prod->price* $prod->pack_volume);
+           if($prod->wholesale_p12  && $prod->wholesale_p11)  {
+               if($prod->unit==1) {
+                   if($prod->wholesale_p12<=$prod->quantity*$prod->pack_volume) {
+                       $price_total = ($prod->quantity*$prod->pack_volume) * $prod->wholesale_p11;   
+                   } else {
+                       $price_total =  $prod->quantity * $prod->wholesale_coef;
+                   }
+               } else {
+                   $price_total = $prod->quantity  * $prod->wholesale_coef;
+               }
+           } else if($prod->wholesale_p13  && $prod->wholesale_p14)  {
+               if($prod->unit==2 || $prod->unit==3 || $prod->unit==4) {
+                   if($prod->wholesale_p14<=$prod->quantity*$prod->pack_volume) {
+                       $price_total = $prod->quantity * $prod->wholesale_p13;   
+                   } else {
+                       $price_total =  $prod->quantity * $prod->wholesale_coef;
+                   }
+               } else {
+                   $price_total =  $prod->quantity * $prod->wholesale_coef;
+               }
+
+       } else {
+            $price_total =  $prod->quantity  * $prod->wholesale_coef;
+       }
+           //////////////Подключаем скидку для товара
+        if($prod->stocks) {
+            $price_total =  $prod->quantity * ($prod->quantity >= 20 && $prod->wholesale_p10>0) ? $prod->wholesale_p10 : (($prod->quantity >= 5  && $prod->wholesale_p3>0) ? $prod->wholesale_p3 : $prod->price_stock* $prod->pack_volume);
+        } else {
+            $price_total =  $price_total;
+        }
+        return $price_total;
+    }
+
+
+
     static public function showBasketDb($user_id) {
         $id_array = Basket::where('user_id',auth()->user()->id)->select("product_id")->get()->toArray();
         $products = Product::whereIn('id', $id_array)->get();
@@ -33,7 +72,7 @@ class BasketService implements BasketInterface {
                 $prod->id_basket = $data->id;
                 $prod->pack_volume =$prod->packs->find($data->pack_id)->volume ?? $prod->packs()->min('volume');
                 $prod->pack_name = $prod->packs->find($data->pack_id)->name ?? $prod->packs()->min('title_'.app()->getLocale());
-                $prod->price =  ceil($prod->price *$prod->pack_volume);
+                $prod->price =  ceil(self::priceProductGeneral($prod));
                     
                 ////////////
                 return $prod;
@@ -59,7 +98,7 @@ class BasketService implements BasketInterface {
                     $prod->pack_id = $data['pack_id'];
                     $prod->pack_volume =$prod->packs->find($data['pack_id'])->volume ?? $prod->packs()->min('volume');
                     $prod->pack_name = $prod->packs->find($data['pack_id'])->title ?? $prod->packs()->min('name_'.app()->getLocale());
-                    $prod->price = ceil($prod->price*$prod->packs->find($data['pack_id'])->volume);    
+                    $prod->price = ceil(self::priceProductGeneral($prod));    
                         
                         
                      ////////////
@@ -158,23 +197,25 @@ class BasketService implements BasketInterface {
     }
     static public function totalBasket($isAuth) {
         $_count=0;
+        
         if($isAuth) {
-            $baskets = Basket::where('user_id',auth()->user()->id)->get();
-            foreach ($baskets as $basket) {
-                $_count+=ceil(($basket->products->price * $basket->products->packs->first()->volume))*$basket->quantity;
-            }
-            return $_count;
+            
+            $products_order = self::showBasketDb(auth()->user()->id)->sum(
+                function ($prod) {
+                    return $prod->price;     
+    
+                }
+            );  
+            return $products_order;
         } else {
             
-            $cart = session()->get('cart');  
-            if($cart) {
-                foreach ($cart as $item) {
-                    $product = Product::find($item['id'])->first();
-                    $_count+=ceil(($product->price * $product->packs->find($item['pack_id'])->volume))*$item['quantity'];
+            $products_order = self::showBasketSession()->sum(
+                function ($prod) {
+                    return $prod->price;     
+    
                 }
-            }
-           
-            return $_count;
+            );  
+            return $products_order;
            
         }
     }

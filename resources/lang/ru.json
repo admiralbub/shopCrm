@@ -103,6 +103,8 @@
     "All categories":"Все категории",
     "Blog":"Блог",
     "Stocks":"Акции",
+    "Stock":"Акция",
+    "discount_price_title":"Акционная цена",
     "Cart":"Корзина",
     "Compare":"Сравнения",
     "Wishlist":"Избраное",
@@ -229,7 +231,9 @@
     "stock_title_noempty":"На данный момент нет ни одной акции.",
     "Contacts":"Контакты",
     "Enable link on all site blocks":"Включить ссылку на всех блоках сайта",
-    "Product pages":"Страницы для товара"
+    "Product pages":"Страницы для товара",
+    "Stock price":"Акционная цена (грн)",
+    "Welcome to the admin panel of the Green Master website":"Добро пожаловать в админ панель сайта Зеленого мастера"
     
    
 

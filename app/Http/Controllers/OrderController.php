@@ -16,6 +16,9 @@ class OrderController extends Controller
         $this->basket = $basket;
     }
     public function __invoke() {
+        if($this->basket->get_Count_Goods(auth()->check()) == 0) {
+            abort(404);
+        }
         return view('cart.cart');
     }
 

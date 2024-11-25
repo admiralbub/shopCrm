@@ -1,7 +1,12 @@
-<div class="col card_product ">
+<div class="col card_product position-relative">
     <div class="card_product-img" onclick="document.location='{{route('product.view',$product->slug)}}'">
         <img src="{{ asset($product->image)}}" alt="">
+
+        
     </div>
+    @if($product->price_stock)
+        <div class="market_sale">{{__('Stock')}}</div>
+    @endif
     <div class="card_product-managment" >
         <div class="card_product-managment_scale" id="AddCompareList">
             <button class="button_scale_card" data-id="{{$product->id}}">
@@ -37,8 +42,20 @@
             </div>
         </div>
     </div>
-    <div class="card_product-price">
-        {{ ceil($product->price * ($product->packs->count() > 0 ? $product->packs->first()->volume : 1)) }}  {{__("uah")}}
+    @if ($product->stocks)
+        <div class="card_product-oldprice">
+            
+            <span>{{ ceil(($product->packs->count() > 0 ? $product->packs->first()->volume : 1)  * $product->price) }} {{__("uah")}}</span>
+            
+        </div>
+    @endif 
+    <div class="card_product-price @if(!$product->stocks) mt-2 @endif">
+        @if ($product->stocks)
+            {{ ceil(($product->packs->count() > 0 ? $product->packs->first()->volume : 1)  * $product->price_stock) }} {{__("uah")}}
+        @else
+            {{ ceil(($product->packs->count() > 0 ? $product->packs->first()->volume : 1)  * $product->price) }} {{__("uah")}}
+        @endif     
+    
     </div>
     @if($product->status_available)
         <div class="card_product-button mt-3">

@@ -17,7 +17,7 @@
                         <div class="accordion mt-3" id="accordionExample">
                             <div class="accordion-item">
                                 <h2 class="accordion-header">
-                                    <button class="accordion-button position-relative" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    <button class="accordion-button position-relative" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{$order->id}}" aria-expanded="true" aria-controls="collapseOne">
                                         @if($order->status==0)
                                     
                                             <div class="status_deliver default"></div>
@@ -55,7 +55,7 @@
                                         
                                     </button>
                                 </h2>
-                                <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                                <div id="collapse{{$order->id}}" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                                     <div class="accordion-body">
                                         <div class="row py-3 px-2">
                                             <div class="col-lg-5 pt-2">
@@ -116,7 +116,7 @@
                                                                     <td class="pack_name text-nowrap">{{$product->packs()->first()->name}}</td>
                                                                     <td>
                                                                         <div class="history_orders text-nowrap">
-                                                                            {{ $product->price * ($product->packs->count() > 0 ? $product->packs->first()->volume : 1) }} {{__("uah")}}
+                                                                            {{$product->pivot->price}} 
                                                                         </div>
                                                                     </td>
                                                                     <td>

@@ -395,10 +395,15 @@
     "left_time":"Залишилось",
     "days_stock":"днів",
     "hourse_title":"годин",
+    "Stock":"Акція",
     "stock_title_noempty":"На даний момент немає жодної акції.",
     "Contacts":"Контакти",
     "Enable link on all site blocks":"Увімкнути посилання на всіх блоках сайту",
-    "Product pages":"Сторінки для товару"
+    "Product pages":"Сторінки для товару",
+    "Stock price":"Акційна ціна (грн)",
+    "discount_price_title":"Акційна ціна",
+    "Welcome to the admin panel of the Green Master website":"Ласкаво просимо на адмін панель сайті Зеленого майстра"
+
 
 
 

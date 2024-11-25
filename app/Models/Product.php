@@ -61,6 +61,17 @@ class Product extends Model
     public function scopeNew($q) {
         $q->where("is_new",1);
     }
+    public static function getUnitValuesAttribute()
+    {
+        return [
+            1 => __('liter'),
+            2 => __('bag'),
+            3 => __('tones'),
+            4 => __('kg'),
+            5 => __('thing'),
+        ];
+                            
+    }
     public function scopeReccomended($q) {
         $q->where("is_recommender",1);
     }
@@ -110,7 +121,10 @@ class Product extends Model
     {
         return $this->status_unit[$this->status];
     }
-   
+    public function getUnitStringAttribute()
+    {
+        return $this->unit_values[$this->unit];
+    }
    
     public function getStatusAvailableAttribute()
     {
@@ -119,6 +133,10 @@ class Product extends Model
     public function brand()
     {
         return $this->belongsTo(Brand::class);
+    }
+    public function stocks()
+    {
+        return $this->belongsTo(Stock::class, 'stock_id', 'id');
     }
 
     public function prices()

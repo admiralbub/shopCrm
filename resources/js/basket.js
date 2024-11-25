@@ -15,6 +15,8 @@ document.addEventListener("DOMContentLoaded", function() {
     const AddBasketView = document.querySelector('#AddBasketView');
 
     
+    const label_goods_total = document.querySelector('.label_goods_total');
+    
     const openRightBasket = document.querySelector('#openRightBasket');
     const openRightBasketMob = document.querySelector('#openRightBasketMob');
     const closeRightBasket = document.querySelector('#closeRightBasket');
@@ -121,6 +123,20 @@ document.addEventListener("DOMContentLoaded", function() {
         `;
     }
     
+    if(label_goods_total) {
+        const countBasketOrder = async () => {
+            try {
+                const response = await axios.get('/basket/countBasket');
+                label_goods_total.innerText = response.data.count;
+             
+                
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        countBasketOrder()
+    }
+
     if(basketNavbar) {
         const countBasketLabel = async () => {
             try {

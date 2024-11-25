@@ -122,15 +122,7 @@ class ProductEditScreen extends Screen
                             ->title(__('Brand')),
 
                         Select::make('product.unit')
-                            ->options([
-                                 
-                                1 => __('liter'),
-                                2 => __('bag'),
-                                3 => __('tones'),
-                                4 => __('kg'),
-                                5 => __('thing'),
-                            
-                            ])
+                            ->options(Product::getUnitValuesAttribute())
                             ->title(__('Price for')),    
                         Select::make('product.status')
                             ->options(Product::getStatusUnitAttribute())
@@ -182,8 +174,8 @@ class ProductEditScreen extends Screen
                             ->empty(__('Select the required item'))
                             ->allowAdd()
                             ->title(__('Stocks')),    
-                        /*Input::make('product.price_stock')
-                            ->title('Акційна ціна (грн)'),   */
+                        Input::make('product.price_stock')
+                            ->title(__('Stock price')),  
                         
                         
                     ])

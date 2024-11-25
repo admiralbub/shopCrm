@@ -153,6 +153,7 @@ class ProductService implements ProductInterface {
         }
         return $filter;
     }
+    
     public function filterAttr($productsQuery, $filter) {
         if ($filter) {
             $filter = $this->setFilter($filter);
