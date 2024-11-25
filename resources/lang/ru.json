@@ -218,7 +218,18 @@
     "Review":"Обзор",
     "Analog":"Аналоги",
     "Culture":"Культура",
-    "Active ingredient":"Действующее вещество"
+    "Active ingredient":"Действующее вещество",
+    "Add stock":"Добавить акцию",
+    "Edit stock":"Редактировать акцию",
+    "Promotion end date":"Дата конца акции",
+    "Promotion start date":"Дата начала акции",
+    "left_time":"Осталось",
+    "days_stock":"дней",
+    "hourse_title":"часов",
+    "stock_title_noempty":"На данный момент нет ни одной акции.",
+    "Contacts":"Контакты",
+    "Enable link on all site blocks":"Включить ссылку на всех блоках сайта",
+    "Product pages":"Страницы для товара"
     
    
 

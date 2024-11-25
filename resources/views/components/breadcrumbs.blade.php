@@ -1,4 +1,4 @@
-<div class="py-5">
+<div class="pt-5 pb-3">
     <div class="breadcrumbs">
         <ul>
             <li><a href="{{route('index')}}">{{__('Home')}}</a></li>
@@ -8,7 +8,7 @@
                         <li><a href="{{route($breadcrumb['parent']['route'])}}">{{ $breadcrumb['parent']['name'] }}</a></li>
                         <li><a href="{{route($breadcrumb['route'], ['slug' => $breadcrumb['slug']])}}" class="active">{{ $breadcrumb['name'] }}</a></li>
                     @else
-                        <li><a href="{{route($breadcrumb['route'])}}" class="active">{{ $breadcrumb['name'] }}</a></li>
+                        <li><a href="{{ $breadcrumb['slug'] ? route($breadcrumb['route'], ['slug' => $breadcrumb['slug']]) : route($breadcrumb['route']) }}" class="active">{{ $breadcrumb['name'] }}</a></li>
                     @endif
                     
                     

@@ -69,7 +69,7 @@ a {
     border: 1px solid var(--border-form) !important;
    
 }
-$font-size-base: 14px;
+$font-size-base: 16px;
 
 $body-color: $mgray;
 
@@ -151,7 +151,7 @@ $theme-colors:map-merge($theme-colors,$custom-color);
 @import 'cart.scss';
 @import 'orders.scss';
 @import 'validation.scss';
-
+@import 'stock.scss';
 @import 'mob-search.scss';
 
 

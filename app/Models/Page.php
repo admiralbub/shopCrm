@@ -28,6 +28,7 @@ class Page extends Model
         'meta_keywords_ua',
         'meta_keywords_ru',
         'created_at',
+        'is_visible',
     ];
     protected $allowedSorts = [
         'id',
@@ -35,5 +36,12 @@ class Page extends Model
     ];
     public function scopeAvailable($q) {
         $q->where("status",1);
+    }
+    public function scopeVisible($q) {
+        $q->where("is_visible",'1');
+    }
+    public function products()
+    {
+        return $this->hasMany(Product::class);
     }
 }

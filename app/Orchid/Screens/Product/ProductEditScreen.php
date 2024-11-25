@@ -8,6 +8,8 @@ use App\Models\Product;
 use App\Models\Price;
 use App\Models\Brand;
 use App\Models\Pack;
+use App\Models\Stock;
+use App\Models\Page;
 use Illuminate\Http\Request;
 use Orchid\Screen\Fields\Input;
 use Orchid\Support\Facades\Toast;
@@ -152,7 +154,10 @@ class ProductEditScreen extends Screen
                         Input::make('product.price')
                             ->title(__('Price'))
                             ->required(),   
-                       
+                        Select::make('product.page_id')
+                            ->fromModel(Page::class, 'name_ua')
+                            ->empty(__('Select the required item'))
+                            ->title(__('Product pages')),    
                         Input::make('product.old_price')
                             ->title(__('Old price')),           
 
@@ -168,6 +173,19 @@ class ProductEditScreen extends Screen
                         CheckBox::make('product.is_publish')
                             ->sendTrueOrFalse()
                             ->title(__('Publish')),
+                    ])
+                ],
+                __('Stocks') => [
+                    Layout::rows([
+                        Select::make('product.stock_id')
+                            ->fromModel(Stock::where('status','=',1), 'name_ua')
+                            ->empty(__('Select the required item'))
+                            ->allowAdd()
+                            ->title(__('Stocks')),    
+                        /*Input::make('product.price_stock')
+                            ->title('Акційна ціна (грн)'),   */
+                        
+                        
                     ])
                 ],
                 __('Pack') => [

@@ -47,7 +47,7 @@ class PlatformProvider extends OrchidServiceProvider
                     Menu::make(__('Brand'))->route('platform.brands.list'),
                     Menu::make(__('Pack'))->route('platform.packs.list'),
                     Menu::make(__('Catogories'))->route('platform.catogories.list'),
-                    //Menu::make(__('Attribute group'))->route('platform.attrgroup.list'),
+                    Menu::make(__('Stocks'))->route('platform.stock.list'),
                     Menu::make(__('Attribute'))->route('platform.attr.list'),
                    
                   //  Menu::make(__('Price variation'))->route('platform.prices.list'),

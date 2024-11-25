@@ -30,9 +30,13 @@ use Orchid\Support\Facades\Dashboard;
 use App\Interfaces\PageInterface;
 use App\Services\PageService;
 
+use App\Interfaces\StockInterface;
+use App\Services\StockService;
+
 use App\Interfaces\OrderInterface;
 use App\Services\OrderService;
 use App\Models\Setting;
+use App\Models\Page;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -48,6 +52,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        $this->app->bind(
+            StockInterface::class,
+            StockService::class,
+
+        );
 
         $this->app->bind(
             OrderInterface::class,
@@ -71,11 +80,7 @@ class AppServiceProvider extends ServiceProvider
 
         );
 
-        /*$this->app->bind(
-            CategoryInterface::class,
-            CategoryService::class,
-
-        );*/
+        
 
         $this->app->bind(
             ProductInterface::class,
@@ -109,6 +114,11 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton('settings', function () {
             return Setting::all()->pluck('value', 'key');
         });
+
+        $this->app->singleton('pages', function () {
+            return Page::available()->visible()->get();
+        });
+        
         
         
     }

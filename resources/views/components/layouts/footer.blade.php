@@ -91,7 +91,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="{{route('stock.index')}}">
                             {{__('Stocks')}}
                         </a>
                     </li>
@@ -99,39 +99,18 @@
             </div>
             <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 py-3 py-lg-0">
                 <span class="fs-4 footer-heading">{{__('Buyers')}}</span>
-                <ul class="footer-links pt-3">
-                    <li>
-                        <a href="#">
-                            About us 
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            Delivery and payment 
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            Guarantees
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            Contacts
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            Offer
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            Agreement
-                        </a>
-                    </li>
-                        
-                </ul>
+                @if(count(pages())>0)
+                    <ul class="footer-links pt-3">
+                        @foreach(pages() as $page)
+                            <li>
+                                <a href="{{route('page.pages',['slug'=>$page->url])}}">
+                                    {{$page->name}}
+                                </a>
+                            </li>
+                        @endforeach
+                            
+                    </ul>
+                @endif
             </div>
             <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 py-3 py-lg-0">
                 <span class="fs-4 footer-heading">{{__('Contact Us')}}</span>

@@ -387,7 +387,18 @@
     "Review":"Огляд",
     "Analog":"Аналоги",
     "Culture":"Культура",
-    "Active ingredient":"Діюча речовина"
+    "Active ingredient":"Діюча речовина",
+    "Add stock":"Додати акцію",
+    "Edit stock":"Редагувати акцію",
+    "Promotion end date":"Дата кінця акції",
+    "Promotion start date":"Дата початку акції",
+    "left_time":"Залишилось",
+    "days_stock":"днів",
+    "hourse_title":"годин",
+    "stock_title_noempty":"На даний момент немає жодної акції.",
+    "Contacts":"Контакти",
+    "Enable link on all site blocks":"Увімкнути посилання на всіх блоках сайту",
+    "Product pages":"Сторінки для товару"
 
 
 

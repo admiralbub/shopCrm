@@ -9,7 +9,7 @@ class BrandController extends Controller
 {
 
     private $brand;
-
+    private $breadcrumbs;
     public function __construct(BrandInterface $brand, Breadcrumb $breadcrumbs)
     {
         $this->breadcrumbs = $breadcrumbs;

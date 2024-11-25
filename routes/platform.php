@@ -41,6 +41,9 @@ use App\Orchid\Screens\Page\PageListScreen;
 use App\Orchid\Screens\Order\OrderEditScreen;
 use App\Orchid\Screens\Order\OrderListScreen;
 
+use App\Orchid\Screens\Stock\StockEditScreen;
+use App\Orchid\Screens\Stock\StockListScreen;
+
 use App\Orchid\Screens\Setting\SettingScreen;
 /*
 |--------------------------------------------------------------------------
@@ -119,7 +122,7 @@ Route::screen('brands/{brand}/edit', BrandEditScreen::class)
     ->name('platform.brand.edit')
     ->breadcrumbs(fn (Trail $trail, $brand) => $trail
         ->parent('platform.brands.list')
-        ->push($brand->name_ua, route('platform.brand.edit', $brand)));
+        ->push($brand->name, route('platform.brand.edit', $brand)));
 
 Route::screen('brands/create', BrandEditScreen::class)
     ->name('platform.brand.create')
@@ -137,7 +140,7 @@ Route::screen('categories/{category}/edit', CategoryEditScreen::class)
     ->name('platform.category.edit')
     ->breadcrumbs(fn (Trail $trail, $category) => $trail
         ->parent('platform.catogories.list')
-        ->push($category->name_ua, route('platform.category.edit', $category)));
+        ->push($category->name, route('platform.category.edit', $category)));
     
 Route::screen('categories/create', CategoryEditScreen::class)
     ->name('platform.categories.create')
@@ -158,7 +161,7 @@ Route::screen('prices/{price}/edit', PriceEditScreen::class)
     ->name('platform.price.edit')
     ->breadcrumbs(fn (Trail $trail, $price) => $trail
         ->parent('platform.prices.list')
-        ->push($price->name_ua, route('platform.price.edit', $price)));
+        ->push($price->name, route('platform.price.edit', $price)));
     
 Route::screen('prices/create', PriceEditScreen::class)
     ->name('platform.price.create')
@@ -177,7 +180,7 @@ Route::screen('products/{product}/edit', ProductEditScreen::class)
     ->name('platform.product.edit')
     ->breadcrumbs(fn (Trail $trail, $product) => $trail
         ->parent('platform.products.list')
-        ->push($product->name_ua, route('platform.product.edit', $product)));
+        ->push($product->name, route('platform.product.edit', $product)));
     
 Route::screen('products/create', ProductEditScreen::class)
     ->name('platform.product.create')
@@ -196,13 +199,36 @@ Route::screen('packs/{pack}/edit', PackEditScreen::class)
     ->name('platform.pack.edit')
     ->breadcrumbs(fn (Trail $trail, $pack) => $trail
         ->parent('platform.packs.list')
-        ->push($pack->name_ua, route('platform.pack.edit', $pack)));
+        ->push($pack->name, route('platform.pack.edit', $pack)));
     
 Route::screen('packs/create', PackEditScreen::class)
     ->name('platform.pack.create')
     ->breadcrumbs(fn (Trail $trail) => $trail
         ->parent('platform.packs.list')
         ->push(__('Add pack'), route('platform.pack.create')));
+
+//Stock page
+Route::screen('/stocks', StockListScreen::class)
+    ->name('platform.stock.list')
+    ->breadcrumbs(fn (Trail $trail) => $trail
+        ->parent('platform.index')
+        ->push(__('Stocks'), route('platform.stock.list')));
+ 
+Route::screen('stocks/{stock}/edit', StockEditScreen::class)
+    ->name('platform.stock.edit')
+    ->breadcrumbs(fn (Trail $trail, $stock) => $trail
+        ->parent('platform.stock.list')
+        ->push($stock->name, route('platform.stock.edit', $stock)));
+    
+Route::screen('stocks/create', StockEditScreen::class)
+    ->name('platform.stock.create')
+    ->breadcrumbs(fn (Trail $trail) => $trail
+        ->parent('platform.stock.list')
+        ->push(__('Add stock'), route('platform.stock.create')));
+
+//////
+
+
 
 ///////Attr Group
 /*Route::screen('/attrgroups', AttrGroupListScreen::class)
@@ -235,7 +261,7 @@ Route::screen('attrs/{attr}/edit', AttrEditScreen::class)
     ->name('platform.attr.edit')
     ->breadcrumbs(fn (Trail $trail, $attr) => $trail
         ->parent('platform.attr.list')
-        ->push($attr->name_ua, route('platform.attr.edit', $attr)));
+        ->push($attr->name, route('platform.attr.edit', $attr)));
     
 Route::screen('attrs/create', AttrEditScreen::class)
     ->name('platform.attr.create')

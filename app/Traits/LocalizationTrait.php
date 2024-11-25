@@ -11,6 +11,10 @@ trait LocalizationTrait
     {
         return $this->getLocalizedAttr('description');
     }
+    public function getBodyAttribute()
+    {
+        return $this->getLocalizedAttr('body');
+    }
     public function getH1Attribute()
     {
         return $this->getLocalizedAttr('h1');

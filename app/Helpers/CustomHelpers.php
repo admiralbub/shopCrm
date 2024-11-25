@@ -8,6 +8,13 @@ if (! function_exists('settings')) {
         return app('settings')->get($key, $default);
     }
 }
+
+if (! function_exists('pages')) {
+    function pages()
+    {
+        return app('pages');
+    }
+}
 function findInNestedArray($needle, $haystack) {
     foreach ($haystack as $value) {
         if (is_array($value)) {

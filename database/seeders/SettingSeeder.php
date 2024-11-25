@@ -13,7 +13,7 @@ class SettingSeeder extends Seeder
     public function run(): void
     {
         $settings = [
-            /*[
+            [
                 'name_ua'=>"Назва сайта (RU)",
                 'name_ru'=>"Название сайта (RU)",
                 'key' => 'site_name_ru', 
@@ -145,7 +145,7 @@ class SettingSeeder extends Seeder
                 'key' => 'link_adress_site', 
                 'value' => '',
                 'type'=>'field'
-            ],*/
+            ],
             [
                 'name_ua'=>"",
                 'name_ru'=>"Ссылка на адрес компании",

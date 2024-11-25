@@ -98,8 +98,19 @@
             <div class="col col-lg-5 d-lg-block d-none">
                 <ul class="header-menu pt-2">
                     <li class="header-menu-item"><a href="{{route('index')}}">{{__('Home')}}</a></li>
-                    <li class="header-menu-item"><a href="#">{{__('Stocks')}}</a></li>
+                    <li class="header-menu-item"><a href="{{route('stock.index')}}">{{__('Stocks')}}</a></li>
                     <li class="header-menu-item"><a href="{{route('product.brand.list')}}">{{__('Brand')}}</a></li>
+                    @if(count(pages())>0)
+                        @foreach(pages() as $page)
+                            <li class="header-menu-item">
+                                <a href="{{route('page.pages',['slug'=>$page->url])}}">
+                                    {{$page->name}}
+                                </a>
+                            </li>
+                        @endforeach
+                    @endif
+                    
+                    
                     <li class="header-menu-item"><a href="#">{{__('Blog')}}</a></li>
                 </ul>
             </div>

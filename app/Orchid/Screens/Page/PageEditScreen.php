@@ -103,6 +103,10 @@ class PageEditScreen extends Screen
                              ->title(__('Description',['locale'=>'(ua)']))
                              ->rows(5),
 
+
+                        CheckBox::make('page.is_visible')
+                            ->sendTrueOrFalse()
+                            ->title(__('Enable link on all site blocks')),
                         CheckBox::make('page.status')
                              ->sendTrueOrFalse()
                              ->title(__('Publish'))

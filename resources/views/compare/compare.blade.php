@@ -10,7 +10,7 @@
                 <table>
                     <tbody>
                         <tr class="resp">
-                            <th>{{__('Product')}}</th>
+                            <th>{{__('Products')}}</th>
                             
                             @foreach($products as $product)
                                 <th class="name_product">

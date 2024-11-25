@@ -19,6 +19,8 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\Deliver\NovaPoshtaController;
 use App\Http\Controllers\Page\MainController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\StockController;
+use App\Http\Controllers\Page\PageController;
 require __DIR__ . '/admin/admin.php';
 $market = parse_url(config('app.url'), PHP_URL_HOST);
 Route::group([
@@ -98,11 +100,20 @@ Route::group([
     });
     Route::get('/search', [SearchController::class, 'getProductByName'])->name('products.search');
     Route::post('/search_ajax', [SearchController::class, 'getProductByNameAjax'])->name('products.search_ajax');
+
+
+    Route::get('/stocks', StockController::class)->name('stock.index');
+    Route::get('/stock/{slug}', [StockController::class,'showStock'])->name('stock.show');
     
     Route::group(['prefix' => 'novaposhta'], function () {
         Route::post('/getCity', [NovaPoshtaController::class,'getCity'])->name('novaposhta.getCity');
       //  Route::get('/getCityAdmin', [NovaPoshtaController::class,'getCityAdmin'])->name('novaposhta.getCityAdmin');
         Route::post('/getWarehouse', [NovaPoshtaController::class,'getWarehouse'])->name('novaposhta.getWarehouse');
+    });
+
+    Route::group(['prefix' => 'page'], function () {
+        Route::get('/{slug}', [PageController::class, 'index'])->name('page.pages');
+
     });
 });
 

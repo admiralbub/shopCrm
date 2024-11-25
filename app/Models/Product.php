@@ -27,6 +27,7 @@ class Product extends Model
         'description_ru',
         'brand_id',
         'stock_id',
+        'page_id',
         'price',
         'price_stock',
         'status',

@@ -60,9 +60,9 @@ class CompareService implements CompareInterface {
                 $list_attr[] = $attr->id;
             }
         }
-        $attr = Attr::whereIn("id",$list_attr)->with('attrGroup')->get();
+        $attr = Attr::whereIn("id",$list_attr)->get();
         $attr = $attr->groupBy(function($item) {
-            return $item->attrGroup ? $item->attrGroup->first()->name : '';
+            return $item->group_text;
         });
         return $attr;
     }
