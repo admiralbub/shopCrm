@@ -91,8 +91,9 @@ class StockEditScreen extends Screen
                             ->title(__('Heading',['locale'=>'(ua)'])),
 
                         Picture::make('stock.img')
-                             ->title(__('Image'))
-                             ->storage('images_page'),
+                            ->required()
+                            ->title(__('Image'))
+                            ->storage('images_page'),
                         CKEditor::make('stock.body_ru')
                             ->title(__('Description',['locale'=>'(ru)']))
                             ->rows(5),

@@ -1,4 +1,5 @@
 <?php
+use Carbon\Carbon;
 if (! function_exists('settings')) {
     function settings(?string $key = null, $default = null)
     {
@@ -15,6 +16,26 @@ if (! function_exists('pages')) {
         return app('pages');
     }
 }
+function lastDay($start_stocks_date, $end_stocks_date) {
+    $date_start = new DateTime($start_stocks_date);
+    $end_start = new DateTime($end_stocks_date);
+
+    $current_date = Carbon::now();
+
+    $end_date = Carbon::parse($end_stocks_date);
+
+    $days_difference = $current_date->diffInDays($end_date, false);
+
+
+    
+    return (int) ceil($days_difference);
+} 
+function dateBetween($start_stocks_date, $end_stocks_date, $lang) {
+    $date_start = new DateTime($start_stocks_date);
+    $end_start = new DateTime($end_stocks_date);
+    return Carbon::parse($date_start)->locale($lang)->isoFormat('D MMMM').' - '.Carbon::parse($end_start)->locale($lang)->isoFormat('D MMMM ');
+}
+
 function findInNestedArray($needle, $haystack) {
     foreach ($haystack as $value) {
         if (is_array($value)) {
