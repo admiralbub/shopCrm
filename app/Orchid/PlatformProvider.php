@@ -52,6 +52,11 @@ class PlatformProvider extends OrchidServiceProvider
                    
                   //  Menu::make(__('Price variation'))->route('platform.prices.list'),
                 ]),
+
+            Menu::make(__('Feedbacks'))
+                ->icon('bi.chat-fill')
+                ->route('platform.feedback.list')
+                ->permission('platform.systems.users'),   
             Menu::make(__('Setting'))
                 ->icon('bi.tools')
                 ->route('platform.setting.list')

@@ -93,3 +93,40 @@ input[readonly] {
         }
     }
 }
+.rating-review {
+    position: relative;
+    display: inline-flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    margin-top: -20px;
+
+    & input {
+        position: absolute;
+        opacity: 0;
+        font-size: 26px;
+    }
+    & label:active {
+        color: #F6E05E !important;
+    }
+    & input:focus-visible + label {
+        outline-offset: 1px;
+        outline: #59b210 solid 2px;
+    }
+      
+    & label {
+        cursor: pointer;
+        color: #9c9ba3;
+        padding: 0 0.15rem;
+        font-size: 30px;
+        transition: color 0.15s;
+    }
+    
+    & input:checked ~ label {
+        color: #F6E05E
+    }
+      
+    & input:hover ~ label {
+        color: rgb(245, 208, 116);
+        transition: none;
+     }
+}

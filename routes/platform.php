@@ -45,6 +45,9 @@ use App\Orchid\Screens\Stock\StockEditScreen;
 use App\Orchid\Screens\Stock\StockListScreen;
 
 use App\Orchid\Screens\Setting\SettingScreen;
+
+use App\Orchid\Screens\Feedback\FeedbackEditScreen;
+use App\Orchid\Screens\Feedback\FeedbackListScreen;
 /*
 |--------------------------------------------------------------------------
 | Dashboard Routes
@@ -230,24 +233,20 @@ Route::screen('stocks/create', StockEditScreen::class)
 
 
 
-///////Attr Group
-/*Route::screen('/attrgroups', AttrGroupListScreen::class)
-    ->name('platform.attrgroup.list')
+///////Feedback
+Route::screen('/feedbacks', FeedbackListScreen::class)
+    ->name('platform.feedback.list')
     ->breadcrumbs(fn (Trail $trail) => $trail
         ->parent('platform.index')
-        ->push(__('Attribute group'), route('platform.attrgroup.list')));
+        ->push(__('Feedbacks'), route('platform.feedback.list')));
  
-Route::screen('attrgroups/{attrgroup}/edit', AttrGroupEditScreen::class)
-    ->name('platform.attrgroup.edit')
-    ->breadcrumbs(fn (Trail $trail, $attr) => $trail
-        ->parent('platform.attrgroup.list')
-        ->push($attr->name_ua, route('platform.attrgroup.edit', $attr)));
+Route::screen('feedbacks/{feedback}/edit', FeedbackEditScreen::class)
+    ->name('platform.feedback.edit')
+    ->breadcrumbs(fn (Trail $trail, $feedback) => $trail
+        ->parent('platform.feedback.list')
+        ->push(__("Edit feedback",["number"=>$feedback->id]), route('platform.feedback.edit', $feedback)));
     
-Route::screen('attrgroups/create', AttrGroupEditScreen::class)
-    ->name('platform.attrgroup.create')
-    ->breadcrumbs(fn (Trail $trail) => $trail
-        ->parent('platform.attrgroup.list')
-        ->push(__('Add attribute group'), route('platform.attrgroup.create')));*/
+
 
 
 ///////Attr

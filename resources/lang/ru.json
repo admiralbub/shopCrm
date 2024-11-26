@@ -233,8 +233,15 @@
     "Enable link on all site blocks":"Включить ссылку на всех блоках сайта",
     "Product pages":"Страницы для товара",
     "Stock price":"Акционная цена (грн)",
-    "Welcome to the admin panel of the Green Master website":"Добро пожаловать в админ панель сайта Зеленого мастера"
-    
+    "Add your review":"Добавьте ваш отзыв",
+    "Feedback":"Отзыв",
+    "Feedbacks":"Отзывы",
+    "Edit feedback":"Редактировать отзыв №:number",
+    "Response":"Ответ",
+    "Welcome to the admin panel of the Green Master website":"Добро пожаловать в админ панель сайта Зеленого мастера",
+    "Grade":"Оценка",
+    "There are no reviews for this product at this time":"На данный момент пока нету отзывов для данного товара",
+    "Thank you for your feedback. Your review will be published within this hour.":"Благодарим вас за ваш отзыв. Ваш отзыв будет опубликован в течение этого часа."
    
 
 }

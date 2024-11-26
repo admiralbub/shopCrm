@@ -17,6 +17,7 @@
         "imask": "^7.6.1",
         "jquery": "^3.7.1",
         "nouislider": "^15.8.1",
+        "rater-js": "^1.0.1",
         "sass": "1.77.6",
         "sortable-tree": "^0.7.2",
         "sortablejs": "^1.15.3",

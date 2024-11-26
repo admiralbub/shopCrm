@@ -20,6 +20,7 @@ export default defineConfig({
                 'resources/scss/app.scss',
                 'resources/scss/admin/app.scss', 
                 'resources/js/admin/admin.js',
+      
                 'resources/js/app.js'
             ],
             refresh: true,

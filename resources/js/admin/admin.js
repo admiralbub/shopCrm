@@ -1,5 +1,7 @@
 import Sortable, { MultiDrag, Swap } from 'sortablejs';
+import RateController from './controllers/rate_controller';
 
+application.register('rate', RateController)
 
 document.addEventListener("turbo:load", () => {
     let el1 = document.querySelectorAll('.treeSort');

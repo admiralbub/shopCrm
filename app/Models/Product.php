@@ -86,6 +86,10 @@ class Product extends Model
         $q->where("is_publish",1);
     }
     
+    public function feedback()
+    {
+        return $this->hasMany(Feedback::class)->available();
+    }
     public function packs()
     {
         return $this->belongsToMany(Pack::class,'pack_product','product_id','pack_id' );

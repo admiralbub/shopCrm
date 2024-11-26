@@ -237,4 +237,7 @@ import './slider.js'
 import './mask.js'
 import './wislist.js'
 import './compare.js'
+import './rateInf.js'
+
 import './validation.js'
+

@@ -346,7 +346,11 @@ $theme-colors:map-merge($theme-colors,$custom-color);
         width: 20px;
     }
 }
-
+.rate-select-layer {
+    & span {
+        color:var(--gold);
+    }
+}
 
 $pagination-active-bg:  $green;
 $pagination-active-border-color:$green;

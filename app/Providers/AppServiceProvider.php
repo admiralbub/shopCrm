@@ -35,6 +35,10 @@ use App\Services\StockService;
 
 use App\Interfaces\OrderInterface;
 use App\Services\OrderService;
+
+use App\Interfaces\FeedbackInterface;
+use App\Services\FeedbackService;
+
 use App\Models\Setting;
 use App\Models\Page;
 class AppServiceProvider extends ServiceProvider
@@ -111,6 +115,13 @@ class AppServiceProvider extends ServiceProvider
             CompareService::class,
 
         );
+
+        $this->app->bind(
+            FeedbackInterface::class,
+            FeedbackService::class,
+
+        );
+
         $this->app->singleton('settings', function () {
             return Setting::all()->pluck('value', 'key');
         });

@@ -142,7 +142,11 @@ return [
      |
      */
 
-    'vite' => ['resources/scss/admin/app.scss', 'resources/js/admin/admin.js'],
+    'vite' => [
+        'resources/scss/admin/app.scss', 
+        'resources/js/admin/admin.js',
+        'resources/js/admin/jquery-3.7.1.js',
+        'resources/js/admin/rater.js'],
 
     /*
      |--------------------------------------------------------------------------

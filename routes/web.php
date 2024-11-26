@@ -21,6 +21,8 @@ use App\Http\Controllers\Page\MainController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\Page\PageController;
+
+use App\Http\Controllers\FeedbackController;
 require __DIR__ . '/admin/admin.php';
 $market = parse_url(config('app.url'), PHP_URL_HOST);
 Route::group([
@@ -103,6 +105,10 @@ Route::group([
 
 
     Route::get('/stocks', StockController::class)->name('stock.index');
+
+    Route::post('/feedback/{id}', [FeedbackController::class,'store'])->name('feedback.post');
+    
+
     Route::get('/stock/{slug}', [StockController::class,'showStock'])->name('stock.show');
     
     Route::group(['prefix' => 'novaposhta'], function () {

@@ -79,8 +79,8 @@
             -webkit-flex-direction: row;
             -ms-flex-direction: row;
             flex-direction: row;
-            
             gap: 0px;
+            
             & svg {
                 width: 1em;
                 height: 1em;
@@ -330,6 +330,7 @@
                             padding: 20px;
                             background-color: var(--content);
                             border-radius: 4px;     
+                            width: 100%;
                             & .product_review-item_head {
                                 & .product_review-item_username {
                                     font-weight: 700;
@@ -390,6 +391,21 @@
                             }                   
                         }
                     }
+                    & .product_review-response {
+                        background-color: var(--content);
+                        border-radius: 4px;
+                        padding: 20px;
+                        /* width: 100%; */
+                        @media (max-width: 990px) {
+                            margin-left: 0px;
+                        }
+                        @media (min-width: 990px) {
+                            margin-left: 80px;
+                        }
+
+                        margin-top: 30px;
+                    }
+                   
                 }
             }
             &-form {
