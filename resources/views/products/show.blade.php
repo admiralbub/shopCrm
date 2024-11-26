@@ -184,7 +184,7 @@
             <nav>
                 <div class="nav nav-tabs  justify-content-center" id="nav-tab" role="tablist">
                     <button class="nav-link active" id="nav-description-tab" data-bs-toggle="tab" data-bs-target="#nav-description" type="button" role="tab" aria-controls="nav-home" aria-selected="true">{{__('description_two')}}</button>
-                    <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">(10) {{__('Reviews')}}</button>
+                    <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">({{$product->feedback->count()}}) {{__('Reviews')}}</button>
                 </div>
             </nav>
             <div class="tab-content" id="nav-tabContent">
