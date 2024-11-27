@@ -120,10 +120,11 @@
                             <div class="show_phoduct-manage_addbasket">
                                 <button class="btn btn-primary px-5 py-2" data-id="{{$product->id}}" data-packid="{{$product->packs->first()->id}}" id="AddBasketView">{{__('Add to cart')}}</button>
                             </div>
-                            <div class="show_phoduct-manage_oneclick d-none">
-                                <button class="btn btn-light px-5">{{__('Buy in 1 click')}}</button>
+                            <div class="show_phoduct-manage_oneclick">
+                                <button class="btn btn-light px-5" data-bs-toggle="modal" data-bs-target="#onclick">{{__('Buy in 1 click')}}</button>
                             </div>
                         </div>
+                        <x-one-click.form :product="$product"></x-one-click.form>
                     @endif
                     <div class="show_phoduct-panel">
                         <button class="show_phoduct-panel_favorite" id="AddWislistShow" data-id="{{$product->id}}" data-auth="{{auth()->check() ? '1' : '0'}}">
@@ -142,28 +143,8 @@
                             <span>{{__('Compare')}}</span>
                         </button>
                     </div>
-                    <div class="show_phoduct-notices">
-                        <ul>
-                            <li>
-                                <div class="notice-icon">
-                                    <i class="bi bi-credit-card"></i>
-
-                                </div>
-                                <div class="notice-text">
-                                    <p><strong>Payment.</strong> Payment upon receipt of goods, Payment by card in the department, Google Pay, Online card, -5% discount in case of payment</p>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="notice-icon">
-                                    <i class="bi bi-mailbox"></i>
-
-                                            
-                                </div>
-                                <div class="notice-text">
-                                    <p><strong>Deliver.</strong> Pickup from Pervomaysk, Stepnaya st. 12B, Nikolaev region (Free)</p>
-                                </div>
-                            </li>
-                        </ul>
+                    <div class="show_phoduct-notices px-4 py-4">
+                        {!!settings('about_deliver_'.app()->getLocale())!!}
                     </div>
                 </div>
             </div>

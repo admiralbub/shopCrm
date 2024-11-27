@@ -40,7 +40,11 @@ class OrderListLayout extends Table
             TD::make('phone', __("Phone_title"))->width(120),
             TD::make('', __('Deliver'))->sort()->width(120)
                 ->render(function (Order $order) {
-                    return $order->deliver_name;
+                    if($order->deliver_type) {
+                        return $order->deliver_name;
+                    } else {
+                        return '';
+                    }
             
                 }), 
             TD::make('', '')->sort()->width(220)

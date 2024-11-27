@@ -47,7 +47,7 @@
     &-img {
         @media (min-width: 768px) {
             position: relative;
-            width: 550px;
+            width: auto;
             /*height: 550px;*/
             cursor: pointer;
             margin: 0 auto;
@@ -291,6 +291,30 @@
             line-height: 30px;
             font-size: 14px;
             font-weight: 400;
+
+            & table {
+                width: 100% !important;
+                display: table !important;
+                border: 1px solid var(--fill-icon);
+                border-collapse: collapse !important;
+                text-align: center;
+                & tr:first-child td {
+                    background-color: var(--swiper-navigation-color) !important;
+                    color:var(--white);
+                    border-radius: 6px;
+                }
+                & th {
+                    padding: 8px !important;
+                    border: 1px solid var(--fill-icon);
+                    color:var(--white);
+                    background-color: var(--swiper-navigation-color) !important;
+                }
+                &  td {
+                    padding: 8px !important;
+                    border: 1px solid var(--green-white);
+                    background: var(--border-color);
+                }
+            }
         }
         & .reviews-tab {
             

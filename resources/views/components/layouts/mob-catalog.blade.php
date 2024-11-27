@@ -89,7 +89,7 @@
                         </li>
                     @endforeach
                 @endif
-                <li><a href="#">{{__('Blog')}}</a></li>
+               <!-- <li><a href="#">{{__('Blog')}}</a></li>!-->
             </ul>    
         </div>
         <div class="catalog-mob--content_footer">

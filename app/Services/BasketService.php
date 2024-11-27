@@ -57,7 +57,17 @@ class BasketService implements BasketInterface {
         return $price_total;
     }
 
-
+    static public function showBasketOneClick(Product $product,$quantity) {
+        $product = tap($product, function ($prod) use ($quantity) {
+            $prod->quantity = $quantity;
+            $prod->pack_volume = $prod->packs->first()->volume 
+                ?? $prod->packs()->min('volume');
+            $prod->pack_name = $prod->packs->first()->name 
+                ?? $prod->packs()->min('title_' . app()->getLocale());
+            $prod->price = ceil(self::priceProductGeneral($prod));
+        });
+        return $product ?? "";
+    }
 
     static public function showBasketDb($user_id) {
         $id_array = Basket::where('user_id',auth()->user()->id)->select("product_id")->get()->toArray();

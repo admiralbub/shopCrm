@@ -2,7 +2,7 @@
 
 namespace App\Actions\Order;
 use App\Models\Order;
-class OrderAction
+class OrderOneClickAction
 {
     /**
      * Create a new class instance.
@@ -10,16 +10,14 @@ class OrderAction
     public function execute($request, $delivery_order,$pay_info,$total_summ_order): Order
     {
         $order = Order::create([
-            'user_id'=>auth()->check() ? auth()->user()->id : '',
-            'first_name'=>$request->first_name,
-            'last_name'=>$request->last_name,
-            'middle_name'=>$request->middle_name,
+            'first_name'=>'Немає',
+            'last_name'=>'Немає',
+            'middle_name'=>'Немає',
             'phone'=>$request->phone,
-            'email'=>$request->email,
-            'comment'=>$request->notes_order,
             'delivery'=>$delivery_order,
-            'pay_info'=>$pay_info,
             'status'=>0,
+            'email'=>'Немає',
+            'pay_info'=>$pay_info,
             'total'=>$total_summ_order*$request->quantity,
         ]);
         

@@ -111,6 +111,7 @@ if(quantity) {
                 quantity--;
                 qty.value = quantity;
             }
+            document.querySelector('#quantity-input').value =qty.value;
         }
         if (event.target.closest('.plus')) {
             const qty = event.target.closest('.quantity').querySelector('.qty');
@@ -119,6 +120,7 @@ if(quantity) {
         
             quantity++;
             qty.value = quantity;
+            document.querySelector('#quantity-input').value =qty.value;
         }
     }
 }

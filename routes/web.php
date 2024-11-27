@@ -110,6 +110,8 @@ Route::group([
     
 
     Route::get('/stock/{slug}', [StockController::class,'showStock'])->name('stock.show');
+
+    Route::post('/oneclick/{id}', [OrderController::class,'getOneClick'])->name('oneclick.post');
     
     Route::group(['prefix' => 'novaposhta'], function () {
         Route::post('/getCity', [NovaPoshtaController::class,'getCity'])->name('novaposhta.getCity');

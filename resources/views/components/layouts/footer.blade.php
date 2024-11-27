@@ -85,11 +85,11 @@
                             {{__('Brand')}}
                         </a>
                     </li>
-                    <li>
+                    <!--<li>
                         <a href="#">
                             {{__('Blog')}}
                         </a>
-                    </li>
+                    </li>!-->
                     <li>
                         <a href="{{route('stock.index')}}">
                             {{__('Stocks')}}

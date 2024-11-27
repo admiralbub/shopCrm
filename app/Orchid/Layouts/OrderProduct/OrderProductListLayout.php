@@ -41,7 +41,7 @@ class OrderProductListLayout extends Table
                 
             }),
             TD::make(__('Price'))->width(70)->render(function (OrderProduct $order_product) {
-                return $order_product->product->price * ($order_product->product->packs->count() > 0 ? $order_product->product->packs->first()->volume : 1);
+                return $order_product->price;
                 
             }),
             TD::make(__('Quantity'))->width(70)->render(function (OrderProduct $order_product) {

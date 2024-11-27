@@ -111,7 +111,7 @@
                     @endif
                     
                     
-                    <li class="header-menu-item"><a href="#">{{__('Blog')}}</a></li>
+                    <!--<li class="header-menu-item"><a href="#">{{__('Blog')}}</a></li>!-->
                 </ul>
             </div>
             <div class="col col-lg-4 mt-lg-3 mt-0">

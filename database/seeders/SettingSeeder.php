@@ -13,7 +13,7 @@ class SettingSeeder extends Seeder
     public function run(): void
     {
         $settings = [
-            [
+            /*[
                 'name_ua'=>"Назва сайта (RU)",
                 'name_ru'=>"Название сайта (RU)",
                 'key' => 'site_name_ru', 
@@ -159,8 +159,24 @@ class SettingSeeder extends Seeder
                 'key' => 'info_viewproduct_ua', 
                 'value' => '',
                 'type'=>'Editor'
-            ]
+            ]*/
            
+     
+
+            [
+                'name_ua'=>"Опис доставки (UA)",
+                'name_ru'=>"Описание доставки (UA)",
+                'key' => 'about_deliver_ua', 
+                'value' => '',
+                'type'=>'edit'
+            ],
+            [
+                'name_ua'=>"Опис доставки (RU)",
+                'name_ru'=>"Описание доставки (RU)",
+                'key' => 'about_deliver_ru', 
+                'value' => '',
+                'type'=>'edit'
+            ],
         ];
  
         Setting::insert($settings);

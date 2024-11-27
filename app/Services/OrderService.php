@@ -4,8 +4,13 @@ namespace App\Services;
 use App\Interfaces\OrderInterface;
 
 use App\Models\Order; 
+use App\Models\Product; 
 use App\Actions\Order\OrderAction;
 use App\Actions\Order\OrderProductAction;
+
+use App\Actions\Order\OrderOneClickAction;
+
+use App\Actions\Order\AddProductOneClickAction;
 class OrderService implements OrderInterface {
     static public function getOrderAdd($request,$totalBasket) {
         $delivery_order = [
@@ -34,6 +39,33 @@ class OrderService implements OrderInterface {
     }
     static public function showOrderAccount() {
         return Order::where('user_id',auth()->user()->id)->orderBy('created_at', 'DESC')->paginate(8);
+    }
+
+    static public function setProductOneClick($id) {
+        $product = Product::where('id',$id)->available()->first();
+        return $product;
+    }
+    static public function getOneClickAdd($request,$price) {
+        $delivery_order = [
+            'deliver' =>  '',
+            'city_np' =>  '',
+            'warehouse_np' => '',
+            'city_ref' => '',
+            'warehouse_ref' => '',
+        ];
+
+        $delivery_order = json_encode($delivery_order);
+
+        $pay_info = [
+            'pay_title' =>  '',
+        ];
+   
+        $pay_info = json_encode($pay_info);
+        $order = (new OrderOneClickAction())->execute($request,$delivery_order,$pay_info,$price);
+        return $order->id;
+    }
+    static public function getOneClickAddProduct($order_id,$baskets) {
+        return (new AddProductOneClickAction())->execute($baskets,$order_id);
     }
 }
 

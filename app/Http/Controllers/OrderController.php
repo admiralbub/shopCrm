@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Interfaces\OrderInterface;
 use App\Interfaces\BasketInterface;
 use App\Http\Requests\OrderRequest;
+use App\Http\Requests\OneClickRequest;
 class OrderController extends Controller
 {
     public $order;
@@ -45,5 +46,19 @@ class OrderController extends Controller
         return view('cabinet.orders',[
             'orders'=>$orders
         ]);
+    }
+
+    public function getOneClick(OneClickRequest $request, $id) {
+        $setProductOneClick = $this->order->setProductOneClick($id);
+        $showBasketOneClick = $this->basket->showBasketOneClick($setProductOneClick,$request->quantity);
+
+
+        $addOneClickId = $this->order->getOneClickAdd($request,$showBasketOneClick->price);
+        $addProcutOneClick = $this->order->getOneClickAddProduct($addOneClickId,$showBasketOneClick);
+        return response()->json([
+            'success'=>  __('You have successfully placed your order'),
+            'redirect' => route('product.view',['slug'=>$request->slug])
+        ]);
+
     }
 }

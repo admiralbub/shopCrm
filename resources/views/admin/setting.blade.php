@@ -76,6 +76,31 @@
 
                 </div>
             @endif
+
+            @if($setting->type=="edit")
+                <div class="form-group">
+                    <label class="form-label">
+                        {{$setting->name}}
+                        
+                    </label>
+                
+                    <div data-controller="ckeditor"
+                        data-ckeditor-id-value="field-productdescription-ua-0f6a88b6c640aa41386250cf3cc53f716a969930"
+                        data-ckeditor-options-value="{&quot;filebrowserImageBrowseUrl&quot;:&quot;\/filemanager?type=Images&quot;,&quot;filebrowserImageUploadUrl&quot;:&quot;\/filemanager\/upload?type=Images&amp;_token=&quot;,&quot;filebrowserBrowseUrl&quot;:&quot;\/filemanager?type=Files&quot;,&quot;filebrowserUploadUrl&quot;:&quot;\/filemanager\/upload?type=Files&amp;_token=&quot;}"
+                        data-ckeditor-editor-url-value="//cdn.ckeditor.com/4.16.2/full/ckeditor.js">
+                        <div data-ckeditor-target="editor"></div>
+
+                        <input id="field-productdescription-ua-0f6a88b6c640aa41386250cf3cc53f716a969930"
+                            data-ckeditor-target="input"
+                            name="setting[{{$setting->key}}]"
+                            type="hidden"
+                            class="form-control"
+                            value="{{$setting->value}}"
+                        />
+                    </div>
+                </div>
+
+            @endif
             
         @endforeach
     </form>
