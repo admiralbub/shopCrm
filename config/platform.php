@@ -127,7 +127,10 @@ return [
 
     'resource' => [
         'stylesheets' => [],
-        'scripts'     => [],
+        'scripts'     => [
+            '/js/admin/jquery-3.7.1.js',
+            '/js/admin/rater.js'
+        ],
     ],
 
     /*
@@ -144,9 +147,7 @@ return [
 
     'vite' => [
         'resources/scss/admin/app.scss', 
-        'resources/js/admin/admin.js',
-        'resources/js/admin/jquery-3.7.1.js',
-        'resources/js/admin/rater.js'],
+        'resources/js/admin/admin.js'],
 
     /*
      |--------------------------------------------------------------------------

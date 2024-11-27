@@ -1,4 +1,5 @@
 import Sortable, { MultiDrag, Swap } from 'sortablejs';
+
 import RateController from './controllers/rate_controller';
 
 application.register('rate', RateController)
