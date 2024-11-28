@@ -17,7 +17,7 @@ class AuthUser
     {
         if(!auth()->user() ) {
             
-            return abort(404);
+            return redirect('/');
             
         } 
         return $next($request);

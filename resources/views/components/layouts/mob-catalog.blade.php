@@ -78,7 +78,7 @@
         <div class="catalog-mob--content_list">
             <ul>
                 <li><a href="{{route('index')}}">{{__('Home')}}</a></li>
-                <li><a href="#">{{__('Stocks')}}</a></li>
+                <li><a href="{{route('stock.index')}}">{{__('Stocks')}}</a></li>
                 <li><a href="{{route('product.brand.list')}}">{{__('Brand')}}</a></li>
                 @if(count(pages())>0)
                     @foreach(pages() as $page)

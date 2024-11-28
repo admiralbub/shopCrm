@@ -50,9 +50,9 @@
                     
                     </div>
                     @if ($product->stocks)
-                        <span class="text-danger fw-bold"> {{__("discount_price_title")}} - {!! $product->price_stock !!} {{__("uah")}}/{{ $product->unit_string }}</span>
+                        <span class="text-danger fw-bold"> {{__("discount_price_title")}} - {!! ceil($product->price_stock) !!} {{__("uah")}}/{{ $product->unit_string }}</span>
                     @else
-                        <span class="fw-normal">{!! $product->price !!} {{__("uah")}}/{{ $product->unit_string }}</span>
+                        <span class="fw-normal">{!! ceil($product->price) !!} {{__("uah")}}/{{ $product->unit_string }}</span>
                     @endif
                     <div class="show_phoduct-choice pt-3">
                         <div class="row">
