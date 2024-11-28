@@ -212,7 +212,7 @@ class BasketService implements BasketInterface {
             
             $products_order = self::showBasketDb(auth()->user()->id)->sum(
                 function ($prod) {
-                    return $prod->price;     
+                    return $prod->price*$prod->quantity;     
     
                 }
             );  
@@ -221,7 +221,7 @@ class BasketService implements BasketInterface {
             
             $products_order = self::showBasketSession()->sum(
                 function ($prod) {
-                    return $prod->price;     
+                    return $prod->price*$prod->quantity;     
     
                 }
             );  

@@ -20,7 +20,7 @@ class OrderAction
             'delivery'=>$delivery_order,
             'pay_info'=>$pay_info,
             'status'=>0,
-            'total'=>$total_summ_order*$request->quantity,
+            'total'=>$total_summ_order,
         ]);
         
         return $order;
