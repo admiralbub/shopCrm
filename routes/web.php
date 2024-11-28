@@ -115,6 +115,9 @@ Route::group([
     
     Route::group(['prefix' => 'novaposhta'], function () {
         Route::post('/getCity', [NovaPoshtaController::class,'getCity'])->name('novaposhta.getCity');
+
+        Route::get('/getCityAll', [NovaPoshtaController::class,'getCityAll'])->name('novaposhta.getCityAll');
+        Route::get('/getWarehouseAll', [NovaPoshtaController::class,'getWarehouseAll'])->name('novaposhta.getWarehouseAll');
       //  Route::get('/getCityAdmin', [NovaPoshtaController::class,'getCityAdmin'])->name('novaposhta.getCityAdmin');
         Route::post('/getWarehouse', [NovaPoshtaController::class,'getWarehouse'])->name('novaposhta.getWarehouse');
     });

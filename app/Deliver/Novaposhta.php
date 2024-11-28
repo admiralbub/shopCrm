@@ -1,5 +1,7 @@
 <?php
 namespace App\Deliver;
+use App\Models\NpCity;
+use App\Models\NpWarehouse;
 class Novaposhta {
 	
 	
@@ -7,40 +9,46 @@ class Novaposhta {
     private static $key = '';
     private static $accessPointJSON = 'https://api.novaposhta.ua/v2.0/json/';
 
-    public static function getCityFilter($city) {
+    public static function getCityDB($city) {
 
-        $request = '{
-            "modelName": "Address",
-            "calledMethod": "searchSettlements",
-            "methodProperties": {
-                "CityName": "' . $city . '"
-        }}';
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, self::$accessPointJSON);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, Array("Content-Type: text/json"));
-        curl_setopt($ch, CURLOPT_HEADER, 0);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $request);
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-        $response = curl_exec($ch);
-        $response = json_decode($response);
+        $searchArray = [];
+        $settlements = NpCity::where('Description', 'LIKE', "%{$city}%")->get();
+        // Преобразуем коллекцию и сортируем
+        $searchArray = $settlements->sortBy(function ($settlement) {
+            // Сортируем так, чтобы те, что содержат "місто", были первыми
+            return stripos($settlement->Description, 'місто') === false ? 1 : 0;
+        })->map(function ($sea) {
+            return [
+                'Description' => $sea->Description,
+                'Ref' => $sea->Ref,
+            ];
+        })->values(); // Преобразуем обратно в массив индексов
 
-        return  $response;
-
+        return $searchArray;
     }
-    public static function getWarehouseFilter($cityRef,$warehouse) {
+    public static function getWarehouseDB($warehouse,$city) {
+
+        $searchArray = [];
+        $settlements = NpWarehouse::where('Description', 'LIKE', "%{$warehouse}%")->where('CityRef',$city)->get();
+        foreach ($settlements as $sea) {
+            $searchArray[] = [
+                'Description'=>$sea->Description,
+                'Ref'=>$sea->Ref,
+            ];
+        }
+        return $searchArray;
+          
+    }
+    public static function getCitiesJSON() {
+ 
+		NpCity::delete();
+
 
         $request = '{
             "modelName": "Address",
-            "calledMethod": "getWarehouses",
-            "methodProperties": {
-                "CityRef": "' . $cityRef . '",
-                "FindByString":"' . $warehouse . '"
-  
-            }
+            "calledMethod": "getCities",
+            "methodProperties": {}
         }';
-        
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, self::$accessPointJSON);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -51,15 +59,53 @@ class Novaposhta {
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
         $response = curl_exec($ch);
         $response = json_decode($response);
-        
+        $resp_arr = array();
 
-        return  $response;
-          
-  
-  
-  
-  
-  
+        foreach ($response->data as $city) {
+            $np = new NpCity();
+            $np->Description = $city->SettlementTypeDescription.' '.$city->Description;
+            $np->DescriptionRu = $city->SettlementTypeDescriptionRu.' '.$city->DescriptionRu;
+            $np->Ref = $city->Ref;
+            $np->save();
+        }
+        
+        return  $resp_arr;
+    }
+
+    public static function getWarehouseJSON() {
+ 
+		NpWarehouse::delete();
+
+        
+        $request = '{
+           "modelName": "AddressGeneral",
+            "calledMethod": "getWarehouses",
+            "methodProperties": {}
+        }';
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, self::$accessPointJSON);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, Array("Content-Type: text/json"));
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $request);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+        $response = curl_exec($ch);
+        $response = json_decode($response);
+        $resp_arr = array();
+
+       
+        foreach ($response->data as $warehouse) {
+            $np = new NpWarehouse();
+            $np->Description = $warehouse->Description;
+            $np->DescriptionRu = $warehouse->DescriptionRu;
+            $np->Ref = $warehouse->Ref;
+
+            $np->CityRef = $warehouse->CityRef;
+            $np->save();
+        }
+        
+        return  $resp_arr;
     }
 
 }

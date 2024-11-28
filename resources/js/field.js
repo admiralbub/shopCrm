@@ -51,6 +51,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     const response = await axios.post('/novaposhta/getCity', {
                         city: this.value,
                     });
+                 
                     if(response['data'].length != 0) {
                         renderCityNp(response)
                     }
@@ -84,7 +85,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         };
         function toHtmlCity(np) {
-            return `<li class="py-2" data-ref="${np.DeliveryCity}">${np.Present}</li>`
+            return `<li class="py-2" data-ref="${np.Ref}">${np.Description}</li>`
         }
         document.addEventListener('click', function(event) {
             const resusltCityNp = document.querySelector('.resusltCityNp'); // Находим элемент resusltCityNp

@@ -38,7 +38,7 @@ class OrderController extends Controller
         $clearBasket = $this->basket->clearBasket($isAuth);
         return response()->json([
             'success'=>  __('You have successfully placed your order'),
-            'redirect' => route('profile')
+            'redirect' => route('profile.orders')
         ]);
     }
     public function getOrder() {

@@ -17,5 +17,7 @@ interface ProductInterface {
     public function filterAttr($products,$filter);
     public function setFilter($filter);
     public function selectedFilter($attrFilter);
+    public function searchProduct($search);
+    public function searchProductAjax($search);
 }
 ?>

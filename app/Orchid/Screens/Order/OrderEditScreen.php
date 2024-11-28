@@ -3,12 +3,13 @@
 namespace App\Orchid\Screens\Order;
 
 use App\Models\Order;
+
 use App\Models\OrderProduct;
 use App\Orchid\Layouts\OrderProduct\OrderProductListLayout;
 use Illuminate\Http\Request;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Fields\Quill;
-use Orchid\Screen\Fields\Relation;
+
 use Orchid\Screen\Fields\TextArea;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Fields\Upload;
@@ -22,13 +23,13 @@ use Orchid\Screen\Screen;
 use Orchid\Screen\Actions\Menu;
 use Orchid\Screen\Fields\Select;
 
-use App\Orchid\Fields\CityNpRef;
-use App\Orchid\Fields\WarehouseNp;
-use App\Orchid\Fields\WarehouseNpRef;
-use App\Orchid\Fields\CityNp;
+use App\Models\NpCity;
+use App\Models\NpWarehouse;
 
 use App\Orchid\Layouts\Deliver;
 use App\Orchid\Layouts\Deliver\DeliverListener;
+
+
 class OrderEditScreen extends Screen
 {
     /**
@@ -111,25 +112,10 @@ class OrderEditScreen extends Screen
                 Input::make('order.email')
                     ->required()
                     ->title('Email'),
-                Select::make('order.status')
-                    ->options(Order::getStatusUnitAttribute())
-                    ->required()
-                    ->title(__('Status')), 
+               
                 
-                Select::make('order.deliver_type')
-                    ->options(Order::getDeliverTextAttribute())
-                    ->required()
-                    ->title(__('Deliver')), 
-                CityNp::make('order.np_city')
-                    ->title(__('City')),
-                CityNpRef::make('order.np_city_ref'),
+                
 
-                    
-
-                WarehouseNp::make('order.np_warehouse')
-                    ->title(__('Warehouse')),
-
-                WarehouseNpRef::make('order.np_warehouse_ref'),
                 
                     
                 TextArea::make('order.comment')
@@ -138,22 +124,23 @@ class OrderEditScreen extends Screen
 
 
             ]),
+            DeliverListener::class,
             OrderProductListLayout::class
         ];
     }
-    public function asyncDeliver(Order $order) {
-        return [
-            'order'=>$order
-        ];
-    }
+  
     public function createOrUpdate(Request $request)
     {
-       // dd($request->get('order')['deliver_name']);
-        $delivery['city_np'] = $request->get('order')['np_city'];
-        $delivery['warehouse_np'] = $request->get('order')['np_warehouse'];
-        $delivery['warehouse_ref'] = $request->get('order')['np_warehouse_ref'];
+
         $delivery['deliver'] = $request->get('order')['deliver_type'];
-        $delivery['city_ref'] = $request->get('order')['np_city_ref'];
+        if($request->get('order')['deliver_type'] == "NP") {
+            $delivery['city_np'] = NpCity::where('id',$request->get('order')['np_city_id'])->pluck('Description')->first();
+            $delivery['warehouse_np'] = NpWarehouse::where('id',$request->get('order')['np_warehouse_id'])->pluck('Description')->first();
+            $delivery['warehouse_ref'] = NpWarehouse::where('id',$request->get('order')['np_warehouse_id'])->pluck('Ref')->first();
+            
+            $delivery['city_ref'] = NpCity::where('id',$request->get('order')['np_city_id'])->pluck('Ref')->first();
+        }
+        
         $this->order->delivery = $delivery;
 
 

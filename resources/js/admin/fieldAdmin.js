@@ -182,4 +182,4 @@ document.addEventListener("turbo:load",  onPageLoad())
 document.addEventListener("orchid:listener:after-render", onPageLoad())
 document.addEventListener('DOMContentLoaded', onPageLoad())
 
-
+onPageLoad();

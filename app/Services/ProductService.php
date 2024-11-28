@@ -230,6 +230,24 @@ class ProductService implements ProductInterface {
         
         return $selectedFilter;
     }
+
+    public function searchProduct($search) {
+        return Product::where('name_'.app()->getLocale(), 'LIKE', "%{$search}%")->paginate(20);
+    }
+    public function searchProductAjax($search) {
+        $products = Product::where('name_'.app()->getLocale(), 'LIKE', "%{$search}%")->published()->get();
+        $output = "";
+        $searchArray = [];
+        foreach ($products as $sea) {
+            $searchArray[] = [
+                'slug'=>$sea->slug,
+                'image'=>$sea->image,
+                'name'=>$sea->name,
+            ];
+        }
+        return $searchArray;
+
+    }
   
 }
 ?>

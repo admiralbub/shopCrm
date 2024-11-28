@@ -103,6 +103,12 @@ class Order extends Model
         return json_decode($this->delivery)->warehouse_np ? json_decode($this->delivery)->warehouse_np ?? '' : '';
     }
 	
+	public function getNpCityIdAttribute() {
+		return NpCity::where('Ref',json_decode($this->delivery)->city_ref)->pluck('id')->first();
+	}
+	public function getNpWarehouseIdAttribute() {
+		return NpWarehouse::where('Ref',json_decode($this->delivery)->warehouse_ref)->pluck('id')->first();
+	}
 
 	public function getPayTypeAttribute()
     {
