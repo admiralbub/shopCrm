@@ -41,8 +41,7 @@ class Novaposhta {
     }
     public static function getCitiesJSON() {
  
-		NpCity::delete();
-
+        NpCity::query()->delete();
 
         $request = '{
             "modelName": "Address",
@@ -74,8 +73,7 @@ class Novaposhta {
 
     public static function getWarehouseJSON() {
  
-		NpWarehouse::delete();
-
+        NpWarehouse::query()->delete();
         
         $request = '{
            "modelName": "AddressGeneral",
