@@ -19,7 +19,7 @@
                 <div class="form-group py-2">
                     <div class="d-flex justify-content-between align-items-center mb-2">
                         <label class="font-size-xs text-uppercase font-weight-medium text-dark text-ls mb-0">{{__('Password')}}</label>
-                        <a href="/forgot-password" class="fs-6"> {{__('Reset password')}}? </a>
+                        <a href="{{route('forgot-password')}}" class="fs-6"> {{__('Reset password')}}? </a>
                     </div>
                     <input type="password" data-require="true" data-min="6" class="form-control" name="password" placeholder="{{__('Password')}}" >
                 </div>

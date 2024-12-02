@@ -9,7 +9,7 @@ use App\Actions\Order\OrderAction;
 use App\Actions\Order\OrderProductAction;
 
 use App\Actions\Order\OrderOneClickAction;
-
+use Snowfire\Beautymail\Beautymail;
 use App\Actions\Order\AddProductOneClickAction;
 class OrderService implements OrderInterface {
     static public function getOrderAdd($request,$totalBasket) {
@@ -66,6 +66,17 @@ class OrderService implements OrderInterface {
     }
     static public function getOneClickAddProduct($order_id,$baskets) {
         return (new AddProductOneClickAction())->execute($baskets,$order_id);
+    }
+    static public function sendEmailOrder() {
+
+        $order_last = Order::latest()->first();
+        $beautymail = app()->make(Beautymail::class);
+        $beautymail->send('email.order', ['id'=>$order_last->id,'name'=>$order_last->first_name,'products'=>$order_last->products,'order_last'=> $order_last], function($message) use ($order_last) {
+            $message
+                ->from(config('app.email'))
+                ->to($order_last->email)
+                ->subject('Замовлення №'.$order_last->id.' отримано, найближчим часом буде прийнято в роботу.');
+            });
     }
 }
 

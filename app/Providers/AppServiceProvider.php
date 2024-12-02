@@ -39,6 +39,9 @@ use App\Services\OrderService;
 use App\Interfaces\FeedbackInterface;
 use App\Services\FeedbackService;
 
+use App\Interfaces\UserAuthManagerInterface;
+use App\Services\UserAuthManagerService;
+
 use App\Models\Setting;
 use App\Models\Page;
 class AppServiceProvider extends ServiceProvider
@@ -56,6 +59,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        $this->app->bind(
+            UserAuthManagerInterface::class,
+            UserAuthManagerService::class,
+
+        );
+
         $this->app->bind(
             StockInterface::class,
             StockService::class,

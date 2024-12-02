@@ -408,10 +408,13 @@
     "Feedbacks":"Відгуки",
     "Grade":"Оцінка",
     "Response":"Відповідь",
+    "password_recovery_success":"Запит на відновлення пароля успішно надіслано на вашу електронну пошту.",
+    "already_password_recovery":"Ви вже зробили запит на відновлення пароля",
     "There are no reviews for this product at this time":"На даний момент поки що немає відгуків для цього товару",
     "Thank you for your feedback. Your review will be published within this hour.":"Дякуємо вам за ваш відгук. Ваш відгук буде опубліковано протягом цієї години.",
     "Welcome to the admin panel of the Green Master website":"Ласкаво просимо на адмін панель сайті Зеленого майстра",
-    "Enter your phone number and we will call you back":"Введите свой номер телефона, и мы перезвоним вам."
+    "Enter your phone number and we will call you back":"Введите свой номер телефона, и мы перезвоним вам.",
+    "This email is not in the database":"Даний email відсутній у БД"
 
 
 

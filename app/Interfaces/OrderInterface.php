@@ -9,6 +9,7 @@ interface OrderInterface {
 
    static public function getOneClickAdd($request,$price);
    static public function getOneClickAddProduct($order_id,$baskets);
+   static public function sendEmailOrder();
 }
 
 ?>

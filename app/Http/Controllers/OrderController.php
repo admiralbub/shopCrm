@@ -7,6 +7,7 @@ use App\Interfaces\OrderInterface;
 use App\Interfaces\BasketInterface;
 use App\Http\Requests\OrderRequest;
 use App\Http\Requests\OneClickRequest;
+use Snowfire\Beautymail\Beautymail;
 class OrderController extends Controller
 {
     public $order;
@@ -36,6 +37,9 @@ class OrderController extends Controller
         }
         $addProductOrder = $this->order->getProductAdd($baskets,$sendOrder);
         $clearBasket = $this->basket->clearBasket($isAuth);
+
+        $this->order->sendEmailOrder();
+
         return response()->json([
             'success'=>  __('You have successfully placed your order'),
             'redirect' => route('profile.orders')
@@ -55,6 +59,9 @@ class OrderController extends Controller
 
         $addOneClickId = $this->order->getOneClickAdd($request,$showBasketOneClick->price);
         $addProcutOneClick = $this->order->getOneClickAddProduct($addOneClickId,$showBasketOneClick);
+
+
+       
         return response()->json([
             'success'=>  __('You have successfully placed your order'),
             'redirect' => route('product.view',['slug'=>$request->slug])

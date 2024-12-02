@@ -23,6 +23,8 @@ use App\Http\Controllers\StockController;
 use App\Http\Controllers\Page\PageController;
 
 use App\Http\Controllers\FeedbackController;
+
+use App\Http\Controllers\CustomerAuth\ResetPasswordController;
 require __DIR__ . '/admin/admin.php';
 $market = parse_url(config('app.url'), PHP_URL_HOST);
 Route::group([
@@ -97,7 +99,11 @@ Route::group([
         Route::post('/auth', [AuthController::class,'getAuth'])->name('auth.get');
         Route::get('/register', RegisterController::class)->name('register');
         Route::post('/register', [RegisterController::class,'getRegister'])->name('register.get');
-        
+        Route::get('/forgot-password', ResetPasswordController::class)->name('forgot-password');
+        Route::post('/forgot-password', [ResetPasswordController::class,'getForgetPassword'])->name('forgot-password.post');
+        Route::get('/reset_password/{token}', [ResetPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
+        Route::post('/reset_password/{token}', [ResetPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
+
         
     });
     Route::get('/search', [SearchController::class, 'getProductByName'])->name('products.search');

@@ -66,8 +66,9 @@
     "Top category":"Популярная категория",
     "Volume/value":"Объем/значение",
     
+    "password_recovery_success":"Запрос на восстановления пароля успешно отправлен на вашу электронную почту.", 
 
-
+    "already_password_recovery":"Вы уже сделали запрос на восстановления пароля",
     
     "Entrance to the personal office":"Вход в личный кабинет",
     "Enter":"Войти",
@@ -241,6 +242,7 @@
     "Enter your phone number and we will call you back":"Введите свой номер телефона и вам перезвонят",
     "Welcome to the admin panel of the Green Master website":"Добро пожаловать в админ панель сайта Зеленого мастера",
     "Grade":"Оценка",
+    "This email is not in the database":"Данный email отсутствует в БД",
     "There are no reviews for this product at this time":"На данный момент пока нету отзывов для данного товара",
     "Thank you for your feedback. Your review will be published within this hour.":"Благодарим вас за ваш отзыв. Ваш отзыв будет опубликован в течение этого часа."
    
