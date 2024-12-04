@@ -32,8 +32,10 @@ class CategoryProductFilter extends Filter
     {
         return [
              Select::make('category')
-                ->fromModel(Category::where('status','=',1), 'name_ua','id')
+                ->fromModel(Category::where('status','=',1), 'name_'.app()->getLocale(),'id')
                 ->empty()
+                ->allowEmpty()
+                ->value($this->request->get('category'))
                 ->title(__('Catogories')),
 
         ];

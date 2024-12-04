@@ -7,10 +7,10 @@ use Orchid\Filters\Filter;
 use Orchid\Screen\Field;
 use App\Models\Product;
 use Orchid\Screen\Fields\Input;
-
+use Orchid\Screen\Fields\Select;
 class NameProductFilter extends Filter
 {
-    public $parameters = ['name_ua'];
+    public $parameters = ['product'];
 
     /**
      * The array of matched parameters.
@@ -19,7 +19,7 @@ class NameProductFilter extends Filter
      */
     public function run(Builder $builder): Builder
     {
-        return $builder->where('name_ua', 'LIKE', "%{$this->request->get('name_ua')}%");
+        return $builder->where('id', $this->request->get('product'));
     }
 
     /**
@@ -30,10 +30,13 @@ class NameProductFilter extends Filter
     public function display(): iterable
     {
         return [
-            Input::make('name_ua')
-                ->type('text')
-                ->value($this->request->get('name_ua'))
+            Select::make('product')
+
+                ->empty()
+                ->allowEmpty()
+                ->fromModel(Product::where('status','=',1), 'name_'.app()->getLocale(),'id')
                 ->placeholder(__("Name",['locale'=>"(ua)"]))
+                ->value($this->request->get('product'))
                 ->title(__('Search'))
         ];
     }

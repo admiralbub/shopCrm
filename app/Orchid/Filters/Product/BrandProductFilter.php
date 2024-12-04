@@ -39,8 +39,10 @@ class BrandProductFilter extends Filter
     {
         return [
             Select::make('brand')
-               ->fromModel(Brand::where('status','=',1), 'name_ua','id')
+               ->fromModel(Brand::where('status','=',1), 'name_'.app()->getLocale(),'id')
                ->empty()
+               ->allowEmpty()
+               ->value($this->request->get('brand'))
                ->title(__('Brand')),
 
        ];

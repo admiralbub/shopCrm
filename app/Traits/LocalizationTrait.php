@@ -41,7 +41,7 @@ trait LocalizationTrait
         $attr = $this->getAttribute($this->getLocalizedAttrName($name));
 
         if (empty($attr) && $defaultLocaleWhenEmpty) {
-            $attr = $this->getAttribute($name . '_' . config()->get('app.fallback_locale'));
+            $attr = $this->getAttribute($name . '_' .app()->getLocale());
         }
 
         return $attr;

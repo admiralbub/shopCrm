@@ -30,7 +30,7 @@ class ProductListLayout extends Table
     protected function columns(): iterable
     {
         return [
-            TD::make('id', 'ID')->sort()->width(30),
+            TD::make('id', 'ID')->sort()->width(80),
             TD::make('img', __('Image'))->width(50)
                 ->render(function (Product $product) {
                     return '<img src="'.$product->image.'" width="65px;">';
