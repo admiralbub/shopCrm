@@ -128,7 +128,7 @@ if(search_mob) {
     search_mob.addEventListener('input', function() {
         const asyncSearchProductMob = async () => {
             try {
-                const response = await axios.post('/search_ajax', {
+                const response = await axios.post('/'+document.documentElement.getAttribute('lang')+'/search_ajax', {
                     query: this.value,
                 });
                 if(response['data'].length != 0) {
@@ -180,7 +180,7 @@ if(search_descktop) {
     search_descktop.addEventListener('input', function() {
         const asyncSearchProductDescktop = async () => {
             try {
-                const response = await axios.post('/search_ajax', {
+                const response = await axios.post('/'+document.documentElement.getAttribute('lang')+'/search_ajax', {
                     query: this.value,
                 });
                 if(response['data'].length != 0) {

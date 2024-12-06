@@ -58,6 +58,13 @@ class Product extends Model
 
         'name'
     ];
+    protected $lang_fields = [
+        'name',
+        'h1',
+        'title',
+        'description',
+        'meta'
+    ];
     public function scopeNew($q) {
         $q->where("is_new",1);
     }

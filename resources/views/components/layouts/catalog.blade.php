@@ -44,7 +44,7 @@
                                 @else
                                     <li>
                                         <a href="{{route('product.category',['slug'=>$category->slug])}}">
-                                            {{$category->name_ua}}
+                                            {{$category->name}}
                                         </a>
                                     </li>
                                 @endif
