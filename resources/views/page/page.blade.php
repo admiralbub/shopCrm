@@ -10,7 +10,7 @@
                 {!! preg_replace('#<h1([^>]*)>(.*)</h1>#m','<h2$1>$2</h2>', $page->description) !!}
             </div>
             <div class="col-12 col-lg-4">
-                <img src="{{asset($page->img)}}" alt="">
+                <img src="{{asset($page->img)}}" alt="" class="w-100">
             </div>
         </div>
         @if(count($page->products)>0)
