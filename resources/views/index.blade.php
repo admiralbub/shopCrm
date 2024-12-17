@@ -5,7 +5,20 @@
     :keywords="$page->meta_keywords">
 
 
-    <x-banner.main-slider :sliders="$slidersMains" />
+  
+    <div class="container pt-3">
+        <div class="row">
+            <div class="col-sm-12 col-lg-3">
+                <x-block.catalog/>
+            </div>
+            <div class="col-sm-12 col-lg-9">
+                <!-- Swiper -->
+                <x-banner.main-slider :sliders="$slidersMains" />
+            </div>
+            
+        </div>
+                   
+    </div>
     <x-block.advantages/>
     {{--<x-block.top-categories/>--}}
     <x-block.new-product :newProduct="$newProduct"/>

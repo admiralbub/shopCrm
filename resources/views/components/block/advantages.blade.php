@@ -1,4 +1,4 @@
-<div class=" container mt-lg-5 mt-3">
+<div class=" container mt-lg-5 mt-1">
     <div class="advantages row gx-1 gy-1 gy-xl-0">
         <div class="advantage col-xl-3 col-lg-6 col-md-6 col-sm-6 d-flex align-items-center">
             <div class="advantage-icon">
