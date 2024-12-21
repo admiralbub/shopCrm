@@ -16,11 +16,10 @@ class FetchWarehousesNpJob implements ShouldQueue
     /**
      * Access Point JSON URL (Changed to protected to allow access).
      */
-    private $warehouses;
 
-    public function __construct($warehouses)
+    public function __construct()
     {
-        $this->warehouses = $warehouses;
+     
     }
 
     /**
@@ -28,15 +27,40 @@ class FetchWarehousesNpJob implements ShouldQueue
      */
     public function handle()
     {
-        foreach ($this->warehouses as $warehouse) {
-            // Пример сохранения в модель Warehouse
-            $np = new NpWarehouse();
-            $np->Description = $warehouse['Description'];
-            $np->DescriptionRu = $warehouse['DescriptionRu'] ?? '';
-            $np->Ref = $warehouse['Ref'];
-            $np->CityRef = $warehouse['CityRef'] ;
-            $np->save();
-    
-        }
+        $page = 1;
+        $perPage = 100; // Количество отделений на странице
+
+        do {
+            $response = Http::get('https://api.novaposhta.ua/v2.0/json/', [
+                'modelName' => 'Address',
+                'calledMethod' => 'getWarehouses',
+                'methodProperties' => [
+                    'Page' => $page,
+                    'Limit' => $perPage,
+                ]
+            ]);
+
+            if ($response->successful()) {
+                $data = $response->json();
+
+                // Добавляем каждый элемент в очередь для обработки
+                foreach ($data['data'] as $branch) {
+                    $np = new NpWarehouse();
+                    $np->Description = $warehouse->Description;
+                    $np->DescriptionRu = $warehouse->DescriptionRu ?? '';
+                    $np->Ref = $warehouse->Ref;
+                    $np->CityRef = $warehouse->CityRef;
+                    $np->save();
+                }
+
+                $page++;
+            } else {
+                $this->error('Ошибка при получении данных с API: ' . $response->body());
+                break;
+            }
+
+        } while (count($data['data']) > 0);  // Пагинация продолжается, пока есть данные
+
+        $this->info('Данные о отделениях успешно добавлены в очередь.');
     }
 }
