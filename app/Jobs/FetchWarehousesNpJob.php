@@ -44,7 +44,7 @@ class FetchWarehousesNpJob implements ShouldQueue
                 $data = $response->json();
 
                 // Добавляем каждый элемент в очередь для обработки
-                foreach ($data['data'] as $branch) {
+                foreach ($data['data'] as $warehouse) {
                     $np = new NpWarehouse();
                     $np->Description = $warehouse->Description;
                     $np->DescriptionRu = $warehouse->DescriptionRu ?? '';
@@ -55,12 +55,12 @@ class FetchWarehousesNpJob implements ShouldQueue
 
                 $page++;
             } else {
-                $this->error('Ошибка при получении данных с API: ' . $response->body());
+               // $this->error('Ошибка при получении данных с API: ' . $response->body());
                 break;
             }
 
         } while (count($data['data']) > 0);  // Пагинация продолжается, пока есть данные
 
-        $this->info('Данные о отделениях успешно добавлены в очередь.');
+        
     }
 }
