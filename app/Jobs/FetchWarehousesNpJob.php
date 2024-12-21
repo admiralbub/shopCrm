@@ -41,7 +41,7 @@ class FetchWarehousesNpJob implements ShouldQueue
             ]);
     
             $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, $this->accessPointJSON);
+            curl_setopt($ch, CURLOPT_URL, "https://api.novaposhta.ua/v2.0/json/");
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
             curl_setopt($ch, CURLOPT_HTTPHEADER, Array("Content-Type: text/json"));
             curl_setopt($ch, CURLOPT_HEADER, 0);

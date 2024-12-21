@@ -8,8 +8,8 @@ class Novaposhta {
 	
 	
     //private static $key = '2d27090ed77f23c0e23271f2726e1554';
-    private static $key = '';
-    private  $accessPointJSON = 'https://api.novaposhta.ua/v2.0/json/';
+    //private static $key = '';
+ //   private  $accessPointJSON = 'https://api.novaposhta.ua/v2.0/json/';
 
     public static function getCityDB($city) {
 
@@ -76,7 +76,7 @@ class Novaposhta {
     public function getWarehouseJSON() {
  
         NpWarehouse::query()->delete();
-        dispatch(new FetchWarehousesNpJob($accessPointJSON));
+        dispatch(new FetchWarehousesNpJob());
         return response()->json(['message' => 'Задача поставлена в очередь для обработки']);
 
     }
