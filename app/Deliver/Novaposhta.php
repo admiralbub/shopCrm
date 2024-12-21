@@ -3,6 +3,7 @@ namespace App\Deliver;
 use App\Models\NpCity;
 use App\Models\NpWarehouse;
 use App\Jobs\FetchWarehousesNpJob;
+use App\Jobs\FetchCityNpJob;
 use Illuminate\Support\Facades\Http;
 class Novaposhta {
 	
@@ -44,33 +45,9 @@ class Novaposhta {
     public static function getCitiesJSON() {
  
         NpCity::query()->delete();
-
-        $request = '{
-            "modelName": "Address",
-            "calledMethod": "getCities",
-            "methodProperties": {}
-        }';
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, self::$accessPointJSON);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, Array("Content-Type: text/json"));
-        curl_setopt($ch, CURLOPT_HEADER, 0);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $request);
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-        $response = curl_exec($ch);
-        $response = json_decode($response);
-        $resp_arr = array();
-
-        foreach ($response->data as $city) {
-            $np = new NpCity();
-            $np->Description = $city->SettlementTypeDescription.' '.$city->Description;
-            $np->DescriptionRu = $city->SettlementTypeDescriptionRu.' '.$city->DescriptionRu;
-            $np->Ref = $city->Ref;
-            $np->save();
-        }
-        
-        return  $resp_arr;
+        dispatch(new FetchCityNpJob(1));
+        return response()->json(['message' => 'Задача поставлена в очередь для обработки']);
+      
     }
 
     public function getWarehouseJSON() {
