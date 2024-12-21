@@ -76,7 +76,7 @@ class Novaposhta {
     public function getWarehouseJSON() {
  
         NpWarehouse::query()->delete();
-        dispatch(new FetchWarehousesNpJob());
+        dispatch(new FetchWarehousesNpJob(1));
         return response()->json(['message' => 'Задача поставлена в очередь для обработки']);
 
     }
