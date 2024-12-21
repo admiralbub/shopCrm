@@ -68,7 +68,7 @@ class FetchWarehousesNpJob implements ShouldQueue
                 }
                 Log::info("Данные успешно загрузились.");
             }
-    
+            $page++;
         }  while (count($response->data) > 0);
 
        
