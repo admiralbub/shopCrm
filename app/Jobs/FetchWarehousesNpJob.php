@@ -9,6 +9,7 @@ use Illuminate\Queue\SerializesModels;
 use App\Models\NpWarehouse;
 use App\Deliver\Novaposhta;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 class FetchWarehousesNpJob implements ShouldQueue
 {
     use Queueable;
@@ -16,10 +17,10 @@ class FetchWarehousesNpJob implements ShouldQueue
     /**
      * Access Point JSON URL (Changed to protected to allow access).
      */
-
-    public function __construct()
+    public $accessPointJSON;
+    public function __construct($accessPointJSON)
     {
-     
+        $this->accessPointJSON = $accessPointJSON;
     }
 
     /**
@@ -29,22 +30,37 @@ class FetchWarehousesNpJob implements ShouldQueue
     {
         $page = 1;
         $perPage = 100; // Количество отделений на странице
-
         do {
-            $response = Http::get('https://api.novaposhta.ua/v2.0/json/', [
-                'modelName' => 'Address',
-                'calledMethod' => 'getWarehouses',
+            $request = json_encode([
+                "modelName" => "AddressGeneral",
+                "calledMethod" => "getWarehouses",
                 'methodProperties' => [
                     'Page' => $page,
                     'Limit' => $perPage,
                 ]
             ]);
-
-            if ($response->successful()) {
-                $data = $response->json();
-
-                // Добавляем каждый элемент в очередь для обработки
-                foreach ($data['data'] as $warehouse) {
+    
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $this->accessPointJSON);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, Array("Content-Type: text/json"));
+            curl_setopt($ch, CURLOPT_HEADER, 0);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $request);
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+    
+            $response = curl_exec($ch);
+    
+            if ($response === false) {
+                Log::error('Error with cURL: ' . curl_error($ch));
+            }
+    
+            $response = json_decode($response);
+    
+            if (!isset($response->success) || !$response->success || empty($response->data)) {
+                Log::error('API response error: ' . json_encode($response));
+            } else {
+                foreach ($response->data as $warehouse) {
                     $np = new NpWarehouse();
                     $np->Description = $warehouse->Description;
                     $np->DescriptionRu = $warehouse->DescriptionRu ?? '';
@@ -52,15 +68,13 @@ class FetchWarehousesNpJob implements ShouldQueue
                     $np->CityRef = $warehouse->CityRef;
                     $np->save();
                 }
-
-                $page++;
-            } else {
-               // $this->error('Ошибка при получении данных с API: ' . $response->body());
-                break;
+                Log::info("Данные успешно загрузились.");
             }
+    
+        }  while (count($response->data) > 0);
 
-        } while (count($data['data']) > 0);  // Пагинация продолжается, пока есть данные
-
+       
+        
         
     }
 }
