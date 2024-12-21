@@ -17,10 +17,8 @@ class FetchWarehousesNpJob implements ShouldQueue
     /**
      * Access Point JSON URL (Changed to protected to allow access).
      */
-    public $accessPointJSON;
-    public function __construct($accessPointJSON)
+    public function __construct()
     {
-        $this->accessPointJSON = $accessPointJSON;
     }
 
     /**
