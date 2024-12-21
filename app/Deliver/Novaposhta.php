@@ -72,38 +72,55 @@ class Novaposhta {
     }
 
     public static function getWarehouseJSON() {
- 
-        NpWarehouse::query()->delete();
-        
-        $request = '{
-           "modelName": "AddressGeneral",
-            "calledMethod": "getWarehouses",
-            "methodProperties": {}
-        }';
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, self::$accessPointJSON);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, Array("Content-Type: text/json"));
-        curl_setopt($ch, CURLOPT_HEADER, 0);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $request);
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-        $response = curl_exec($ch);
-        $response = json_decode($response);
-        $resp_arr = array();
-
-       
-        foreach ($response->data as $warehouse) {
-            $np = new NpWarehouse();
-            $np->Description = $warehouse->Description;
-            $np->DescriptionRu = $warehouse->DescriptionRu;
-            $np->Ref = $warehouse->Ref;
-
-            $np->CityRef = $warehouse->CityRef;
-            $np->save();
+        NpWarehouse::query()->delete(); // Очищаем таблицу перед загрузкой новых данных
+        $lest = [];
+        $page = 1; // Номер страницы
+        $limit = 50; // Количество записей на странице
+        $hasMoreData = true; // Флаг для проверки наличия следующих страниц
+    
+        while ($hasMoreData) {
+            $request = json_encode([
+                "modelName" => "AddressGeneral",
+                "calledMethod" => "getWarehouses",
+                "methodProperties" => [
+                    "Page" => $page,
+                    "Limit" => $limit
+                ]
+            ]);
+    
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, self::$accessPointJSON);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, ["Content-Type: application/json"]);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $request);
+            curl_setopt($ch, CURLOPT_POST, 1);
+    
+            $response = curl_exec($ch);
+    
+            if ($response === false) {
+                throw new Exception('Error with cURL: ' . curl_error($ch));
+            }
+    
+            $response = json_decode($response);
+    
+            if (!isset($response->success) || !$response->success || empty($response->data)) {
+                throw new Exception('API response error: ' . json_encode($response));
+            }
+    
+            foreach ($response->data as $warehouse) {
+                $np = new NpWarehouse();
+                $np->Description = $warehouse->Description;
+                $np->DescriptionRu = $warehouse->DescriptionRu ?? '';
+                $np->Ref = $warehouse->Ref;
+                $np->CityRef = $warehouse->CityRef;
+                $np->save();
+            }
+    
+            // Проверяем, есть ли ещё данные
+            $hasMoreData = count($response->data) === $limit;
+            $page++;
         }
-        
-        return  $resp_arr;
+        return 'Data successfully imported!';
     }
 
 }
