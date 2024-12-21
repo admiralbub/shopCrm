@@ -3,6 +3,7 @@ namespace App\Deliver;
 use App\Models\NpCity;
 use App\Models\NpWarehouse;
 use App\Jobs\FetchWarehousesNpJob;
+use Illuminate\Support\Facades\Http;
 class Novaposhta {
 	
 	
@@ -75,8 +76,27 @@ class Novaposhta {
     public function getWarehouseJSON() {
  
         NpWarehouse::query()->delete();
-        
-        dispatch(new FetchWarehousesNpJob($this->accessPointJSON));
+        for ($page = 1; $page <= 550; $page++) {
+            $response = Http::post($this->accessPointJSON, [
+                'modelName' => 'AddressGeneral',
+                'calledMethod' => 'getWarehouses',
+                'methodProperties' => [
+                    "Page" => $page,
+                ],
+            ]);
+            
+            if ($response->successful()) {
+                $warehouses = $response->json()['data'];
+                // Сохранить данные в базе данных или обработать их
+            
+                dispatch(new FetchWarehousesNpJob($warehouses));
+            } else {
+                // Логирование ошибок
+                \Log::error('Ошибка получения данных с Новой Почты: ' . $response->body());
+            }
+        }
+        return response()->json(['message' => 'Задача поставлена в очередь для обработки']);
+
     }
 
 }
