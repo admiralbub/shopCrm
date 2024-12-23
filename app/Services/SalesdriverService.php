@@ -9,6 +9,7 @@ class SalesdriverService implements SalesdriverInterface {
         $order = Order::findOrFail($orderId);
        // dd($order->first_name);
         $deliver_branch = json_decode($order->delivery, true);
+        $pay_data = json_decode($order->pay_info, true);
         $isNP = strpos($deliver_branch['deliver'], 'NP') !== false;
         $salesDriveProducts = [];
         foreach ($order->products as $product) {
@@ -20,7 +21,9 @@ class SalesdriverService implements SalesdriverInterface {
             ];
         }
      
-
+        $pay_salesdriver = match ($pay_data['pay_title']) {
+            'Default_pay' => 'postpay',
+        };
 
         SendToSalesDrive::dispatch('handler/', [
             "form" => "qleqMom3C0wiuOHs6YpcjOmxMQ54x5Getl6URoDM2JWZqodSlVkxvy6Oc0NKc9Vk_ptuY1NdQ",
@@ -32,6 +35,8 @@ class SalesdriverService implements SalesdriverInterface {
             "externalId"=>$order->id,
             "comment" => $order->comment ?? '',
             "products" => $salesDriveProducts,
+            "shipping_method" => $isNP ? 'Нова пошта' : '',
+            "payment_method" => $pay_salesdriver,
             "novaposhta" => [
                 "city" => $deliver_branch['city_ref'],
                 "ServiceType" => $isNP ? ($deliver_branch['deliver'] === 'NP' ? 'DoorsWarehouse' : 'DoorsDoors') : '',
