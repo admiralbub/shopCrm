@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Interfaces\OrderInterface;
+use App\Interfaces\SalesdriverInterface;
 use App\Interfaces\BasketInterface;
 use App\Http\Requests\OrderRequest;
 use App\Http\Requests\OneClickRequest;
@@ -12,9 +13,15 @@ class OrderController extends Controller
 {
     public $order;
     public $basket;
-    public function __construct(OrderInterface $order,BasketInterface $basket)
+    public $salesdriver;
+    public function __construct(
+        OrderInterface $order,
+        BasketInterface $basket,
+        SalesdriverInterface $salesdriver
+    )
     {
         $this->order = $order;
+        $this->salesdriver = $salesdriver;
         $this->basket = $basket;
     }
     public function __invoke() {
@@ -36,6 +43,7 @@ class OrderController extends Controller
             $baskets = $this->basket->showBasketSession();
         }
         $addProductOrder = $this->order->getProductAdd($baskets,$sendOrder);
+        $this->salesdriver->addOrderinCrm($sendOrder);
         $clearBasket = $this->basket->clearBasket($isAuth);
 
         $this->order->sendEmailOrder();

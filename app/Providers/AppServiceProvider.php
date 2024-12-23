@@ -39,6 +39,9 @@ use App\Services\OrderService;
 use App\Interfaces\FeedbackInterface;
 use App\Services\FeedbackService;
 
+use App\Services\SalesdriverService;
+use App\Interfaces\SalesdriverInterface;
+
 use App\Interfaces\UserAuthManagerInterface;
 use App\Services\UserAuthManagerService;
 
@@ -128,6 +131,12 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             FeedbackInterface::class,
             FeedbackService::class,
+
+        );
+
+        $this->app->bind(
+            SalesdriverInterface::class,
+            SalesdriverService::class,
 
         );
 
